@@ -20,7 +20,7 @@ var extensionConstructor = {
 		}
 
 		startX--; startY--; length++;
-		return findValidLocation(room, startX, startY, length);	
+		return this.findValidLocation(room, startX, startY, length);	
 	},
 
 	calculateSquare: function(startX, startY, length) {
