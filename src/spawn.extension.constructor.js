@@ -38,13 +38,13 @@ var extensionConstructor = {
 			if (currentY === startY || currentY === (startY + length) - 1) {
 
 				for (; currentX <= maxX; currentX++){
-					coordinates.push({'x': currentX, 'y': currentY});
+					coordinates.push({x: currentX, y: currentY});
 				}
 				currentX = startX;
 			}
 			else {
-				coordinates.push({'x': currentX, 'y': currentY});
-				coordinates.push({'x': (currentX + length) - 1, 'y': currentY});
+				coordinates.push({x: currentX, y: currentY});
+				coordinates.push({x: (currentX + length) - 1, y: currentY});
 			}
 		}
 		return coordinates;
