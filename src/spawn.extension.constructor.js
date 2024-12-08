@@ -12,9 +12,9 @@ var extensionConstructor = {
 		
 		var coordinates = this.calculateSquare(startX, startY, length);
 		for (var coordinate in coordinates){
-			console.log("Attempting to build extension at: X" + coordinate['x'] + ", Y" + coordinate['y']);
+			console.log("Attempting to build extension at: X" + coordinate.x + ", Y" + coordinate.y);
 
-			var response = room.createConstructionSite(coordinate['x'], coordinate['y'], STRUCTURE_EXTENSION);
+			var response = room.createConstructionSite(coordinate.x, coordinate.y, STRUCTURE_EXTENSION);
 			if (response !== ERR_INVALID_TARGET) { return response; }
 		}
 
