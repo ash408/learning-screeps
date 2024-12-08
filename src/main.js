@@ -51,7 +51,10 @@ module.exports.loop = function () {
         }
     }
 	
-	try { extensionConstructor.run(Game.spawns['Spawn1']); }
+	try { 
+		var response = extensionConstructor.run(Game.spawns['Spawn1']);
+		console.log(response); 
+	}
 	catch (error) { console.log(error); }
     
     if(Game.cpu.bucket == 10000) {
