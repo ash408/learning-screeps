@@ -1,3 +1,5 @@
+var extensionConstructor = require('spawn.extension.constructor');
+
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 
@@ -48,6 +50,9 @@ module.exports.loop = function () {
             roleUpgrader.run(creep);
         }
     }
+	
+	try { extensionConstructor.run(Game.spawns['Spawn1']); }
+	catch (error) { console.error(error); }
     
     if(Game.cpu.bucket == 10000) {
         Game.cpu.generatePixel();
