@@ -4,13 +4,13 @@ var extensionConstructor = {
 		var startX = spawn.pos.x - 1;
 		var startY = spawn.pos.y - 1;
 
-		return findValidLocation(spawn.room, startX, startY);	
+		return this.findValidLocation(spawn.room, startX, startY);	
 	},
 	
 	findValidLocation: function(room, startX, startY, length=3) {
 		if (startX < 0 || startY < 0) { return null; }
 		
-		var coordinates = calculateSquare(startX, startY, length);
+		var coordinates = this.calculateSquare(startX, startY, length);
 		for (var coordinate in coordinates){
 			var response = room.createConstructionSite(coordinate['x'], coordinate['y'], STRUCTURE_EXTENSION);
 			if (response !== ERR_INVALID_TARGET) { return response; }
