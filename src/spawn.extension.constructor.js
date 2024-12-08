@@ -11,7 +11,7 @@ var extensionConstructor = {
 		if (startX < 0 || startY < 0) { return null; }
 		
 		var coordinates = this.calculateSquare(startX, startY, length);
-		for (var coordinate in coordinates){
+		for (var coordinate of coordinates){
 			console.log(coordinate);
 			console.log("Attempting to build extension at: X" + coordinate.x + ", Y" + coordinate.y);
 
