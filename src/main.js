@@ -52,7 +52,7 @@ module.exports.loop = function () {
     }
 	
 	try { extensionConstructor.run(Game.spawns['Spawn1']); }
-	catch (error) { console.error(error); }
+	catch (error) { console.log(error); }
     
     if(Game.cpu.bucket == 10000) {
         Game.cpu.generatePixel();
