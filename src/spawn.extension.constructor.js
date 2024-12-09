@@ -29,6 +29,7 @@ var extensionConstructor = {
 	},
 
 	validateCoordinates: function(room, x, y) {
+		console.log("Validating: X" + x + ", Y" + y);
 		var sites = room.lookForAt(LOOK_CONSTRUCTION_SITES, x, y);
 		return sites.length === 0;
 	},
@@ -37,7 +38,7 @@ var extensionConstructor = {
 		console.log("Validating coordinates");
 		for (var coordinate of coordinates) {
 			var validation = this.validateCoordinates(room, coordinate.x, coordinate.y);
-			if (!validation) { return false; }
+			if (!validation) { console.log("Invalid coordinates"); return false; }
 		}
 		return true;
 	},
