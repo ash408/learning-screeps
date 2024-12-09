@@ -16,6 +16,7 @@ var extensionConstructor = {
 			console.log("Attempting to build extension at: X" + coordinate.x + ", Y" + coordinate.y);
 
 			var validationCoordinates = this.calculateCrosshair(coordinate.x, coordinate.y);
+			console.log(validationCoordinates);
 			var isValid = this.validateCoordinates(room, validationCoordinates)
 			
 			if (isValid) {
