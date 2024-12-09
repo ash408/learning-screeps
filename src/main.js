@@ -70,7 +70,7 @@ module.exports.loop = function () {
 		var response = extensionConstructor.run(Game.spawns['Spawn1']);
 		console.log(response); 
 	}
-	catch (error) { console.log(error); }
+	catch (error) { console.log(error.message); }
     
     if(Game.cpu.bucket == 10000) {
         Game.cpu.generatePixel();
