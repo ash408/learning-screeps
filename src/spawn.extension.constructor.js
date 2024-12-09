@@ -34,6 +34,7 @@ var extensionConstructor = {
 	},
 
 	validateCoordinates: function(room, coordinates) {
+		console.log("Validating coordinates");
 		for (var coordinate of coordinates) {
 			var validation = this.validateCoordinates(room, coordinate.x, coordinate.y);
 			if (!validation) { return false; }
@@ -81,5 +82,7 @@ var extensionConstructor = {
 		return coordinates;
 	}
 };
+
+console.log(extensionConstructor.calculateCrosshair(0,0));
 
 module.exports = extensionConstructor;
