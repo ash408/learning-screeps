@@ -40,6 +40,7 @@ var extensionConstructor = {
 			var validation = this.validateCoordinates(room, coordinate.x, coordinate.y);
 			if (!validation) { console.log("Invalid coordinates"); return false; }
 		}
+		console.log("Coordinates are valid!");
 		return true;
 	},
 
