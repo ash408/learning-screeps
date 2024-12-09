@@ -31,7 +31,7 @@ var extensionConstructor = {
 	validateCoordinates: function(room, x, y) {
 		var sites = room.lookForAt(LOOK_CONSTRUCTION_SITES, x, y);
 		return sites.length === 0;
-	}
+	},
 
 	validateCoordinates: function(room, coordinates) {
 		for (var coordinate of coordinates) {
@@ -39,7 +39,7 @@ var extensionConstructor = {
 			if (!validation) { return false; }
 		}
 		return true;
-	}
+	},
 
 	calculateSquare: function(startX, startY, length) {
 		var currentX = startX;
@@ -66,7 +66,7 @@ var extensionConstructor = {
 			}
 		}
 		return coordinates;
-	}
+	},
 
 	//Add length support
 	calculateCrosshair: function(x, y) {
