@@ -38,6 +38,7 @@ var extensionConstructor = {
 	validateCoordinates: function(room, coordinates) {
 		console.log("Validating coordinates");
 		for (var coordinate of coordinates) {
+			console.log(coordinate);
 			var validation = this.validateCoordinates(room, coordinate.x, coordinate.y);
 			if (!validation) { console.log("Invalid coordinates"); return false; }
 		}
