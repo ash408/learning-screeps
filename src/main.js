@@ -67,8 +67,8 @@ module.exports.loop = function () {
 	
 	try { 
 		// Need to fix building, blocking movement and will build infinitely
-		//var response = extensionConstructor.run(Game.spawns['Spawn1']);
-		//console.log(response); 
+		var response = extensionConstructor.run(Game.spawns['Spawn1']);
+		console.log(response); 
 	}
 	catch (error) { console.log(error); }
     
