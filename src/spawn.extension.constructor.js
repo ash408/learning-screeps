@@ -32,7 +32,8 @@ var extensionConstructor = {
 	validateCoordinate: function(room, x, y) {
 		console.log("Validating: X" + x + ", Y" + y);
 		var sites = room.lookForAt(LOOK_CONSTRUCTION_SITES, x, y);
-		return sites.length === 0;
+		var structures = room.lookForAt(LOOK_STRUCTURES, x, y);
+		return sites.length === 0 && sites.length === 0;
 	},
 
 	validateCoordinates: function(room, coordinates) {
