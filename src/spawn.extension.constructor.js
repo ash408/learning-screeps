@@ -25,7 +25,7 @@ var extensionConstructor = {
 			}
 		}
 
-		startX--; startY--; length++;
+		startX--; startY--; length+=2;
 		return this.findValidLocation(room, startX, startY, length);	
 	},
 
