@@ -45,6 +45,10 @@ var roleWorker = {
 				this.harvest();
 				break;
 
+			case WORKER_TRANSFERING:
+				this.transfer();
+				break;
+
 			case WORKER_UPGRADING:
 				this.upgrade();
 				break;
