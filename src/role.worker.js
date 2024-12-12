@@ -8,7 +8,7 @@ var roleWorker = {
 	run: function(creep) {
 		this.creep = creep;
 		this.assignTask();
-		this.performTask(creep.memory.task);
+		this.performTask(this.creep.memory.task);
 	},
 
 	assignTask: function() {
@@ -50,8 +50,8 @@ var roleWorker = {
 	},
 
 	upgrade: function() {
-		if(creep.upgradeController(this.creep.room.controller) === ERR_NOT_IN_RANGE) {
-			creep.moveTo(this.creep.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
+		if(this.creep.upgradeController(this.creep.room.controller) === ERR_NOT_IN_RANGE) {
+			this.creep.moveTo(this.creep.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
 		}
 	},
 
