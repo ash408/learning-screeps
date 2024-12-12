@@ -44,7 +44,7 @@ var roleWorker = {
 	harvest: function() {
 		var source = this.creep.pos.findClosestByPath(FIND_SOURCES);
 
-		if(source != null && this.creep.harvest(source, RESOURCE_ENERGY) === ERR_NOT_IN_RAGE) {
+		if(source != null && this.creep.harvest(source, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
 			this.creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
 		}
 	},
