@@ -17,11 +17,11 @@ var roleWorker = {
 			this.creep.memory.task = WORKER_HARVESTING;
 		}
 		else {
-			if (this.creep.room.find(FIND_CONSTRUCTION_SITES).length) {
-				this.creep.memory.task = WORKER_BUILDING;
-			}
-			else if (this.getStores().length) {
+			if (this.getStores().length) {
 				this.creep.memory.task = WORKER_TRANSFERING;
+			}
+			else if (this.creep.room.find(FIND_CONSTRUCTION_SITES).length) {
+				this.creep.memory.task = WORKER_BUILDING;
 			}
 			else {
 				this.creep.memory.task = WORKER_UPGRADING;
