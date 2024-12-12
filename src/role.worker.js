@@ -1,4 +1,5 @@
 const WORKER_HARVESTING = 'harvesting';
+const WORKER_TRANSFER = 'transfering';
 const WORKER_UPGRADING = 'upgrading';
 const WORKER_BUILDING = 'building';
 
@@ -19,10 +20,23 @@ var roleWorker = {
 			if (this.creep.room.find(FIND_CONSTRUCTION_SITES).length) {
 				this.creep.memory.task = WORKER_BUILDING;
 			}
+			else if (this.getStores().length) {
+				this.creep.memory.task = WORKER_TRANSFER;
+			}
 			else {
 				this.creep.memory.task = WORKER_UPGRADING;
 			}
 		}
+	},
+
+	getStores: function() {
+		var targets = this.creep.room.find(FIND_STRUCTURES, {
+			filter: (structure) => {
+				return (structure.structureType === STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) &&
+					structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
+			}
+		});
+		return targets;	
 	},
 
 	performTask: function(task) {
@@ -46,6 +60,15 @@ var roleWorker = {
 
 		if(source != null && this.creep.harvest(source, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
 			this.creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
+		}
+	},
+
+	transfer: function() {
+		var targets = this.getStores();
+		if (targets.length > 0) {
+			if(this.creep.transfer(target[0], RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+				creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
+			}
 		}
 	},
 
