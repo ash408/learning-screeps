@@ -62,7 +62,7 @@ var roleWorker = {
 	harvest: function() {
 		var source = this.creep.pos.findClosestByPath(FIND_SOURCES);
 
-		if(source != null && this.creep.harvest(source, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+	if(source != null && this.creep.harvest(source, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
 			this.creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
 		}
 	},
@@ -83,7 +83,7 @@ var roleWorker = {
 	},
 
 	build: function() {
-		var targets = this.creep.room.findClosestByPath(FIND_CONSTRUCTION_SITES);
+		var targets = this.creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
 
 		if(targets.length) {
 			if(this.creep.build(targets[0]) === ERR_NOT_IN_RANGE) {
