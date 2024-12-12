@@ -12,15 +12,15 @@ var roleWorker = {
 	},
 
 	assignTask: function() {
-		if(creep.store[RESOURCE_ENERGY] === 0) {
-			creep.memory.task = WORKER_HARVESTING;
+		if(this.creep.store[RESOURCE_ENERGY] === 0) {
+			this.creep.memory.task = WORKER_HARVESTING;
 		}
 		else {
-			if (creep.room.find(FIND_CONSTRUCTION_SITES).length) {
-				creep.memory.task = WORKER_BUILDING;
+			if (this.creep.room.find(FIND_CONSTRUCTION_SITES).length) {
+				this.creep.memory.task = WORKER_BUILDING;
 			}
 			else {
-				creep.memory.task = WORKER_UPGRADING;
+				this.creep.memory.task = WORKER_UPGRADING;
 			}
 		}
 	},
