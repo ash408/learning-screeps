@@ -83,11 +83,11 @@ var roleWorker = {
 	},
 
 	build: function() {
-		var targets = this.creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
+		var target = this.creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
 
-		if(targets.length) {
-			if(this.creep.build(targets[0]) === ERR_NOT_IN_RANGE) {
-				this.creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
+		if(target) {
+			if(this.creep.build(target) === ERR_NOT_IN_RANGE) {
+				this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
 			}
 		}
 	}
