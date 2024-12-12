@@ -1,5 +1,5 @@
 const WORKER_HARVESTING = 'harvesting';
-const WORKER_TRANSFER = 'transfering';
+const WORKER_TRANSFERING = 'transfering';
 const WORKER_UPGRADING = 'upgrading';
 const WORKER_BUILDING = 'building';
 
@@ -21,7 +21,7 @@ var roleWorker = {
 				this.creep.memory.task = WORKER_BUILDING;
 			}
 			else if (this.getStores().length) {
-				this.creep.memory.task = WORKER_TRANSFER;
+				this.creep.memory.task = WORKER_TRANSFERING;
 			}
 			else {
 				this.creep.memory.task = WORKER_UPGRADING;
