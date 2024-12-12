@@ -30,7 +30,7 @@ var roleWorker = {
 	},
 
 	getStores: function() {
-		var targets = this.creep.room.find(FIND_STRUCTURES, {
+		var targets = this.creep.room.findClosestByPath(FIND_STRUCTURES, {
 			filter: (structure) => {
 				return (structure.structureType === STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) &&
 					structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
@@ -83,7 +83,7 @@ var roleWorker = {
 	},
 
 	build: function() {
-		var targets = this.creep.room.find(FIND_CONSTRUCTION_SITES);
+		var targets = this.creep.room.findClosestByPath(FIND_CONSTRUCTION_SITES);
 
 		if(targets.length) {
 			if(this.creep.build(targets[0]) === ERR_NOT_IN_RANGE) {
