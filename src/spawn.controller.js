@@ -4,7 +4,7 @@ var spawnController = {
 		
 	run: function() {
 		var spawnHash = Game.spawns;
-		var spawns = spawnHash.keys.map(function(v) { return spawnHash[v]; });
+		var spawns = Object.keys(spawnHash).map(function(v) { return spawnHash[v]; });
 		var workers = _.filter(Game.creeps, (creep) => creep.memory.role == 'worker');
 
 		if (workers.length < MAX_WORKERS){
@@ -12,7 +12,7 @@ var spawnController = {
 			spawns[0].spawnCreep([WORK, CARRY, MOVE], newName,
 				{memory: {role: 'worker'}});
 		}
-	} 
+	}
 };
 
 module.exports = spawnController;
