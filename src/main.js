@@ -13,16 +13,6 @@ module.exports.loop = function () {
     }
 
 	spawnController.run();
-
-    //var workers = _.filter(Game.creeps, (creep) => creep.memory.role == 'worker');
-    //console.log('Workers: ' + workers.length);
-    
-    //if(workers.length < 10) {
-    //    var newName = 'Worker' + Game.time;
-    //    console.log('Spawning new worker: ' + newName);
-    //    Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
-    //        {memory: {role: 'worker'}});
-    //}
     
     if(Game.spawns['Spawn1'].spawning) { 
         var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
