@@ -27,6 +27,7 @@ var spawnController = {
 				spawns[0].spawnCreep(creepBody, newName,
 					{memory: {role: 'worker'}});
 			}
+		}
 	},
 
 	calculateBody: function(room) {
