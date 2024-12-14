@@ -17,7 +17,7 @@ var roleWorker = {
 			this.creep.memory.task = WORKER_HARVESTING;
 		}
 		else if(this.creep.store.getFreeCapacity() === 0){
-			if (this.getEmptyStore()) {
+			if (this.getEmptyStore() !== null) {
 				this.creep.memory.task = WORKER_TRANSFERING;
 			}
 			else if (this.creep.room.find(FIND_CONSTRUCTION_SITES).length) {
