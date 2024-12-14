@@ -30,13 +30,13 @@ var roleWorker = {
 	},
 
 	getEmptyStore: function() {
-		var targets = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
+		var target = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
 			filter: (structure) => {
 				return (structure.structureType === STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) &&
 					structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
 			}
 		});
-		return targets;	
+		return target;	
 	},
 
 	performTask: function(task) {
