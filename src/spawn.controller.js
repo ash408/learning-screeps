@@ -13,11 +13,20 @@ var spawnController = {
 		var spawns = Object.keys(spawnHash).map(function(v) { return spawnHash[v]; });
 		var workers = _.filter(Game.creeps, (creep) => creep.memory.role == 'worker');
 
-		if (workers.length < MAX_WORKERS){
+		//if (workers.length < MAX_WORKERS){
+		//	var newName = 'Worker' + Game.time;
+		//	spawns[0].spawnCreep([WORK, CARRY, MOVE], newName,
+		//		{memory: {role: 'worker'}});
+		//}
+
+		if (workers.length < MAX_WORKERS) {
 			var newName = 'Worker' + Game.time;
-			spawns[0].spawnCreep([WORK, CARRY, MOVE], newName,
-				{memory: {role: 'worker'}});
-		}
+			var creepBody = calculateBody(spawns[0].room);
+
+			if (creepBody !== null) {
+				spawns[0].spawnCreep(creepBody, newName,
+					{memory: {role: 'worker'}});
+			}
 	},
 
 	calculateBody: function(room) {
