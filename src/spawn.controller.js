@@ -21,7 +21,7 @@ var spawnController = {
 
 		if (workers.length < MAX_WORKERS) {
 			var newName = 'Worker' + Game.time;
-			var creepBody = calculateBody(spawns[0].room);
+			var creepBody = this.calculateBody(spawns[0].room);
 
 			if (creepBody !== null) {
 				spawns[0].spawnCreep(creepBody, newName,
@@ -35,13 +35,13 @@ var spawnController = {
 		var body = template.slice(0);
 		var totalEnergy = room.energyAvailable;
 
-		while (totalEnergy > calculateEnergy(body)){
+		while (totalEnergy > this.calculateEnergy(body)){
 
 			for (part of template){
 				var testBody = body.slice(0);
 				testBody.push(part);
 
-				if(calculateEnergy(testBody) > totalEnergy){
+				if(this.calculateEnergy(testBody) > totalEnergy){
 					return body;
 				}
 				else{
