@@ -64,7 +64,7 @@ var roleWorker = {
 			filter: (source) => {
 				return (source.energy > 0);
 			}
-		}
+		});
 		if(source != null && this.creep.harvest(source, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
 			this.creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
 		}
