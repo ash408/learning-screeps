@@ -5,7 +5,7 @@ const WORK_COST = 100;
 const CARRY_COST = 50;
 
 const BODY_HASH = {[MOVE]: MOVE_COST, [WORK]: WORK_COST, [CARRY]: CARRY_COST};
-
+const WORKER_TEMPLATE = [MOVE, MOVE, CARRY, WORK];
 
 var spawnController = {
 		
@@ -26,7 +26,7 @@ var spawnController = {
 	},
 
 	calculateBody: function(room) {
-		var template = [MOVE, CARRY, WORK];
+		var template = WORKER_TEMPLATE;
 		var body = template.slice(0);
 		var totalEnergy = room.energyAvailable;
 
