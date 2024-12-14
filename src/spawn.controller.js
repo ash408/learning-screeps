@@ -36,7 +36,9 @@ var spawnController = {
 				var testBody = body.slice(0);
 				testBody.push(part);
 
-				if(this.calculateEnergy(testBody) > totalEnergy){
+				if(this.calculateEnergy(testBody) > totalEnergy ||
+					testBody.length > 50){
+
 					return body;
 				}
 				else{
