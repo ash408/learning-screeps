@@ -15,4 +15,4 @@ var spawnController = {
 	} 
 };
 
-modle.exports = spawnController;
+module.exports = spawnController;
