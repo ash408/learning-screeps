@@ -1,5 +1,11 @@
 const MAX_WORKERS = 10;
 
+const MOVE_COST = 50;
+const WORK_COST = 100;
+const CARRY_COST = 50;
+
+const BODY_HASH = {MOVE: MOVE_COST, WORK: WORK_COST, CARRY: CARRY_COST};
+
 var spawnController = {
 		
 	run: function() {
@@ -12,7 +18,38 @@ var spawnController = {
 			spawns[0].spawnCreep([WORK, CARRY, MOVE], newName,
 				{memory: {role: 'worker'}});
 		}
-	}
+	},
+
+	calculateBody: function(room) {
+		var template = [MOVE, CARRY, WORK];
+		var body = template.slice(0);
+		var totalEnergy = room.energyAvailable;
+
+		while (totalEnergy > calculateEnergy(body)){
+
+			for (part of template){
+				var testBody = body.slice(0);
+				testBody.push(part);
+
+				if(calculateEnergy(testBody) > totalEnergy){
+					return body;
+				}
+				else{
+					body.push(part);
+				}
+			}
+		}
+		return null;
+	},
+
+	calculateEnergy: function(bodyParts) {
+		var totalEnergy = 0;
+
+		for (part of bodyParts) {
+			totalEnergy += BODY_HASH[part];
+		}
+		return totalEnergy;
+	};
 };
 
 module.exports = spawnController;
