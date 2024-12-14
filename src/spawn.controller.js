@@ -11,6 +11,7 @@ var spawnController = {
 			var newName = 'Worker' + Game.time;
 			spawns[0].spawnCreep([WORK, CARRY, MOVE], newName,
 				{memory: {role: 'worker'}});
+		}
 	} 
 };
 
