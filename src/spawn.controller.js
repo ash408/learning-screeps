@@ -49,7 +49,7 @@ var spawnController = {
 			totalEnergy += BODY_HASH[part];
 		}
 		return totalEnergy;
-	};
+	}
 };
 
 module.exports = spawnController;
