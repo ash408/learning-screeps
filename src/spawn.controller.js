@@ -6,18 +6,13 @@ const CARRY_COST = 50;
 
 const BODY_HASH = {[MOVE]: MOVE_COST, [WORK]: WORK_COST, [CARRY]: CARRY_COST};
 
+
 var spawnController = {
 		
 	run: function() {
 		var spawnHash = Game.spawns;
 		var spawns = Object.keys(spawnHash).map(function(v) { return spawnHash[v]; });
 		var workers = _.filter(Game.creeps, (creep) => creep.memory.role == 'worker');
-
-		//if (workers.length < MAX_WORKERS){
-		//	var newName = 'Worker' + Game.time;
-		//	spawns[0].spawnCreep([WORK, CARRY, MOVE], newName,
-		//		{memory: {role: 'worker'}});
-		//}
 
 		if (workers.length < MAX_WORKERS) {
 			var newName = 'Worker' + Game.time;
