@@ -4,7 +4,7 @@ const MOVE_COST = 50;
 const WORK_COST = 100;
 const CARRY_COST = 50;
 
-const BODY_HASH = {MOVE: MOVE_COST, WORK: WORK_COST, CARRY: CARRY_COST};
+const BODY_HASH = {[MOVE]: MOVE_COST, [WORK]: WORK_COST, [CARRY]: CARRY_COST};
 
 var spawnController = {
 		
