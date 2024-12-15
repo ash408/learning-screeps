@@ -96,6 +96,21 @@ var roleWorker = {
 				this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
 			}
 		}
+		else {
+			var repairTarget = this.creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
+				filter: (t) => {
+					return (t.hits < t.maxHits);			
+				}
+			});
+			if (repairTarget) {
+				if(this.creep.repair(repairTarget) === ERR_NOT_IN_RANGE) {
+					this.creep.moveTo(repairTarget, {visualizePathStyle: {stroke: '#ffffff'}});
+				}
+			}
+			else {
+				this.creep.memeory.task = WORKER_HARVESTING;
+			}
+		}
 	}
 };
 
