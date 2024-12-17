@@ -7,4 +7,6 @@ var roleGuard = {
 			creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
 		}
 	}
-}
+};
+
+module.exports = roleGuard;
