@@ -36,9 +36,8 @@ var extensionConstructor = {
 		var terrain = room.lookForAt(LOOK_TERRAIN, x, y);
 		
 		console.log(terrain);
-		var hasWall = terrain.length > 0 && terrain[0]['terrain'] === 'wall';
 
-		return sites.length === 0 && structures.length === 0 && !hasWall;
+		return sites.length === 0 && structures.length === 0 && terrain !== 'wall';
 	},
 
 	validateCoordinates: function(room, coordinates) {
