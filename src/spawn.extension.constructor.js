@@ -34,7 +34,8 @@ var extensionConstructor = {
 		var sites = room.lookForAt(LOOK_CONSTRUCTION_SITES, x, y);
 		var structures = room.lookForAt(LOOK_STRUCTURES, x, y);
 		var terrain = room.lookForAt(LOOK_TERRAIN, x, y);
-
+		
+		console.log(terrain);
 		var hasWall = terrain.length > 0 && terrain[0]['terrain'] === 'wall';
 
 		return sites.length === 0 && structures.length === 0 && !hasWall;
