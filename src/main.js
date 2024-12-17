@@ -2,6 +2,7 @@ var spawnController = require('spawn.controller');
 var extensionConstructor = require('spawn.extension.constructor');
 
 var roleWorker = require('role.worker');
+var roleGuard = require('role.guard');
 
 module.exports.loop = function () {
     
@@ -28,6 +29,9 @@ module.exports.loop = function () {
         	if(creep.memory.role == 'worker') {
             	roleWorker.run(creep);
         	}
+		else if (creep.memory.role == 'guard') {
+			roleGuard.run(creep);
+		}
     	}
 	
 	var response = extensionConstructor.run(Game.spawns['Spawn1']);
