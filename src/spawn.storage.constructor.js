@@ -7,7 +7,7 @@ var spawnStorageConstructor = {
 		
 		var hasStorage = spawn.room.lookForAt(LOOK_STRUCTURES, x, y).length !== 0;
 		if (!hasStorage) {
-			spawn.room.createConstructionSite(x, y, STRUCTURE_STORAGE);
+			spawn.room.createConstructionSite(x, y, STRUCTURE_CONTAINER);
 		}
 	}
 };
