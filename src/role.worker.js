@@ -30,8 +30,8 @@ var roleWorker = {
 	},
 
 	getEmptyStore: function() {
-		var target = getEmptySpawn();
-		if (target === null) { target = getEmptyContainer(); }
+		var target = this.getEmptySpawn();
+		if (target === null) { target = this.getEmptyContainer(); }
 		
 		return target
 	},
@@ -78,14 +78,14 @@ var roleWorker = {
 
 	harvest: function() {
 		var source = null;
-		if(getEmptySpawn() !== null) {
-			source = this.creep.pos.findclosestByPath(FIND_STRUCTURES, {
-				filter: (structure) => {
-					return structure.structureType === STUCTURE_CONTAINER &&
-						structure.store.getCapacity(RESOURCE_ENERGY) > 0;
-				}
-			});
-		}
+		//if(getEmptySpawn() !== null) {
+		//	source = this.creep.pos.findclosestByPath(FIND_STRUCTURES, {
+		//		filter: (structure) => {
+		//			return structure.structureType === STUCTURE_CONTAINER &&
+		//				structure.store.getCapacity(RESOURCE_ENERGY) > 0;
+		//		}
+		//	});
+		//}
 
 		source = this.creep.pos.findClosestByPath(FIND_SOURCES, {
 			filter: (source) => {
