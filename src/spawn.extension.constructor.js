@@ -7,7 +7,7 @@ var extensionConstructor = {
 		return this.findValidLocation(spawn.room, startX, startY);	
 	},
 	
-	findValidLocation: function(room, startX, startY, length=3) {
+	findValidLocation: function(room, startX, startY, length=5) {
 		if (startX < 0 || startY < 0) { return null; }
 		
 		var coordinates = this.calculateSquare(startX, startY, length);
