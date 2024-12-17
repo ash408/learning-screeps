@@ -21,7 +21,7 @@ var spawnController = {
 		var workers = _.filter(Game.creeps, (creep) => creep.memory.role == 'worker');
 		var guards = _.filter(Game.creeps, (creep) => creep.memory.role == 'guard');
 	
-		if (needsGuard(spawns[0].room, guards)) {
+		if (this.needsGuard(spawns[0].room, guards)) {
 			var newName = 'Guard' + Game.time;
 			var creepBody = this.calculateBody(spawns[0].room, GUARD_TEMPLATE);
 
