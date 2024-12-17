@@ -32,15 +32,15 @@ var roleWorker = {
 	getEmptyStore: function() {
 		var target = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
 			filter: (structure) => {
-				return (structure.structureType === STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN ||
-					structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0)
+				return (structure.structureType === STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) &&
+					structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
 			}
 		});
 		if (target === null){
 			target = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
 				filter: (structure) => {
-					return (structure !== null && structure.structureType === STRUCTURE_STORAGE &&
-						structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0)
+					return structure.structureType === STRUCTURE_STORAGE &&
+						structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
 				}
 			});
 		}
