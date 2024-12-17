@@ -30,20 +30,29 @@ var roleWorker = {
 	},
 
 	getEmptyStore: function() {
+		var target = getEmptySpawn();
+		if (target === null) { target = getEmptyContainer(); }
+		
+		return target
+	}
+
+	getEmptySpawn: function() {
 		var target = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
 			filter: (structure) => {
 				return (structure.structureType === STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) &&
 					structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
 			}
 		});
-		if (target === null){
-			target = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
-				filter: (structure) => {
-					return structure.structureType === STRUCTURE_CONTAINER &&
-						structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
-				}
-			});
-		}
+		return target;
+	},
+
+	getEmptyContainer: function() {
+		var target = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
+			filter: (structure) => {
+				return structure.structureType === STRUCTURE_CONTAINER &&
+					structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
+			}
+		});
 		return target;	
 	},
 

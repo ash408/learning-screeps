@@ -20,8 +20,8 @@ var spawnController = {
 		
 		var workers = _.filter(Game.creeps, (creep) => creep.memory.role == 'worker');
 		var guards = _.filter(Game.creeps, (creep) => creep.memory.role == 'guard');
-		
-		if (spawns[0].room.find(FIND_HOSTILE_CREEPS).length > guards.length) {
+	
+		if (needsGuard(spawns[0].room, guards)) {
 			var newName = 'Guard' + Game.time;
 			var creepBody = this.calculateBody(spawns[0].room, GUARD_TEMPLATE);
 
@@ -39,6 +39,22 @@ var spawnController = {
 					{memory: {role: 'worker'}});
 			}
 		}
+	},
+
+	needsGuard: function(room, guards) {
+		var hostiles = room.find(FIND_HOSTILE_CREEPS);
+		var guardPartNum = 0;
+		var hostilePartNum = 0;
+
+		for(hostile of hostiles) {
+			hostilePartNum += hostile.body.length;
+		}
+		for(guard of guards) {
+			guardPartNum += guard.body.length;
+		}
+
+		return guardPartNum < hostilePartNum;
+		
 	},
 
 	calculateBody: function(room, template) {
