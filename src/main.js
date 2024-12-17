@@ -1,5 +1,6 @@
 var spawnController = require('spawn.controller');
 var extensionConstructor = require('spawn.extension.constructor');
+var spawnStorageConstructor = require('spawn.storage.constructor');
 
 var roleWorker = require('role.worker');
 var roleGuard = require('role.guard');
@@ -35,7 +36,8 @@ module.exports.loop = function () {
     	}
 	
 	var response = extensionConstructor.run(Game.spawns['Spawn1']);
-	console.log(response); 
+	console.log(response);
+	spawnStorageConstructor.run(Game.spawns['Spawn1']); 
     
     if(Game.cpu.bucket == 10000) {
         Game.cpu.generatePixel();
