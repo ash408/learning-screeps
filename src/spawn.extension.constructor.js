@@ -1,8 +1,8 @@
 var extensionConstructor = {
 
 	run: function(spawn) {
-		var startX = spawn.pos.x - 1;
-		var startY = spawn.pos.y - 1;
+		var startX = spawn.pos.x - 2;
+		var startY = spawn.pos.y - 2;
 
 		return this.findValidLocation(spawn.room, startX, startY);	
 	},
