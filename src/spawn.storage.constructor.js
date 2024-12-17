@@ -9,6 +9,7 @@ var spawnStorageConstructor = {
 		if (!hasStorage) {
 			spawn.room.createConstructionSite(x, y, STRUCTURE_STORAGE);
 		}
+	}
 };
 
 module.exports = spawnStorageConstructor;
