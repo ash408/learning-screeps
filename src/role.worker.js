@@ -34,7 +34,7 @@ var roleWorker = {
 		if (target === null) { target = getEmptyContainer(); }
 		
 		return target
-	}
+	},
 
 	getEmptySpawn: function() {
 		var target = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
@@ -77,7 +77,17 @@ var roleWorker = {
 	},
 
 	harvest: function() {
-		var source = this.creep.pos.findClosestByPath(FIND_SOURCES, {
+		var source = null;
+		if(getEmptySpawn() !== null) {
+			source = this.creep.pos.findclosestByPath(FIND_STRUCTURES, {
+				filter: (structure) => {
+					return structure.structureType === STUCTURE_CONTAINER &&
+						structure.store.getCapacity(RESOURCE_ENERGY) > 0;
+				}
+			});
+		}
+
+		source = this.creep.pos.findClosestByPath(FIND_SOURCES, {
 			filter: (source) => {
 				return (source.energy > 0);
 			}
