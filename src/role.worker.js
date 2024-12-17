@@ -108,7 +108,7 @@ var roleWorker = {
 				}
 			}
 			else {
-				this.creep.memeory.task = WORKER_HARVESTING;
+				this.creep.memory.task = WORKER_HARVESTING;
 			}
 		}
 	}
