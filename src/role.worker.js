@@ -78,15 +78,20 @@ var roleWorker = {
 
 	harvest: function() {
 		var source = null;
-		//if(getEmptySpawn() !== null) {
-		//	source = this.creep.pos.findclosestByPath(FIND_STRUCTURES, {
-		//		filter: (structure) => {
-		//			return structure.structureType === STUCTURE_CONTAINER &&
-		//				structure.store.getCapacity(RESOURCE_ENERGY) > 0;
-		//		}
-		//	});
-		//}
-
+		if(getEmptySpawn() !== null) {
+			source = this.creep.pos.findclosestByPath(FIND_STRUCTURES, {
+				filter: (structure) => {
+					return structure.structureType === STUCTURE_CONTAINER &&
+						structure.store.getCapacity(RESOURCE_ENERGY) > 0;
+				}
+			});
+			if (source !== null) {
+				if(this.creep.withdraw(source, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+					this.creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
+				}
+				return;
+			}
+		}
 		source = this.creep.pos.findClosestByPath(FIND_SOURCES, {
 			filter: (source) => {
 				return (source.energy > 0);
