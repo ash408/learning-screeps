@@ -25,7 +25,7 @@ var roleWorker = {
 				this.creep.memory.task = WORKER_BUILDING;
 			}
 			else if (this.getEmptyTower() !== null) {
-				this.creep.memeory.task = WORKER_TRANSFERING;
+				this.creep.memory.task = WORKER_TRANSFERING;
 			}
 			else {
 				this.creep.memory.task = WORKER_UPGRADING;
