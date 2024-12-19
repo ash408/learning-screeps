@@ -159,7 +159,7 @@ var roleWorker = {
 		}
 		else {
 			var repairTarget = this.getRepairTarget();
-			if (repairTarget) {
+			if (repairTarget !== null) {
 				if(this.creep.repair(repairTarget) === ERR_NOT_IN_RANGE) {
 					this.creep.moveTo(repairTarget, {visualizePathStyle: {stroke: '#ffffff'}});
 				}
