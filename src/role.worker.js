@@ -24,6 +24,9 @@ var roleWorker = {
 					this.getRepairTarget !== null) {
 				this.creep.memory.task = WORKER_BUILDING;
 			}
+			else if (this.getEmptyTower()) {
+				this.creep.memeory.task = WORKER_TRANSFERING;
+			}
 			else {
 				this.creep.memory.task = WORKER_UPGRADING;
 			}
@@ -64,6 +67,15 @@ var roleWorker = {
 			}
 		});
 		return repairTarget;
+	},
+
+	getEmptyTower: function() {
+		var tower = this.creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
+			filter: (t) => {
+				return structure.structureType === STRUCTURE_TOWER &&
+					structure.store.getEmptyCapacity(RESOURCE_ENERGY) > 0;
+			}
+		}
 	},
 
 	performTask: function(task) {
@@ -115,6 +127,12 @@ var roleWorker = {
 	transfer: function() {
 		var target = this.getEmptyStore();
 		if (target !== null) {
+			if(this.creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+				this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
+			}
+		}
+		target = this.getEmptyTower();
+		else if (target !== null) {
 			if(this.creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
 				this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
 			}
