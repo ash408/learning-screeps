@@ -104,10 +104,9 @@ var roleWorker = {
 			source = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
 				filter: (structure) => {
 					return structure.structureType === STRUCTURE_CONTAINER &&
-						structure.store.getCapacity(RESOURCE_ENERGY) > 0;
+						structure.store.getUsedCapacity(RESOURCE_ENERGY) > 0;
 				}
 			});
-			console.log(source);
 			if (source !== null) {
 				if(this.creep.withdraw(source, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
 					this.creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
