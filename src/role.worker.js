@@ -72,8 +72,8 @@ var roleWorker = {
 	getEmptyTower: function() {
 		var tower = this.creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
 			filter: (t) => {
-				return structure.structureType === STRUCTURE_TOWER &&
-					structure.store.getEmptyCapacity(RESOURCE_ENERGY) > 0;
+				return t.structureType === STRUCTURE_TOWER &&
+					t.store.getEmptyCapacity(RESOURCE_ENERGY) > 0;
 			}
 		});
 	},
