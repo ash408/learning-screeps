@@ -16,7 +16,7 @@ var roleWorker = {
 		if(this.creep.store[RESOURCE_ENERGY] === 0) {
 			this.creep.memory.task = WORKER_HARVESTING;
 		}
-		else if(this.creep.store.getFreeCapacity() === 0){
+		else {
 			if (this.getEmptyStore() !== null) {
 				this.creep.memory.task = WORKER_TRANSFERING;
 			}
@@ -137,10 +137,9 @@ var roleWorker = {
 			if(this.creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
 				this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
 			}
+			return;
 		}
-		else {
-			this.creep.memory.task = WORKER_HARVESTING;
-		}
+		this.creep.memory.task = WORKER_HARVESTING;
 	},
 
 	upgrade: function() {
