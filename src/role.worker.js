@@ -22,6 +22,7 @@ var roleWorker = {
 			}
 			else if (this.creep.room.find(FIND_CONSTRUCTION_SITES).length > 0 ||
 					this.getRepairTarget() !== null) {
+				console.log('Creep being assigned to build');
 				this.creep.memory.task = WORKER_BUILDING;
 			}
 			else if (this.getEmptyTower() !== null) {
@@ -158,6 +159,7 @@ var roleWorker = {
 			}
 		}
 		else {
+			console.log('Attempting repair');
 			var repairTarget = this.getRepairTarget();
 			if (repairTarget !== null) {
 				if(this.creep.repair(repairTarget) === ERR_NOT_IN_RANGE) {
