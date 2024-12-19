@@ -3,6 +3,7 @@ var extensionConstructor = require('spawn.extension.constructor');
 var spawnStorageConstructor = require('spawn.storage.constructor');
 var spawnDefenseConstructor = require('spawn.defense.constructor');
 
+var roleTower = require('role.tower');
 var roleWorker = require('role.worker');
 var roleGuard = require('role.guard');
 
@@ -25,6 +26,16 @@ module.exports.loop = function () {
             Game.spawns['Spawn1'].pos.y, 
             {align: 'left', opacity: 0.8});
     }
+	
+	var towers = Game.spawns['Spawn1'].room.find(FIND_MY_STRUCTURES, {
+		filter: (t) => {
+			return t.structureType == STRUCTURE_TOWER &&
+				t.store.getCapacity(RESOURCE_ENERGY) > 0;
+		}
+	});
+	for (var tower in towers) {
+		roleTower.run(tower;
+	} 
 
     	for(var name in Game.creeps) {
         	var creep = Game.creeps[name];
