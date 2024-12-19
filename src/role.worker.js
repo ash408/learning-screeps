@@ -64,7 +64,7 @@ var roleWorker = {
 			}
 		});
 		return repairTarget;
-	}
+	},
 
 	performTask: function(task) {
 		switch(task) {
