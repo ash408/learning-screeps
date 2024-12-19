@@ -107,6 +107,7 @@ var roleWorker = {
 						structure.store.getCapacity(RESOURCE_ENERGY) > 0;
 				}
 			});
+			console.log(source);
 			if (source !== null) {
 				if(this.creep.withdraw(source, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
 					this.creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
