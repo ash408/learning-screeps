@@ -1,4 +1,4 @@
-const MAX_WORKERS = 10;
+const MAX_WORKERS = 8;
 
 const MOVE_COST = 50;
 const WORK_COST = 100;
