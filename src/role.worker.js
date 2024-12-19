@@ -76,6 +76,7 @@ var roleWorker = {
 					t.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
 			}
 		});
+		return tower;
 	},
 
 	performTask: function(task) {
