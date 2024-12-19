@@ -34,7 +34,7 @@ module.exports.loop = function () {
 		}
 	});
 	for (var tower in towers) {
-		roleTower.run(tower;
+		roleTower.run(tower);
 	} 
 
     	for(var name in Game.creeps) {
