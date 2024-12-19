@@ -33,7 +33,7 @@ module.exports.loop = function () {
 				t.store.getCapacity(RESOURCE_ENERGY) > 0;
 		}
 	});
-	for (var tower in towers) {
+	for (var tower of towers) {
 		roleTower.run(tower);
 	} 
 
