@@ -16,7 +16,7 @@ var roleWorker = {
 		if(this.creep.store[RESOURCE_ENERGY] === 0) {
 			this.creep.memory.task = WORKER_HARVESTING;
 		}
-		else {
+		else if (this.creep.store.getFreeCapacity() === 0) {
 			if (this.getEmptyStore() !== null) {
 				this.creep.memory.task = WORKER_TRANSFERING;
 			}
