@@ -65,7 +65,7 @@ var roleWorker = {
 	getRepairTarget: function() {
 		var repairTarget = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
 			filter: (t) => {
-				return (t.hits < t.hitsMax);			
+				return t.structureType !== STRUCTURE_WALL && (t.hits < t.hitsMax);			
 			}
 		});
 		return repairTarget;
