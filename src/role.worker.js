@@ -130,9 +130,10 @@ var roleWorker = {
 			if(this.creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
 				this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
 			}
+			return;
 		}
 		target = this.getEmptyTower();
-		else if (target !== null) {
+		if (target !== null) {
 			if(this.creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
 				this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
 			}
