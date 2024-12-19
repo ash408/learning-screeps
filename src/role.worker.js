@@ -21,7 +21,7 @@ var roleWorker = {
 				this.creep.memory.task = WORKER_TRANSFERING;
 			}
 			else if (this.creep.room.find(FIND_CONSTRUCTION_SITES).length ||
-					this.getRepairTarget !== null) {
+					this.getRepairTarget() !== null) {
 				this.creep.memory.task = WORKER_BUILDING;
 			}
 			else if (this.getEmptyTower() !== null) {
