@@ -20,7 +20,8 @@ var roleWorker = {
 			if (this.getEmptyStore() !== null) {
 				this.creep.memory.task = WORKER_TRANSFERING;
 			}
-			else if (this.creep.room.find(FIND_CONSTRUCTION_SITES).length) {
+			else if (this.creep.room.find(FIND_CONSTRUCTION_SITES).length ||
+					this.getRepairTarget !== null) {
 				this.creep.memory.task = WORKER_BUILDING;
 			}
 			else {
@@ -55,6 +56,15 @@ var roleWorker = {
 		});
 		return target;	
 	},
+
+	getRepairTarget: function() {
+		var repairTarget = this.creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
+			filter: (t) => {
+				return (t.hits < t.maxHits);			
+			}
+		});
+		return repairTarget;
+	}
 
 	performTask: function(task) {
 		switch(task) {
@@ -129,11 +139,7 @@ var roleWorker = {
 			}
 		}
 		else {
-			var repairTarget = this.creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
-				filter: (t) => {
-					return (t.hits < t.maxHits);			
-				}
-			});
+			var repairTarget = this.getRepairTarget();
 			if (repairTarget) {
 				if(this.creep.repair(repairTarget) === ERR_NOT_IN_RANGE) {
 					this.creep.moveTo(repairTarget, {visualizePathStyle: {stroke: '#ffffff'}});
