@@ -75,7 +75,7 @@ var roleWorker = {
 				return structure.structureType === STRUCTURE_TOWER &&
 					structure.store.getEmptyCapacity(RESOURCE_ENERGY) > 0;
 			}
-		}
+		});
 	},
 
 	performTask: function(task) {
