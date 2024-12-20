@@ -11,7 +11,7 @@ var spawnConstructor = {
 						{x: spawnX, y: spawnY + 1} ]
 
 		for (var coordinate of coordinates) {
-			var hasRoad = spawn.room.loofForAt(LOOK_STRUCTURES, coordinate.x, coordinate.y).length !== 0;
+			var hasRoad = spawn.room.lookForAt(LOOK_STRUCTURES, coordinate.x, coordinate.y).length !== 0;
 			
 			if (!hasRoad) {
 				spawn.room.createConstructionSite(coordinate.x, coordinate.y, STRUCTURE_ROAD);
