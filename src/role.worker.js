@@ -152,26 +152,6 @@ var roleWorker = {
 	},
 
 	build: function() {
-		//var target = this.creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
-
-		//if(target) {
-		//	if(this.creep.build(target) === ERR_NOT_IN_RANGE) {
-		//		this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
-		//	}
-		//}
-		//else {
-		//	console.log('Attempting repair');
-		//	var repairTarget = this.getRepairTarget();
-		//	if (repairTarget !== null) {
-		//		if(this.creep.repair(repairTarget) === ERR_NOT_IN_RANGE) {
-		//			this.creep.moveTo(repairTarget, {visualizePathStyle: {stroke: '#ffffff'}});
-		//		}
-		//	}
-		//	else {
-		//		this.creep.memory.task = WORKER_HARVESTING;
-		//	}
-		//}
-
 		var target = this.getRepairTarget();
 
 		if (target) {
