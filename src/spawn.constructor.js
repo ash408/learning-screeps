@@ -20,4 +20,4 @@ var spawnConstructor = {
 	}
 };
 
-module.exports spawnConstructor;
+module.exports = spawnConstructor;
