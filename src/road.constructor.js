@@ -34,8 +34,8 @@ var roadConstructor = {
 	calculateRoads: function(room, poiCoordinates) {
 		var roadCoordinates = [];
 		var pathFindingOpts = {ignoreCreeps: true,
-						   plainCost: 0,
-						   swampCost: 0};
+						   plainCost: 1,
+						   swampCost: 1};
 
 		for (var poi of poiCoordinates) {
 			var connectionCoordinates = poiCoordinates.slice(0);
