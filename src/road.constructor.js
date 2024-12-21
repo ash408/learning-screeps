@@ -34,6 +34,8 @@ var roadConstructor = {
 			var connectionCoordinates = poiCoordinates.slice(0);
 
 			for (connection of connectionCoordinates) {
+				console.log("POI: X" + poi.x + " Y" + poi.y + " Room: " + poi.room);
+				console.log("Connection: X" + connection.x + " Y" + connection.y + " Room: " + connection.room);
 				if (poi.x === connection.x && poi.y === connection.y) {
 					continue;
 				}
