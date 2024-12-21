@@ -1,4 +1,5 @@
-const MAX_WORKERS = 8;
+const MAX_WORKERS = 7;
+const MAX_UPGRADERS = 1;
 
 const MOVE_COST = 50;
 const WORK_COST = 100;
@@ -19,6 +20,7 @@ var spawnController = {
 		var spawns = Object.keys(spawnHash).map(function(v) { return spawnHash[v]; });
 		
 		var workers = _.filter(Game.creeps, (creep) => creep.memory.role == 'worker');
+		var upgraders = _.filter(Game.creeps, (creep) => creep.memeory.role == 'upgrader');
 		var guards = _.filter(Game.creeps, (creep) => creep.memory.role == 'guard');
 	
 		if (this.needsGuard(spawns[0].room, guards)) {
@@ -37,6 +39,15 @@ var spawnController = {
 			if (creepBody !== null) {
 				spawns[0].spawnCreep(creepBody, newName,
 					{memory: {role: 'worker'}});
+			}
+		}
+		else if (upgraders.length < MAX_UPGRADERS) {
+			var newName = 'Upgrader' + Game.time;
+			var creepBody = this.calculateBody(spawns[0].room, WORKER_TEMPLATE);
+
+			if (creepBody !== null) {
+				spawns[0].spawnCreep(creepBody, newName,
+					{memory: {role: 'upgrader'}});
 			}
 		}
 	},

@@ -6,6 +6,7 @@ var spawnDefenseConstructor = require('spawn.defense.constructor');
 
 var roleTower = require('role.tower');
 var roleWorker = require('role.worker');
+var roleUpgrader = require('role.upgrader');
 var roleGuard = require('role.guard');
 
 module.exports.loop = function () {
@@ -45,6 +46,9 @@ module.exports.loop = function () {
         	}
 		else if (creep.memory.role == 'guard') {
 			roleGuard.run(creep);
+		}
+		else if (creep.memory.role == 'upgrader') {
+			roleUpgrader.run(creep);
 		}
     	}
 	
