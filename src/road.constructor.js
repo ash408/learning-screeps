@@ -3,6 +3,10 @@ var roadConstructor = {
 
 	run: function(room) {
 		var poiCoordinates = this.findAllPOI(room);
+		if (poitCoordinates === false) {
+			return;
+		}
+
 		var roadCoordinates = this.calculateRoads(room, poiCoordinates);
 		this.buildRoads(room, roadCoordinates);
 		Memory.hasRoads = true;
@@ -19,7 +23,7 @@ var roadConstructor = {
 		});
 		var controller = room.controller.pos;
 
-		if (spawns.length === 0) { return; }
+		if (spawns.length === 0) { return false; }
 
 		allPOI = this.concatArrays(sources, spawns);
 		allPOI.push(controller);
