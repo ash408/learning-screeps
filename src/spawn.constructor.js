@@ -13,7 +13,7 @@ var spawnConstructor = {
 		for (var coordinate of coordinates) {
 			var hasRoad = spawn.room.lookForAt(LOOK_STRUCTURES, coordinate.x, coordinate.y).length !== 0;
 			
-			if (!hasRoad) {
+			if (!hasRoad && spawn.room.find(FIND_MY_CONSTRUCTION_SITES).length === 0) {
 				spawn.room.createConstructionSite(coordinate.x, coordinate.y, STRUCTURE_ROAD);
 			}
 		}
