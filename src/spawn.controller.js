@@ -32,15 +32,6 @@ var spawnController = {
 					{memory: {role: 'guard'}});
 			}
 		}
-		else if (workers.length < MAX_WORKERS) {
-			var newName = 'Worker' + Game.time;
-			var creepBody = this.calculateBody(spawns[0].room, WORKER_TEMPLATE);
-
-			if (creepBody !== null) {
-				spawns[0].spawnCreep(creepBody, newName,
-					{memory: {role: 'worker'}});
-			}
-		}
 		else if (upgraders.length < MAX_UPGRADERS) {
 			var newName = 'Upgrader' + Game.time;
 			var creepBody = this.calculateBody(spawns[0].room, WORKER_TEMPLATE);
@@ -48,6 +39,15 @@ var spawnController = {
 			if (creepBody !== null) {
 				spawns[0].spawnCreep(creepBody, newName,
 					{memory: {role: 'upgrader'}});
+			}
+		}
+		else if (workers.length < MAX_WORKERS) {
+			var newName = 'Worker' + Game.time;
+			var creepBody = this.calculateBody(spawns[0].room, WORKER_TEMPLATE);
+
+			if (creepBody !== null) {
+				spawns[0].spawnCreep(creepBody, newName,
+					{memory: {role: 'worker'}});
 			}
 		}
 	},
