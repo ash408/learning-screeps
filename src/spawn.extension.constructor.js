@@ -12,11 +12,8 @@ var extensionConstructor = {
 		
 		var coordinates = this.calculateSquare(startX, startY, length);
 		for (var coordinate of coordinates){
-			console.log(coordinate);
-			console.log("Attempting to build extension at: X" + coordinate.x + ", Y" + coordinate.y);
 
 			var validationCoordinates = this.calculateCrosshair(coordinate.x, coordinate.y);
-			console.log(validationCoordinates);
 			var isValid = this.validateCoordinates(room, validationCoordinates)
 			
 			if (isValid) {
@@ -33,26 +30,20 @@ var extensionConstructor = {
 	},
 
 	validateCoordinate: function(room, x, y) {
-		console.log("Validating: X" + x + ", Y" + y);
 		var sites = room.lookForAt(LOOK_CONSTRUCTION_SITES, x, y);
 		var structures = room.lookForAt(LOOK_STRUCTURES, x, y);
 		var terrain = room.lookForAt(LOOK_TERRAIN, x, y);
 		
-		console.log(terrain);
 		var isValid = sites.length === 0 && structures.length === 0 && terrain != 'wall';
-		console.log("Validation is: " + isValid);
 
 		return sites.length === 0 && structures.length === 0 && terrain != 'wall';
 	},
 
 	validateCoordinates: function(room, coordinates) {
-		console.log("Validating coordinates");
 		for (var coordinate of coordinates) {
-			console.log(coordinate);
 			var validation = this.validateCoordinate(room, coordinate.x, coordinate.y);
-			if (!validation) { console.log("Invalid coordinates"); return false; }
+			if (!validation) { return false; }
 		}
-		console.log("Coordinates are valid!");
 		return true;
 	},
 

@@ -15,7 +15,6 @@ module.exports.loop = function () {
     for(var name in Memory.creeps) {
         if(!Game.creeps[name]) {
             delete Memory.creeps[name];
-            console.log('Clearing non-existing creep memory:', name);
         }
     }
 
@@ -54,7 +53,6 @@ module.exports.loop = function () {
     	}
 	
 	var response = extensionConstructor.run(Game.spawns['Spawn1']);
-	console.log(response);
 	spawnStorageConstructor.run(Game.spawns['Spawn1']); 
 	spawnDefenseConstructor.run(Game.spawns['Spawn1']);
 	spawnConstructor.run(Game.spawns['Spawn1']);
