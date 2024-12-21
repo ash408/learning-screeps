@@ -5,6 +5,7 @@ var roadConstructor = {
 		var poiCoordinates = this.findAllPOI(room);
 		var roadCoordinates = this.calculateRoads(room, poiCoordinates);
 		this.buildRoads(room, roadCoordinates);
+		Memory.hasRoads = true;
 	},
 
 	findAllPOI: function(room) {

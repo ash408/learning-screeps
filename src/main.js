@@ -56,7 +56,11 @@ module.exports.loop = function () {
 	spawnStorageConstructor.run(Game.spawns['Spawn1']); 
 	spawnDefenseConstructor.run(Game.spawns['Spawn1']);
 	spawnConstructor.run(Game.spawns['Spawn1']);
-	roadConstructor.run(Game.spawns['Spawn1'].room);
+
+	var hasRoads = Memory.hasRoads;
+	if (!hasRoads) {
+		roadConstructor.run(Game.spawns['Spawn1'].room);
+	}
     
     if(Game.cpu.bucket == 10000) {
         Game.cpu.generatePixel();
