@@ -2,15 +2,23 @@
 var spawnStorageConstructor = {
 	
 	run: function(spawn) {
-		var x = spawn.pos.x - 1;
-		var y = spawn.pos.y - 1;
+		var hasExtensions = spawn.room.find(FIND_MY_STRUCTURES, {
+			filter: (structure) => {
+				return t.structureType === STRUCTURE_EXTENSION;
+			}
+		}).length > 0;
+
+		if (hasExtensions) {
+			var x = spawn.pos.x - 1;
+			var y = spawn.pos.y - 1;
 		
-		this.buildContainer(spawn, x, y);
+			this.buildContainer(spawn, x, y);
 
-		x = spawn.pos.x - 1;
-		y = spawn.pos.y + 1;
+			x = spawn.pos.x - 1;
+			y = spawn.pos.y + 1;
 
-		this.buildContainer(spawn, x, y);	
+			this.buildContainer(spawn, x, y);	
+		}
 	},
 
 	buildContainer: function(spawn, x, y) {
