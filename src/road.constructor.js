@@ -66,8 +66,8 @@ var roadConstructor = {
 		for (var object of arr1) {
 			fullArray.push(object.pos);
 		}
-		for (var object of arr2) {
-			fullArray.push(object.pos);
+		for (var object2 of arr2) {
+			fullArray.push(object2.pos);
 		}
 		return fullArray;
 	}
