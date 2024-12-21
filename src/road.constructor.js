@@ -3,7 +3,7 @@ var roadConstructor = {
 
 	run: function(room) {
 		var poiCoordinates = this.findAllPOI(room);
-		if (poitCoordinates === false) {
+		if (poiCoordinates === false) {
 			return;
 		}
 
