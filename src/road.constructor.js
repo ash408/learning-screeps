@@ -19,7 +19,7 @@ var roadConstructor = {
 		});
 		var controller = room.controller.pos;
 
-		if (spawns.lenght === 0) { return; }
+		if (spawns.length === 0) { return; }
 
 		allPOI = this.concatArrays(sources, spawns);
 		allPOI.push(controller);
