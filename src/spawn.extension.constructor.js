@@ -21,9 +21,12 @@ var extensionConstructor = {
 			if (isValid) {
 				var response = room.createConstructionSite(coordinate.x, coordinate.y, STRUCTURE_EXTENSION);
 				if (response !== ERR_INVALID_TARGET) { return response; }
-			}
-			else if (this.validateCoordinate(room, coordinate.x, coordinate.y)) {
-				room.createConstructionSite(coordinate.x, coordinate.y, STRUCTURE_ROAD);
+				else {
+					var roadCoordinates = this.calculateCrosshair(coordinate.x, coordinate.y);
+					for (var coordinate of roadCoordinates) {
+						room.createConstructionSite(coordinate.x, coordinate.y, STRUCTURE_ROAD);
+					}
+				}
 			}
 		}
 
