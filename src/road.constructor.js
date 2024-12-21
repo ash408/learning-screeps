@@ -41,6 +41,7 @@ var roadConstructor = {
 					var pathCoordinates = room.findPath(poi, connection, pathFindingOpts);
 					roadCoordinates = [...roadCoordinates, ...pathCoordinates];
 				}
+			}
 		}
 	},
 
