@@ -3,6 +3,7 @@ var spawnConstructor = require('spawn.constructor');
 var extensionConstructor = require('spawn.extension.constructor');
 var spawnStorageConstructor = require('spawn.storage.constructor');
 var spawnDefenseConstructor = require('spawn.defense.constructor');
+var roadConstructor = require('road.constructor');
 
 var roleTower = require('role.tower');
 var roleWorker = require('role.worker');
@@ -57,6 +58,7 @@ module.exports.loop = function () {
 	spawnStorageConstructor.run(Game.spawns['Spawn1']); 
 	spawnDefenseConstructor.run(Game.spawns['Spawn1']);
 	spawnConstructor.run(Game.spawns['Spawn1']);
+	roadConstructor.run(Game.spawns['Spawn1'].room);
     
     if(Game.cpu.bucket == 10000) {
         Game.cpu.generatePixel();
