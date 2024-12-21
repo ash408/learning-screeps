@@ -18,7 +18,7 @@ var roadConstructor = {
 		});
 		var controller = room.controller.pos;
 
-		allPOI = [...sources, ...spawns];
+		allPOI = this.concatArrays(sources, spawns);
 		allPOI.push(controller);
 
 		return allPOI;
@@ -41,7 +41,7 @@ var roadConstructor = {
 				}
 				else {
 					var pathCoordinates = room.findPath(poi, connection, pathFindingOpts);
-					roadCoordinates = [...roadCoordinates, ...pathCoordinates];
+					roadCoordinates = this.concatArrays(roadCoordinates, pathCoordinates);
 				}
 			}
 		}
@@ -52,6 +52,18 @@ var roadConstructor = {
 		for (var coordinate of roadCoordinates) {
 			room.createConstructionSite(coordinate.x, coordinate.y, STRUCTURE_ROAD);
 		}
+	},
+
+	concatArrays: function(arr1, arr2) {
+		var fullArray = [];
+	
+		for (var object of arr1) {
+			fullArray.push(object);
+		}
+		for (var object of arr2) {
+			fullArray.push(object);
+		}
+		return fullArray;
 	}
 };
 
