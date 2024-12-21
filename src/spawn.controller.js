@@ -20,7 +20,7 @@ var spawnController = {
 		var spawns = Object.keys(spawnHash).map(function(v) { return spawnHash[v]; });
 		
 		var workers = _.filter(Game.creeps, (creep) => creep.memory.role == 'worker');
-		var upgraders = _.filter(Game.creeps, (creep) => creep.memeory.role == 'upgrader');
+		var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
 		var guards = _.filter(Game.creeps, (creep) => creep.memory.role == 'guard');
 	
 		if (this.needsGuard(spawns[0].room, guards)) {
