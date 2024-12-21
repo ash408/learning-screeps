@@ -41,7 +41,7 @@ var roadConstructor = {
 				}
 				else {
 					var pathCoordinates = room.findPath(poi, connection, pathFindingOpts);
-					roadCoordinates = this.concatArrays(roadCoordinates, pathCoordinates);
+					roadCoordinates = [...roadCoordinates, ...pathCoordinates];
 				}
 			}
 		}
@@ -58,10 +58,10 @@ var roadConstructor = {
 		var fullArray = [];
 	
 		for (var object of arr1) {
-			fullArray.push(object);
+			fullArray.push(object.pos);
 		}
 		for (var object of arr2) {
-			fullArray.push(object);
+			fullArray.push(object.pos);
 		}
 		return fullArray;
 	}
