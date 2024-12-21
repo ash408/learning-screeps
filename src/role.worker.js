@@ -20,14 +20,14 @@ var roleWorker = {
 			if (this.getEmptyStore() !== null) {
 				this.creep.memory.task = WORKER_TRANSFERING;
 			}
+			else if (this.getEmptyTower() !== null) {
+				this.creep.memory.task = WORKER_TRANSFERING;
+			}
 			else if (this.creep.room.find(FIND_CONSTRUCTION_SITES).length > 0) {
 				this.creep.memory.task = WORKER_BUILDING;
 			}
 			else if (this.getRepairTarget() !== null) {
 				this.creep.memory.task = WORKER_BUILDING;
-			}
-			else if (this.getEmptyTower() !== null) {
-				this.creep.memory.task = WORKER_TRANSFERING;
 			}
 			else {
 				this.creep.memory.task = WORKER_UPGRADING;
