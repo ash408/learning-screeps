@@ -59,7 +59,7 @@ module.exports.loop = function () {
 
 	var hasRoads = Memory.hasRoads;
 	var constructionSites = Game.spawns['Spawn1'].room.find(FIND_MY_CONSTRUCTION_SITES)
-	if (!hasRoads && Game.cpu.bucket === 10000 && constructionsites.length === 0) {
+	if (!hasRoads && Game.cpu.bucket === 10000 && constructionSites.length === 0) {
 		roadConstructor.run(Game.spawns['Spawn1'].room);
 	}
     
