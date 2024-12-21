@@ -39,7 +39,7 @@ var roadConstructor = {
 				}
 				else {
 					var pathCoordinates = room.findPath(poi, connection, pathFindingOpts);
-					roadCoordinates = [roadCoordinates..., pathCoordinates...];
+					roadCoordinates = [...roadCoordinates, ...pathCoordinates];
 				}
 		}
 	},
