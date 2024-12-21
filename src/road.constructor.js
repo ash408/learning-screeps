@@ -45,6 +45,7 @@ var roadConstructor = {
 				}
 			}
 		}
+		return roadCoordinates;
 	},
 
 	buildRoads: function(room, roadCoordinates) {
