@@ -4,7 +4,7 @@ var spawnStorageConstructor = {
 	run: function(spawn) {
 		var hasExtensions = spawn.room.find(FIND_MY_STRUCTURES, {
 			filter: (structure) => {
-				return t.structureType === STRUCTURE_EXTENSION;
+				return structure.structureType === STRUCTURE_EXTENSION;
 			}
 		}).length > 0;
 
