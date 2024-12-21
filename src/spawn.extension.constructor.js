@@ -1,7 +1,7 @@
 var extensionConstructor = {
 
 	run: function(spawn) {
-		if (spawn.room.find(FIND_MY_CONSTRUCTION_SITES).length !== 0) {
+		if (spawn.room.find(FIND_MY_CONSTRUCTION_SITES).length === 0) {
 			var startX = spawn.pos.x - 2;
 			var startY = spawn.pos.y - 2;
 
