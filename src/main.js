@@ -58,7 +58,7 @@ module.exports.loop = function () {
 	spawnConstructor.run(Game.spawns['Spawn1']);
 
 	var hasRoads = Memory.hasRoads;
-	if (!hasRoads && Game.cpu.bucket >= 1000) {
+	if (!hasRoads && Game.cpu.bucket === 10000) {
 		roadConstructor.run(Game.spawns['Spawn1'].room);
 	}
     
