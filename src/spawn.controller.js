@@ -9,7 +9,7 @@ const TOUGH_COST = 10;
 const CLAIM_COST = 600;
 
 const BODY_HASH = {[MOVE]: MOVE_COST, [WORK]: WORK_COST, [CARRY]: CARRY_COST,
-				[ATTACK]: ATTACK_COST, [TOUGH]: TOUGH_COST};
+				[ATTACK]: ATTACK_COST, [TOUGH]: TOUGH_COST, [CLAIM]: CLAIM_COST};
 
 const WORKER_TEMPLATE = [MOVE, MOVE, CARRY, WORK];
 const GUARD_TEMPLATE = [TOUGH, TOUGH, MOVE, MOVE, ATTACK];
@@ -61,7 +61,6 @@ var spawnController = {
 				var newName = 'Claimer' + Game.time;
 				var creepBody = this.calculateBody(spawn.room, CLAIMER_TEMPLATE);
 
-				console.log(spawn);
 				if (creepBody !== null) {
 					spawn.spawnCreep(creepBody, newName,
 						{memory: {role: 'claimer'}});

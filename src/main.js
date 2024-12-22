@@ -81,7 +81,6 @@ module.exports.loop = function () {
         Game.cpu.generatePixel();
     }
 	else if (Memory.expansion === true) {
-		console.log("calling expansion controller");
 		expansionController.run();
 	}
 
