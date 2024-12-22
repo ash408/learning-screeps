@@ -16,10 +16,11 @@ const GUARD_TEMPLATE = [TOUGH, TOUGH, MOVE, MOVE, ATTACK];
 var spawnController = {
 		
 	run: function(spawn) {
-		
-		var workers = _.filter(Game.creeps, (creep) => creep.memory.role == 'worker');
-		var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-		var guards = _.filter(Game.creeps, (creep) => creep.memory.role == 'guard');
+		var creeps = spawn.room.find(FIND_MY_CREEPS);		
+	
+		var workers = _.filter(creeps, (creep) => creep.memory.role == 'worker');
+		var upgraders = _.filter(creeps, (creep) => creep.memory.role == 'upgrader');
+		var guards = _.filter(creeps, (creep) => creep.memory.role == 'guard');
 	
 		if (this.needsGuard(spawn.room, guards)) {
 			var newName = 'Guard' + Game.time;
