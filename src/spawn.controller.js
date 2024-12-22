@@ -1,5 +1,7 @@
 const MAX_WORKERS = 7;
 const MAX_UPGRADERS = 1;
+const MAX_SETTLERS = 3;
+const MAX_CLAIMERS = 1;
 
 const MOVE_COST = 50;
 const WORK_COST = 100;
@@ -58,7 +60,7 @@ var spawnController = {
 		if (!spawn.spawning) {
 			var claimers = _.filter(Game.creeps, (creep) => creep.memory.role === 'claimer');
 			
-			if (claimers.length === 0) {
+			if (claimers.length < MAX_CLAIMERS) {
 				var newName = 'Claimer' + Game.time;
 				var creepBody = this.calculateBody(spawn.room, CLAIMER_TEMPLATE);
 
@@ -76,7 +78,7 @@ var spawnController = {
 			var creeps = target.find(FIND_MY_CREEPS);
 			var workers = _.filter(creeps, (creep) => creep.memory.role == 'worker');
 
-			if (workers.length === 0) {
+			if (workers.length < MAX_SETTLERS) {
 				var newName = 'Settler' + Game.time;
 				var creepBody = this.calculateBody(spawn.room, WORKER_TEMPLATE);
 
