@@ -66,13 +66,15 @@ module.exports.loop = function () {
     if(Game.cpu.bucket == 10000) {
         Game.cpu.generatePixel();
     }
-}
 
-global.clearSites() = {
-	var sites = Game.spawns['Spawn1'].room.find(FIND_MY_CONSTRUCTION_SITES);
-	for (var site of sites) {
-		site.remove();
-	}	
+
+	global.clearSites() = {
+		var sites = Game.spawns['Spawn1'].room.find(FIND_MY_CONSTRUCTION_SITES);
+		for (var site of sites) {
+			site.remove();
+		}
+	}
 };
+
 
 //STRUCTURE_SPAWN constant for spawn building
