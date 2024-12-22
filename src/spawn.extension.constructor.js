@@ -49,11 +49,9 @@ var extensionConstructor = {
 		var terrain = room.lookForAt(LOOK_TERRAIN, x, y);
 		
 		var validStructure = structures.length === 0;
-		for (var structure in structures) {
-			if (structure.structureType === STRUCTURE_ROAD) {
-				validStructure = true;
-				break;
-			}
+
+		if (structures.length > 0 && structures[0].structureType === STRUCTURE_ROAD) {
+			validStructure = true;
 		}
 
 		return sites.length === 0 && terrain !== 'wall' && validStructure;

@@ -7,7 +7,7 @@ var spawnStorageConstructor = {
 				return structure.structureType === STRUCTURE_EXTENSION;
 			}
 		}).length > 0;
-		var hasSites = spawn.room.find(FIND_MY_CONSTRUCTION_SITES).length > 0;
+		var hasSites = spawn.room.find(FIND_MY_CONSTRUCTION_SITES).length !== 0;
 
 		if (hasExtensions && !hasSites) {
 			var x = spawn.pos.x - 1;
