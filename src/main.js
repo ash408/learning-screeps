@@ -103,6 +103,16 @@ module.exports.loop = function () {
 		Memory.startExpansionRoom = startRoom;
 		Memory.expansionTarget = expansionTarget;
 	}
+
+	global.clearWorkers = function() {
+		for (var name in Game.creeps) {
+			var creep = Game.creeps[name];
+
+			if(creep.memory.role == 'worker') {
+				creep.memory.task = 'harvesting';
+			}
+		}
+	}
 };
 
 
