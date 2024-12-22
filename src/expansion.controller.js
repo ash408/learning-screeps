@@ -42,7 +42,7 @@ var expansionController = {
 		
 		if (room !== undefined) {
 			console.log(room);
-			isClaimed = room.my;
+			isClaimed = room.controller.my;
 		}
 		return isClaimed;
 	}
