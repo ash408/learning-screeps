@@ -4,7 +4,7 @@
 //var spawnStorageConstructor = require('spawn.storage.constructor');
 //var spawnDefenseConstructor = require('spawn.defense.constructor');
 //var roadConstructor = require('road.constructor');
-var colonyController.require('colony.controller');
+var colonyController = require('colony.controller');
 
 //var roleTower = require('role.tower');
 var roleWorker = require('role.worker');
