@@ -8,7 +8,7 @@ var expansionController = {
 			var startRoom = Game.rooms[Memory.startExpansionRoom];
 
 			if (startRoom !== undefined) {
-				var spawn = room.find(FIND_MY_SPAWNS)[0];
+				var spawn = startRoom.find(FIND_MY_SPAWNS)[0];
 				spawnController.spawnClaimer(spawn);
 			}
 			else {
