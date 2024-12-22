@@ -67,7 +67,7 @@ module.exports.loop = function () {
         Game.cpu.generatePixel();
     }
 
-	global.clearSites() = {
+	global.clearSites = function() {
 		var sites = Game.spawns['Spawn1'].room.find(FIND_MY_CONSTRUCTION_SITES);
 		for (var site of sites) {
 			site.remove();
