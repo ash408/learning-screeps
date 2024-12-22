@@ -56,11 +56,12 @@ var spawnController = {
 	spawnClaimer: function(spawn) {
 		if (!spawn.spawning) {
 			var claimers = _.filter(Game.creeps, (creep) => creep.memory.role === 'claimer');
-			console.log(claimers);
+			
 			if (claimers.length === 0) {
 				var newName = 'Claimer' + Game.time;
 				var creepBody = this.calculateBody(spawn.room, CLAIMER_TEMPLATE);
 
+				console.log(spawn);
 				if (creepBody !== null) {
 					spawn.spawnCreep(creepBody, newName,
 						{memory: {role: 'claimer'}});
