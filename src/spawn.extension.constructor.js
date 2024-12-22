@@ -24,7 +24,7 @@ var extensionConstructor = {
 					var roadCoordinates = this.calculateCrosshair(coordinate.x, coordinate.y);
 					for (var roadCoordinate of roadCoordinates) {
 						if (coordinate.x !== roadCoordinate.x &&
-							coordinate.y !== roadCoordinate.y
+							coordinate.y !== roadCoordinate.y)
 						room.createConstructionSite(roadCoordinate.x, roadCoordinate.y, STRUCTURE_ROAD);
 					}
 				}
