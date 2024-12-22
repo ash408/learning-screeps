@@ -55,6 +55,7 @@ var spawnController = {
 
 	spawnClaimer: function(spawn) {
 		if (!spawn.spawning) {
+			console.log("spawning claimer");
 			var creeps = Game.creeps;
 
 			var claimers = _.filter(creeps, (creep) => creep.memory.role === 'claimer');
