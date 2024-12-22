@@ -21,4 +21,4 @@ var roleClaimer = {
 	}
 };
 
-module.exports roleClaimer;
+module.exports = roleClaimer;
