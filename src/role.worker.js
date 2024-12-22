@@ -50,7 +50,7 @@ var roleWorker = {
 		}
 		else {
 			if(this.creep.memory.task === WORKER_RELOCATING) {
-				this.creep.memory.task = '';
+				this.creep.memory.task = WORKER_HARVESTING;
 			}
 		}
 	},
