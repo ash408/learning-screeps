@@ -9,7 +9,7 @@ var roadConstructor = {
 
 		var roadCoordinates = this.calculateRoads(room, poiCoordinates);
 		this.buildRoads(room, roadCoordinates);
-		Memory.hasRoads = true;
+		Memory.hasRoads[room.name] = true;
 	},
 
 	findAllPOI: function(room) {

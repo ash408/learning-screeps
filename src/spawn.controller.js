@@ -15,38 +15,36 @@ const GUARD_TEMPLATE = [TOUGH, TOUGH, MOVE, MOVE, ATTACK];
 
 var spawnController = {
 		
-	run: function() {
-		var spawnHash = Game.spawns;
-		var spawns = Object.keys(spawnHash).map(function(v) { return spawnHash[v]; });
+	run: function(spawn) {
 		
 		var workers = _.filter(Game.creeps, (creep) => creep.memory.role == 'worker');
 		var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
 		var guards = _.filter(Game.creeps, (creep) => creep.memory.role == 'guard');
 	
-		if (this.needsGuard(spawns[0].room, guards)) {
+		if (this.needsGuard(spawn.room, guards)) {
 			var newName = 'Guard' + Game.time;
-			var creepBody = this.calculateBody(spawns[0].room, GUARD_TEMPLATE);
+			var creepBody = this.calculateBody(spawn.room, GUARD_TEMPLATE);
 
 			if (creepBody !== null) {
-				spawns[0].spawnCreep(creepBody, newName,
+				spawn.spawnCreep(creepBody, newName,
 					{memory: {role: 'guard'}});
 			}
 		}
 		else if (upgraders.length < MAX_UPGRADERS) {
 			var newName = 'Upgrader' + Game.time;
-			var creepBody = this.calculateBody(spawns[0].room, WORKER_TEMPLATE);
+			var creepBody = this.calculateBody(spawn.room, WORKER_TEMPLATE);
 
 			if (creepBody !== null) {
-				spawns[0].spawnCreep(creepBody, newName,
+				spawn.spawnCreep(creepBody, newName,
 					{memory: {role: 'upgrader'}});
 			}
 		}
 		else if (workers.length < MAX_WORKERS) {
 			var newName = 'Worker' + Game.time;
-			var creepBody = this.calculateBody(spawns[0].room, WORKER_TEMPLATE);
+			var creepBody = this.calculateBody(spawnroom, WORKER_TEMPLATE);
 
 			if (creepBody !== null) {
-				spawns[0].spawnCreep(creepBody, newName,
+				spawn.spawnCreep(creepBody, newName,
 					{memory: {role: 'worker'}});
 			}
 		}
