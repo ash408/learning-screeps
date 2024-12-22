@@ -68,4 +68,11 @@ module.exports.loop = function () {
     }
 }
 
+global.clearSites = {
+	var sites = Game.spawns['Spawn1'].room.find(FIND_MY_CONSTRUCTION_SITES);
+	for (var site of sites) {
+		site.remove();
+	}	
+};
+
 //STRUCTURE_SPAWN constant for spawn building
