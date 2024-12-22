@@ -49,7 +49,9 @@ var roleWorker = {
 			this.creep.memory.task = WORKER_RELOCATING;
 		}
 		else {
-			this.creep.memory.task = '';
+			if(this.creep.memory.task === WORKER_RELOCATING) {
+				this.creep.memory.task = '';
+			}
 		}
 	},
 
