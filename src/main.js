@@ -97,7 +97,7 @@ module.exports.loop = function () {
 	global.startExpansion = function(startRoom, expansionTarget) {
 		Memory.expansion = true;
 		Memory.startExpansionRoom = startRoom;
-		Memory.expansionTarget = expansionRoom;
+		Memory.expansionTarget = expansionTarget;
 	}
 };
 
