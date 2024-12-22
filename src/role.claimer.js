@@ -4,7 +4,7 @@ var roleClaimer = {
 	run: function(creep) {
 		if (creep.room.name !== Memory.expansionTarget) {
 			var exits = creep.room.find(creep.room.findExitTo(Memory.expansionTarget));
-			creep.moveTo(exits[0]);
+			creep.moveTo(exits[0], {visualizePathStyle: {stroke: '#ffffff'}});
 		}
 		else {
 			var response = creep.claimController(creep.room.controller);
