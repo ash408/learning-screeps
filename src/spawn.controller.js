@@ -41,7 +41,7 @@ var spawnController = {
 		}
 		else if (workers.length < MAX_WORKERS) {
 			var newName = 'Worker' + Game.time;
-			var creepBody = this.calculateBody(spawnroom, WORKER_TEMPLATE);
+			var creepBody = this.calculateBody(spawn.room, WORKER_TEMPLATE);
 
 			if (creepBody !== null) {
 				spawn.spawnCreep(creepBody, newName,
