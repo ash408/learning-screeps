@@ -2,17 +2,23 @@ const WORKER_HARVESTING = 'harvesting';
 const WORKER_TRANSFERING = 'transfering';
 const WORKER_UPGRADING = 'upgrading';
 const WORKER_BUILDING = 'building';
+const WORKER_RELOCATING = 'relocating';
 
 
 var roleWorker = {
 
 	run: function(creep) {
 		this.creep = creep;
+		this.checkRoom();
 		this.assignTask();
 		this.performTask(this.creep.memory.task);
 	},
 
 	assignTask: function() {
+		if{this.creep.memory.task === WORKER_RELOCATING){
+			return;
+		}
+
 		if(this.creep.store[RESOURCE_ENERGY] === 0) {
 			this.creep.memory.task = WORKER_HARVESTING;
 		}
@@ -32,6 +38,18 @@ var roleWorker = {
 			else {
 				this.creep.memory.task = WORKER_UPGRADING;
 			}
+		}
+	},
+
+	checkRoom: function() {
+		var assignedRoom = this.creep.memory.room;
+
+		if (assignedRoom !== undefined && 
+			this.creep.room.name !== assignedRoom) {
+			this.creep.memory.task = WORKER_RELOCATING;
+		}
+		else {
+			this.creep.memory.task = '';
 		}
 	},
 
@@ -97,6 +115,9 @@ var roleWorker = {
 
 			case WORKER_BUILDING:
 				this.build();
+				break;
+			case WORKER_RELOCATING:
+				this.relocate();
 				break;
 		}
 	},
@@ -171,6 +192,13 @@ var roleWorker = {
 				this.creep.memory.task = WORKER_HARVESTING;
 			}
 		}
+	},
+
+	relocate: function() {
+		var target = this.creep.memory.room;
+
+		var exits = this.creep.room.find(this.creep.room.find(target));
+		creep.moveTo(exits[0], {visualizePathStyle: {stroke: '#ffffff'}});
 	}
 };
 

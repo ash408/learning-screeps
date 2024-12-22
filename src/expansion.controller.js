@@ -6,10 +6,26 @@ var expansionController = {
 	run: function() {
 		if (Memory.expansion === true) {
 			var startRoom = Game.rooms[Memory.startExpansionRoom];
-
+			var targetRoom = Game.rooms[Memory.expansionTarget];
+			
+			if (targetRoom !== undefined && startRoom !== undefined) {
+				var spawns = targetRoom.find(FIND_MY_SPAWNS);
+				if (spawns.length > 0) {
+					console.log("Spawn found in expansion target!");
+					console.log("Stopping expansion...");
+					Memory.expansion = false;	
+				}
+				else if (this.checkClaim(targetRoom)) {
+					var spawn = startRoom.find(FIND_MY_SPAWNS)[0];
+					spawnController.spawnSettler(spawn, targetRoom);
+				}
+			}
 			if (startRoom !== undefined) {
-				var spawn = startRoom.find(FIND_MY_SPAWNS)[0];
-				spawnController.spawnClaimer(spawn);
+				if (!this.checkClaim(targetRoom)) {
+
+					var spawn = startRoom.find(FIND_MY_SPAWNS)[0];
+					spawnController.spawnClaimer(spawn);
+				}
 			}
 			else {
 				console.log("ERROR: starting room for expansion not found!");
@@ -17,6 +33,15 @@ var expansionController = {
 				Memory.expansion = false;
 			}
 		}
+	},
+
+	checkClaim: function(room) {
+		isClaimed = false;
+		
+		if (room !== undefined) {
+			isClaimed = room.my;
+		}
+		return isClaimed;
 	}
 };
 

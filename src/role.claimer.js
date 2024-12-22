@@ -14,9 +14,6 @@ var roleClaimer = {
 			}
 			else {
 				console.log('Room ' + Memory.expansionTarget + ' claimed');
-				console.log('Stopping expansion...');
-				Memory.expansion = false;
-
 				creep.suicide(); // :(
 			}
 		}
