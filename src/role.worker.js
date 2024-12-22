@@ -200,7 +200,7 @@ var roleWorker = {
 		var target = this.creep.memory.room;
 
 		var exits = this.creep.room.find(this.creep.room.findExitTo(target));
-		creep.moveTo(exits[0], {visualizePathStyle: {stroke: '#ffffff'}});
+		this.creep.moveTo(exits[0], {visualizePathStyle: {stroke: '#ffffff'}});
 	}
 };
 
