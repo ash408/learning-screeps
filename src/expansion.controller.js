@@ -9,7 +9,6 @@ var expansionController = {
 			var targetRoom = Game.rooms[Memory.expansionTarget];
 			
 			if (targetRoom !== undefined && startRoom !== undefined) {
-				console.log('Rooms defined');
 				var spawns = targetRoom.find(FIND_MY_SPAWNS);
 				if (spawns.length > 0) {
 					console.log("Spawn found in expansion target!");
@@ -17,7 +16,6 @@ var expansionController = {
 					Memory.expansion = false;	
 				}
 				else if (this.checkClaim(targetRoom)) {
-					console.log('Spawning Settler');
 					var spawn = startRoom.find(FIND_MY_SPAWNS)[0];
 					spawnController.spawnSettler(spawn, targetRoom);
 				}
@@ -41,7 +39,6 @@ var expansionController = {
 		isClaimed = false;
 		
 		if (room !== undefined) {
-			console.log(room);
 			isClaimed = room.controller.my;
 		}
 		return isClaimed;
