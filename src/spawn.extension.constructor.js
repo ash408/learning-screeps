@@ -27,6 +27,7 @@ var extensionConstructor = {
 							coordinate.y !== roadCoordinate.y)
 						room.createConstructionSite(roadCoordinate.x, roadCoordinate.y, STRUCTURE_ROAD);
 					}
+					return;
 				}
 				else if (response !== ERR_INVALID_TARGET){ return; }
 			}
