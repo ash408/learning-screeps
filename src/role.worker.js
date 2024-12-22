@@ -15,7 +15,7 @@ var roleWorker = {
 	},
 
 	assignTask: function() {
-		if{this.creep.memory.task === WORKER_RELOCATING){
+		if(this.creep.memory.task === WORKER_RELOCATING){
 			return;
 		}
 
