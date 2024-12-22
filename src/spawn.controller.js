@@ -72,6 +72,7 @@ var spawnController = {
 
 	spawnSettler: function(spawn, target) {
 		if (!spawn.spawning) {
+			console.log("Spawning settler");
 			var creeps = target.find(FIND_MY_CREEPS);
 			var workers = _.filter(creeps, (creep) => creep.memory.role == 'worker');
 
