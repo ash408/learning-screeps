@@ -53,9 +53,12 @@ module.exports.loop = function () {
     	}
 	
 	var response = extensionConstructor.run(Game.spawns['Spawn1']);
-	spawnStorageConstructor.run(Game.spawns['Spawn1']); 
-	spawnDefenseConstructor.run(Game.spawns['Spawn1']);
-	spawnConstructor.run(Game.spawns['Spawn1']);
+
+	if (response !== OK) {
+		spawnStorageConstructor.run(Game.spawns['Spawn1']); 
+		spawnDefenseConstructor.run(Game.spawns['Spawn1']);
+		spawnConstructor.run(Game.spawns['Spawn1']);
+	}
 
 	var hasRoads = Memory.hasRoads;
 	var constructionSites = Game.spawns['Spawn1'].room.find(FIND_MY_CONSTRUCTION_SITES);

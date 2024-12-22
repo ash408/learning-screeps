@@ -33,9 +33,9 @@ var extensionConstructor = {
 							room.createConstructionSite(roadCoordinate.x, roadCoordinate.y, STRUCTURE_ROAD);
 						}
 					}
-					return;
+					return response;
 				}
-				else if (response !== ERR_INVALID_TARGET){ return; }
+				else if (response !== ERR_INVALID_TARGET){ return response; }
 			}
 		}
 
