@@ -10,10 +10,14 @@ var colonyController = require('colony.controller');
 var roleWorker = require('role.worker');
 var roleUpgrader = require('role.upgrader');
 var roleGuard = require('role.guard');
+var roleClaimer = require('role.claimer');
 
 module.exports.loop = function () {
 	if (Memory.hasRoads === undefined) {
 		Memory.hasRoads = {};
+	}
+	if (Memory.expansion === undefined) {
+		Memory.expansion = false;
 	}
     
     for(var name in Memory.creeps) {
@@ -53,6 +57,9 @@ module.exports.loop = function () {
 		else if (creep.memory.role == 'upgrader') {
 			roleUpgrader.run(creep);
 		}
+		else if (creep.memory.role == 'claimer') {
+			roleClaimer.run(creep);
+		}
     	}
 	
 	//var response = extensionConstructor.run(Game.spawns['Spawn1']);
@@ -85,6 +92,12 @@ module.exports.loop = function () {
 		for (var site of sites) {
 			site.remove();
 		}
+	}
+
+	global.startExpansion = function(startRoom, expansionTarget) {
+		Memory.expansion = true;
+		Memory.startExpansionRoom = startRoom;
+		Memory.expansionTarget = expansionRoom;
 	}
 };
 
