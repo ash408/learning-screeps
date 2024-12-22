@@ -5,6 +5,7 @@
 //var spawnDefenseConstructor = require('spawn.defense.constructor');
 //var roadConstructor = require('road.constructor');
 var colonyController = require('colony.controller');
+var expansionController = require('expansion.controller');
 
 //var roleTower = require('role.tower');
 var roleWorker = require('role.worker');
@@ -76,9 +77,12 @@ module.exports.loop = function () {
 	//	roadConstructor.run(Game.spawns['Spawn1'].room);
 	//}
     
-    if(Game.cpu.bucket == 10000) {
+    if(Memory.expansion === false && Game.cpu.bucket == 10000) {
         Game.cpu.generatePixel();
     }
+	else if (Memory.expansion === true) {
+		expansionController.run();
+	}
 
 	global.clearSites = function() {
 		var spawnHash = Game.spawns;
