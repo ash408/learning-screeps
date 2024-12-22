@@ -39,9 +39,15 @@ var extensionConstructor = {
 		var structures = room.lookForAt(LOOK_STRUCTURES, x, y);
 		var terrain = room.lookForAt(LOOK_TERRAIN, x, y);
 		
-		var isValid = sites.length === 0 && structures.length === 0 && terrain != 'wall';
+		var validStructure = structures.length === 0;
+		for (var structure in structures) {
+			if (structure.structureType === STRUCTURE_ROAD) {
+				validStructure = true;
+				break;
+			}
+		}
 
-		return sites.length === 0 && structures.length === 0 && terrain != 'wall';
+		return sites.length === 0 && terrain !== 'wall' && validStructure;
 	},
 
 	validateCoordinates: function(room, coordinates) {
