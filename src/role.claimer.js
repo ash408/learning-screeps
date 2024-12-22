@@ -3,7 +3,7 @@ var roleClaimer = {
 
 	run: function(creep) {
 		if (creep.room.name !== Memory.expansionTarget) {
-			var exits = room.find(room.findExitTo(Memory.expansionTarget));
+			var exits = creep.room.find(creep.room.findExitTo(Memory.expansionTarget));
 			creep.moveTo(exits[0]);
 		}
 		else {
