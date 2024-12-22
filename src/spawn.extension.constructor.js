@@ -22,10 +22,12 @@ var extensionConstructor = {
 				var response = room.createConstructionSite(coordinate.x, coordinate.y, STRUCTURE_EXTENSION);
 				if (response === OK) {
 					var roadCoordinates = this.calculateCrosshair(coordinate.x, coordinate.y);
+					console.log("calculated road coordinates");				
+	
 					for (var roadCoordinate of roadCoordinates) {
 						if (coordinate.x !== roadCoordinate.x &&
 							coordinate.y !== roadCoordinate.y){
-
+							console.log("building road");
 							room.createConstructionSite(roadCoordinate.x, roadCoordinate.y, STRUCTURE_ROAD);
 						}
 					}
