@@ -1,7 +1,8 @@
-const MAX_WORKERS = 7;
 const MAX_UPGRADERS = 1;
 const MAX_SETTLERS = 3;
 const MAX_CLAIMERS = 1;
+
+const WORKERS_PER_SOURCE = 3;
 
 const MOVE_COST = 50;
 const WORK_COST = 100;
@@ -21,7 +22,10 @@ const CLAIMER_TEMPLATE = [MOVE, MOVE, MOVE, WORK, CARRY, CLAIM];
 var spawnController = {
 		
 	run: function(spawn) {
-		var creeps = spawn.room.find(FIND_MY_CREEPS);		
+		var creeps = spawn.room.find(FIND_MY_CREEPS);
+		var sources = spawn.room.find(FIND_SOURCES);
+
+		var MAX_WORKERS = sources.length * WORKERS_PER_SOURCE;
 	
 		var workers = _.filter(creeps, (creep) => creep.memory.role == 'worker');
 		var upgraders = _.filter(creeps, (creep) => creep.memory.role == 'upgrader');
