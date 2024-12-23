@@ -113,6 +113,13 @@ module.exports.loop = function () {
 			}
 		}
 	}
+
+	global.createRoads = function(roomName) {
+		var room = Game.rooms[roomName];
+
+		if (room !== undefined) {
+			roadConstructor.run(room);
+		}
 };
 
 
