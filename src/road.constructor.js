@@ -18,8 +18,7 @@ var roadConstructor = {
 
 		var sources = room.find(FIND_SOURCES)[0];
 		for (var source in sources) {
-			console.log(source);
-			allPOI.push(pos);
+			allPOI.push(source.pos);
 		}
 
 		var controller = room.controller.pos;
