@@ -14,7 +14,12 @@ var roadConstructor = {
 	},
 
 	findAllPOI: function(room) {
-		var allPOI = room.find(FIND_SOURCES);
+		var allPOI = []
+
+		var sources = room.find(FIND_SOURCES);
+		for (var source in sources) {
+			allPOI.push(source.pos);
+		}
 
 		var controller = room.controller.pos;
 		allPOI.push(controller);
