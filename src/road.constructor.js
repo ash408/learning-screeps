@@ -35,7 +35,9 @@ var roadConstructor = {
 	},
 
 	findSpawnConnection: function(room, pos) {
-		var target = room.findClosestByPath(FIND_STRUCTURES, {
+		var spawn = room.find(FIND_MY_SPAWNS)[0];
+
+		var target = spawn.pos.findClosestByPath(FIND_STRUCTURES, {
 			filter: (structure) => {
 				return structure.structureType === STRUCTURE_ROAD;
 			}
@@ -51,7 +53,7 @@ var roadConstructor = {
 		for (var coordinate of roadCoordinates) {
 			room.createConstructionSite(coordinate.x, coordinate.y, STRUCTURE_ROAD);
 		}
-	},
+	}
 };
 
 module.exports = roadConstructor;
