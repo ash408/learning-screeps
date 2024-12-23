@@ -37,7 +37,7 @@ var roadConstructor = {
 	findSpawnConnection: function(room, pos) {
 		var target = room.findClosestByPath(FIND_STRUCTURES, {
 			filter: (structure) => {
-				return structure.structureType === STRUCTURE_ROAD);
+				return structure.structureType === STRUCTURE_ROAD;
 			}
 		});
 
