@@ -3,7 +3,7 @@
 //var extensionConstructor = require('spawn.extension.constructor');
 //var spawnStorageConstructor = require('spawn.storage.constructor');
 //var spawnDefenseConstructor = require('spawn.defense.constructor');
-//var roadConstructor = require('road.constructor');
+var roadConstructor = require('road.constructor');
 var colonyController = require('colony.controller');
 var expansionController = require('expansion.controller');
 
