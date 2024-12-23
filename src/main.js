@@ -120,6 +120,7 @@ module.exports.loop = function () {
 		if (room !== undefined) {
 			roadConstructor.run(room);
 		}
+	}
 };
 
 
