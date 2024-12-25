@@ -118,7 +118,7 @@ var spawnController = {
 
 			for (part of template){
 				console.log("Testing part: " + part);
-				console.log("Cost: " + this.calculateEnergy(testBody);
+				console.log("Cost: " + this.calculateEnergy(testBody));
 				
 				var testBody = body.slice(0);
 				testBody.push(part);
