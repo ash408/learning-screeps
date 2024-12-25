@@ -45,7 +45,6 @@ var spawnController = {
 			var creepBody = this.calculateBody(spawn.room, WORKER_TEMPLATE);
 
 			if (creepBody !== null) {
-				console.log('Spawning upgrader');
 				spawn.spawnCreep(creepBody, newName,
 					{memory: {role: 'upgrader'}});
 			}
@@ -114,6 +113,8 @@ var spawnController = {
 	calculateBody: function(room, template) {
 		var body = template.slice(0);
 		var totalEnergy = room.energyAvailable;
+
+		console.log("total energy: " + totalEnergy);
 
 		while (totalEnergy > this.calculateEnergy(body)){
 
