@@ -41,11 +41,11 @@ var spawnController = {
 			}
 		}
 		else if (upgraders.length < MAX_UPGRADERS) {
-			console.log("spawn upgrader");
 			var newName = 'Upgrader' + Game.time;
 			var creepBody = this.calculateBody(spawn.room, WORKER_TEMPLATE);
 
 			if (creepBody !== null) {
+				console.log('Spawning upgrader');
 				spawn.spawnCreep(creepBody, newName,
 					{memory: {role: 'upgrader'}});
 			}
