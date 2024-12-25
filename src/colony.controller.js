@@ -16,7 +16,6 @@ var colonyController = {
 		var spawns = Object.keys(spawnHash).map(function(v) { return spawnHash[v]; });
 
 		for (var spawn of spawns) {
-			console.log("running spawn controller for: " + spawn.name);
 			spawnController.run(spawn);
 
 			var towers = spawn.room.find(FIND_MY_STRUCTURES, {
