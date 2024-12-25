@@ -116,12 +116,12 @@ var spawnController = {
 
 		while (totalEnergy > this.calculateEnergy(body)){
 
-			for (part of template){
-				console.log("Testing part: " + part);
-				console.log("Cost: " + this.calculateEnergy(testBody));
-				
+			for (part of template){	
 				var testBody = body.slice(0);
 				testBody.push(part);
+
+				console.log("Testing part: " + part);
+				console.log("Cost: " + this.calculateEnergy(testBody));
 
 				if(this.calculateEnergy(testBody) > totalEnergy ||
 					testBody.length > 50){
