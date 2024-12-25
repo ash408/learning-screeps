@@ -120,9 +120,6 @@ var spawnController = {
 				var testBody = body.slice(0);
 				testBody.push(part);
 
-				console.log("Testing part: " + part);
-				console.log("Cost: " + this.calculateEnergy(testBody));
-
 				if(this.calculateEnergy(testBody) > totalEnergy ||
 					testBody.length > 50){
 
