@@ -167,7 +167,7 @@ let roleWorker = {
 			}
 			return;
 		}
-		this.creep.memory.task = WORKER_HARVESTING;
+		this.creep.memory.task = WORKER_UPGRADING;
 	},
 
 	upgrade: function() {
@@ -193,7 +193,7 @@ let roleWorker = {
 				}
 			}
 			else {
-				this.creep.memory.task = WORKER_HARVESTING;
+				this.creep.memory.task = WORKER_UPGRADING;
 			}
 		}
 	},
