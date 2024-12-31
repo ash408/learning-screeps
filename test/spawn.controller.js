@@ -47,6 +47,7 @@ let spawnController = {
 			let creepBody = this.calculateBody(spawn.room, WORKER_TEMPLATE);
 
 			if (creepBody !== null) {
+				console.log("Spawn upgrader for " + spawn.name);
 				spawn.spawnCreep(creepBody, newName,
 					{memory: {role: 'upgrader'}});
 			}
