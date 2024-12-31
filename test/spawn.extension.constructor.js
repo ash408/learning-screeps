@@ -1,9 +1,9 @@
-var extensionConstructor = {
+let extensionConstructor = {
 
 	run: function(spawn) {
 		if (spawn.room.find(FIND_MY_CONSTRUCTION_SITES).length === 0) {
-			var startX = spawn.pos.x - 2;
-			var startY = spawn.pos.y - 2;
+			let startX = spawn.pos.x - 2;
+			let startY = spawn.pos.y - 2;
 
 			return this.findValidLocation(spawn.room, startX, startY);	
 		}
@@ -12,20 +12,20 @@ var extensionConstructor = {
 	findValidLocation: function(room, startX, startY, length=5) {
 		if (startX < 0 || startY < 0) { return null; }
 		
-		var coordinates = this.calculateSquare(startX, startY, length);
-		for (var coordinate of coordinates){
+		let coordinates = this.calculateSquare(startX, startY, length);
+		for (let coordinate of coordinates){
 
-			var validationCoordinates = this.calculateCrosshair(coordinate.x, coordinate.y);
-			var isValid = this.validateCoordinates(room, validationCoordinates)
+			let validationCoordinates = this.calculateCrosshair(coordinate.x, coordinate.y);
+			let isValid = this.validateCoordinates(room, validationCoordinates)
 			
 			if (isValid) {
-				var response = room.createConstructionSite(coordinate.x, coordinate.y, STRUCTURE_EXTENSION);
+				let response = room.createConstructionSite(coordinate.x, coordinate.y, STRUCTURE_EXTENSION);
 				if (response === OK) {
-					var roadCoordinates = this.calculateCrosshair(coordinate.x, coordinate.y);
+					let roadCoordinates = this.calculateCrosshair(coordinate.x, coordinate.y);
 					console.log("calculated road coordinates");
 					console.log("extension X:" + coordinate.x + " extension Y:" + coordinate.y);
 	
-					for (var roadCoordinate of roadCoordinates) {
+					for (let roadCoordinate of roadCoordinates) {
 						console.log("road X: " + roadCoordinate.x + " road Y:" + roadCoordinate.y);
 						if (coordinate.x !== roadCoordinate.x ||
 							coordinate.y !== roadCoordinate.y){
@@ -44,11 +44,11 @@ var extensionConstructor = {
 	},
 
 	validateCoordinate: function(room, x, y) {
-		var sites = room.lookForAt(LOOK_CONSTRUCTION_SITES, x, y);
-		var structures = room.lookForAt(LOOK_STRUCTURES, x, y);
-		var terrain = room.lookForAt(LOOK_TERRAIN, x, y);
+		let sites = room.lookForAt(LOOK_CONSTRUCTION_SITES, x, y);
+		let structures = room.lookForAt(LOOK_STRUCTURES, x, y);
+		let terrain = room.lookForAt(LOOK_TERRAIN, x, y);
 		
-		var validStructure = structures.length === 0;
+		let validStructure = structures.length === 0;
 
 		if (structures.length > 0 && structures[0].structureType === STRUCTURE_ROAD) {
 			validStructure = true;
@@ -58,21 +58,21 @@ var extensionConstructor = {
 	},
 
 	validateCoordinates: function(room, coordinates) {
-		for (var coordinate of coordinates) {
-			var validation = this.validateCoordinate(room, coordinate.x, coordinate.y);
+		for (let coordinate of coordinates) {
+			let validation = this.validateCoordinate(room, coordinate.x, coordinate.y);
 			if (!validation) { return false; }
 		}
 		return true;
 	},
 
 	calculateSquare: function(startX, startY, length) {
-		var currentX = startX;
-		var currentY = startY;
+		let currentX = startX;
+		let currentY = startY;
 		
-		var maxX = startX + length - 1;
-		var maxY = startY + length - 1;
+		let maxX = startX + length - 1;
+		let maxY = startY + length - 1;
 
-		var coordinates = [];
+		let coordinates = [];
 
 
 		for (; currentY <= maxY; currentY++) {
@@ -94,7 +94,7 @@ var extensionConstructor = {
 
 	//Add length support
 	calculateCrosshair: function(x, y) {
-		var coordinates = [];
+		let coordinates = [];
 
 		coordinates.push({x: x, y: y});
 		coordinates.push({x: x-1, y: y});
