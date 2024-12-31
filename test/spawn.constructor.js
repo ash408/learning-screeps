@@ -4,8 +4,8 @@
 let spawnConstructor = {
 
 	run: function(spawn) {
-		spawnX = spawn.pos.x;
-		spawnY = spawn.pos.y;
+		let spawnX = spawn.pos.x;
+		let spawnY = spawn.pos.y;
 
 		let coordinates = [	{x: spawnX - 1, y: spawnY},
 						{x: spawnX + 1, y: spawnY},
