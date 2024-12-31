@@ -101,10 +101,10 @@ let spawnController = {
 		let guardPartNum = 0;
 		let hostilePartNum = 0;
 
-		for(hostile of hostiles) {
+		for(let hostile of hostiles) {
 			hostilePartNum += hostile.body.length;
 		}
-		for(guard of guards) {
+		for(let guard of guards) {
 			guardPartNum += guard.body.length;
 		}
 
@@ -118,7 +118,7 @@ let spawnController = {
 
 		while (totalEnergy > this.calculateEnergy(body)){
 
-			for (part of template){	
+			for (let part of template){	
 				let testBody = body.slice(0);
 				testBody.push(part);
 
@@ -138,7 +138,7 @@ let spawnController = {
 	calculateEnergy: function(bodyParts) {
 		let totalEnergy = 0;
 
-		for (part of bodyParts) {
+		for (let part of bodyParts) {
 			totalEnergy += BODY_HASH[part];
 		}
 		return totalEnergy;
