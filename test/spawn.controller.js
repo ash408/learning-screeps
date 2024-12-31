@@ -116,6 +116,7 @@ let spawnController = {
 	calculateBody: function(room, template) {
 		let body = template.slice(0);
 		let totalEnergy = room.energyAvailable;
+		console.log("Energy in room: " + totalEnergy);
 
 		while (totalEnergy > this.calculateEnergy(body)){
 
