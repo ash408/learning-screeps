@@ -144,6 +144,7 @@ let spawnController = {
 		for (let part of bodyParts) {
 			totalEnergy += BODY_HASH[part];
 		}
+		console.log("Energy calculated: " + totalEnergy);
 		return totalEnergy;
 	}
 };
