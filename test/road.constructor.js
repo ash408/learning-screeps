@@ -1,3 +1,5 @@
+"use strict";
+
 
 const PATH_FINDING_OPTS = { ignoreCreeps: true,
 					   plainCost: 1,

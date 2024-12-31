@@ -1,3 +1,5 @@
+"use strict";
+
 let spawnController = require('spawn.controller');
 
 let extensionConstructor = require('spawn.extension.constructor');

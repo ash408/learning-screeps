@@ -1,3 +1,5 @@
+"use strict";
+
 const WORKER_HARVESTING = 'harvesting';
 const WORKER_TRANSFERING = 'transfering';
 const WORKER_UPGRADING = 'upgrading';

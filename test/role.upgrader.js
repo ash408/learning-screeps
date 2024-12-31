@@ -1,3 +1,5 @@
+"use strict";
+
 const UPGRADER_HARVESTING = 'harvesting';
 const UPGRADER_UPGRADING = 'upgrading';
 

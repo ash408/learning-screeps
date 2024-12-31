@@ -1,3 +1,5 @@
+"use strict";
+
 const MAX_UPGRADERS = 1;
 const MAX_SETTLERS = 3;
 const MAX_CLAIMERS = 1;
