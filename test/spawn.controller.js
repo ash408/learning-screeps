@@ -43,7 +43,6 @@ let spawnController = {
 			}
 		}
 		else if (upgraders.length < MAX_UPGRADERS) {
-			console.log("Spawn upgrader for " + spawn.name);
 			let newName = 'Upgrader' + Game.time;
 			let creepBody = this.calculateBody(spawn.room, WORKER_TEMPLATE);
 			
@@ -82,7 +81,6 @@ let spawnController = {
 
 	spawnSettler: function(spawn, target) {
 		if (!spawn.spawning) {
-			console.log("Spawning settler");
 			let creeps = target.find(FIND_MY_CREEPS);
 			let workers = _.filter(creeps, (creep) => creep.memory.role == 'worker');
 
@@ -117,7 +115,6 @@ let spawnController = {
 	calculateBody: function(room, template) {
 		let body = template.slice(0);
 		let totalEnergy = room.energyAvailable;
-		console.log("Energy in room: " + totalEnergy);
 
 		while (totalEnergy >= this.calculateEnergy(body)){
 
@@ -144,7 +141,7 @@ let spawnController = {
 		for (let part of bodyParts) {
 			totalEnergy += BODY_HASH[part];
 		}
-		console.log("Energy calculated: " + totalEnergy);
+		
 		return totalEnergy;
 	}
 };
