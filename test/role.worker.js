@@ -147,10 +147,10 @@ let roleWorker = {
 				return (source.energy > 0);
 			}
 		});
-		if(source != null && this.creep.harvest(source, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+		if(source !== null && this.creep.harvest(source, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
 			this.creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
 		}
-		else {
+		else if (source === null) {
 			this.creep.memory.task = WORKER_TRANSFERING;
 		}
 	},
