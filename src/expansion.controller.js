@@ -1,29 +1,31 @@
-var spawnController = require('spawn.controller');
+"use strict";
+
+let spawnController = require('spawn.controller');
 
 
-var expansionController = {
+let expansionController = {
 
 	run: function() {
 		if (Memory.expansion === true) {
-			var startRoom = Game.rooms[Memory.startExpansionRoom];
-			var targetRoom = Game.rooms[Memory.expansionTarget];
+			let startRoom = Game.rooms[Memory.startExpansionRoom];
+			let targetRoom = Game.rooms[Memory.expansionTarget];
 			
 			if (targetRoom !== undefined && startRoom !== undefined) {
-				var spawns = targetRoom.find(FIND_MY_SPAWNS);
+				let spawns = targetRoom.find(FIND_MY_SPAWNS);
 				if (spawns.length > 0) {
 					console.log("Spawn found in expansion target!");
 					console.log("Stopping expansion...");
 					Memory.expansion = false;	
 				}
 				else if (this.checkClaim(targetRoom)) {
-					var spawn = startRoom.find(FIND_MY_SPAWNS)[0];
+					let spawn = startRoom.find(FIND_MY_SPAWNS)[0];
 					spawnController.spawnSettler(spawn, targetRoom);
 				}
 			}
 			if (startRoom !== undefined) {
 				if (!this.checkClaim(targetRoom)) {
 
-					var spawn = startRoom.find(FIND_MY_SPAWNS)[0];
+					let spawn = startRoom.find(FIND_MY_SPAWNS)[0];
 					spawnController.spawnClaimer(spawn);
 				}
 			}

@@ -1,10 +1,8 @@
-"use strict";
-
 const UPGRADER_HARVESTING = 'harvesting';
 const UPGRADER_UPGRADING = 'upgrading';
 
 
-let roleUpgrader = {
+var roleUpgrader = {
 
 	run: function(creep) {
 		this.creep = creep;
@@ -34,7 +32,7 @@ let roleUpgrader = {
 	},
 
 	harvest: function() {
-		let source = this.creep.pos.findClosestByPath(FIND_SOURCES, {
+		var source = this.creep.pos.findClosestByPath(FIND_SOURCES, {
 			filter: (source) => {
 				return (source.energy > 0);
 			}

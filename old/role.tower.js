@@ -1,10 +1,8 @@
-"use strict";
 
-
-let roleTower = {
+var roleTower = {
 
 	run: function(tower) {
-		let target = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+		var target = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
 		if (target !== null) {
 			tower.attack(target);
 		}

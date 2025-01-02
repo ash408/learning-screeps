@@ -1,15 +1,13 @@
-"use strict";
 
-
-let roleClaimer = {
+var roleClaimer = {
 
 	run: function(creep) {
 		if (creep.room.name !== Memory.expansionTarget) {
-			let exits = creep.room.find(creep.room.findExitTo(Memory.expansionTarget));
+			var exits = creep.room.find(creep.room.findExitTo(Memory.expansionTarget));
 			creep.moveTo(exits[0], {visualizePathStyle: {stroke: '#ffffff'}});
 		}
 		else {
-			let response = creep.claimController(creep.room.controller);
+			var response = creep.claimController(creep.room.controller);
 
 			if(response === ERR_NOT_IN_RANGE) {
 				creep.moveTo(creep.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});

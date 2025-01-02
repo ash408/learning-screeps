@@ -1,17 +1,19 @@
-//var spawnController = require('spawn.controller');
-//var spawnConstructor = require('spawn.constructor');
-//var extensionConstructor = require('spawn.extension.constructor');
-//var spawnStorageConstructor = require('spawn.storage.constructor');
-//var spawnDefenseConstructor = require('spawn.defense.constructor');
-var roadConstructor = require('road.constructor');
-var colonyController = require('colony.controller');
-var expansionController = require('expansion.controller');
+"use strict";
 
-//var roleTower = require('role.tower');
-var roleWorker = require('role.worker');
-var roleUpgrader = require('role.upgrader');
-var roleGuard = require('role.guard');
-var roleClaimer = require('role.claimer');
+//let spawnController = require('spawn.controller');
+//let spawnConstructor = require('spawn.constructor');
+//let extensionConstructor = require('spawn.extension.constructor');
+//let spawnStorageConstructor = require('spawn.storage.constructor');
+//let spawnDefenseConstructor = require('spawn.defense.constructor');
+let roadConstructor = require('road.constructor');
+let colonyController = require('colony.controller');
+let expansionController = require('expansion.controller');
+
+//let roleTower = require('role.tower');
+let roleWorker = require('role.worker');
+let roleUpgrader = require('role.upgrader');
+let roleGuard = require('role.guard');
+let roleClaimer = require('role.claimer');
 
 module.exports.loop = function () {
 	if (Memory.hasRoads === undefined) {
@@ -21,14 +23,14 @@ module.exports.loop = function () {
 		Memory.expansion = false;
 	}
     
-    for(var name in Memory.creeps) {
+    for(let name in Memory.creeps) {
         if(!Game.creeps[name]) {
             delete Memory.creeps[name];
         }
     }
     
     //if(Game.spawns['Spawn1'].spawning) { 
-    //    var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
+    //    let spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
     //    Game.spawns['Spawn1'].room.visual.text(
     //        '🛠️' + spawningCreep.memory.role,
     //        Game.spawns['Spawn1'].pos.x + 1, 
@@ -36,19 +38,19 @@ module.exports.loop = function () {
     //        {align: 'left', opacity: 0.8});
    // }
 	
-	//var towers = Game.spawns['Spawn1'].room.find(FIND_MY_STRUCTURES, {
+	//let towers = Game.spawns['Spawn1'].room.find(FIND_MY_STRUCTURES, {
 	//	filter: (t) => {
 	//		return t.structureType == STRUCTURE_TOWER &&
 	//			t.store.getCapacity(RESOURCE_ENERGY) > 0;
 	//	}
 	//});
-	//for (var tower of towers) {
+	//for (let tower of towers) {
 	//	roleTower.run(tower);
 	//} 
 	colonyController.run();
 
-    	for(var name in Game.creeps) {
-        	var creep = Game.creeps[name];
+    	for(let name in Game.creeps) {
+        	let creep = Game.creeps[name];
         	if(creep.memory.role == 'worker') {
             	roleWorker.run(creep);
         	}
@@ -63,7 +65,7 @@ module.exports.loop = function () {
 		}
     	}
 	
-	//var response = extensionConstructor.run(Game.spawns['Spawn1']);
+	//let response = extensionConstructor.run(Game.spawns['Spawn1']);
 
 	//if (response !== OK) {
 	//	spawnStorageConstructor.run(Game.spawns['Spawn1']); 
@@ -71,8 +73,8 @@ module.exports.loop = function () {
 	//	spawnConstructor.run(Game.spawns['Spawn1']);
 	//}
 
-	//var hasRoads = Memory.hasRoads;
-	//var constructionSites = Game.spawns['Spawn1'].room.find(FIND_MY_CONSTRUCTION_SITES);
+	//let hasRoads = Memory.hasRoads;
+	//let constructionSites = Game.spawns['Spawn1'].room.find(FIND_MY_CONSTRUCTION_SITES);
 	//if (!hasRoads && Game.cpu.bucket === 10000 && constructionSites.length === 0) {
 	//	roadConstructor.run(Game.spawns['Spawn1'].room);
 	//}
@@ -85,15 +87,15 @@ module.exports.loop = function () {
 	}
 
 	global.clearSites = function() {
-		var spawnHash = Game.spawns;
-		var spawns = Object.keys(spawnHash).map(function(v) { return spawnHash[v]; });
-		var sites = [];
+		let spawnHash = Game.spawns;
+		let spawns = Object.keys(spawnHash).map(function(v) { return spawnHash[v]; });
+		let sites = [];
 
-		for (var spawn of spawns){
-			var thisSites = spawn.room.find(FIND_MY_CONSTRUCTION_SITES);
+		for (let spawn of spawns){
+			let thisSites = spawn.room.find(FIND_MY_CONSTRUCTION_SITES);
 			sites = [...sites, ...thisSites];
 		}
-		for (var site of sites) {
+		for (let site of sites) {
 			site.remove();
 		}
 	}
@@ -105,8 +107,8 @@ module.exports.loop = function () {
 	}
 
 	global.clearWorkers = function() {
-		for (var name in Game.creeps) {
-			var creep = Game.creeps[name];
+		for (let name in Game.creeps) {
+			let creep = Game.creeps[name];
 
 			if(creep.memory.role == 'worker') {
 				creep.memory.task = 'harvesting';
@@ -115,7 +117,7 @@ module.exports.loop = function () {
 	}
 
 	global.createRoads = function(roomName) {
-		var room = Game.rooms[roomName];
+		let room = Game.rooms[roomName];
 
 		if (room !== undefined) {
 			roadConstructor.run(room);

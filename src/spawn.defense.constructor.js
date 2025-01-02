@@ -1,11 +1,13 @@
+"use strict";
 
-var spawnDefenseConstructor = {
+
+let spawnDefenseConstructor = {
 
 	run: function(spawn) {
-		var x = spawn.pos.x + 1;
-		var y = spawn.pos.y + 1;
+		let x = spawn.pos.x + 1;
+		let y = spawn.pos.y + 1;
 
-		var hasTower = spawn.room.lookForAt(LOOK_STRUCTURES, x, y).length !== 0;
+		let hasTower = spawn.room.lookForAt(LOOK_STRUCTURES, x, y).length !== 0;
 		if (!hasTower) {
 			spawn.room.createConstructionSite(x, y, STRUCTURE_TOWER);
 		}
