@@ -42,6 +42,9 @@ let roleUpgrader = {
 		if (source !== null && this.creep.harvest(source, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
 			this.creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
 		}
+		else {
+			this.creep.memory.task = UPGRADER_UPGRADING;
+		}
 	},
 
 	upgrade: function() {
