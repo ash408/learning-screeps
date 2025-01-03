@@ -1,8 +1,10 @@
+"use strict";
+
 const MAX_UPGRADERS = 1;
 const MAX_SETTLERS = 3;
 const MAX_CLAIMERS = 1;
 
-const WORKERS_PER_SOURCE = 3;
+const WORKERS_PER_SOURCE = 2;
 
 const MOVE_COST = 50;
 const WORK_COST = 100;
@@ -14,26 +16,26 @@ const CLAIM_COST = 600;
 const BODY_HASH = {[MOVE]: MOVE_COST, [WORK]: WORK_COST, [CARRY]: CARRY_COST,
 				[ATTACK]: ATTACK_COST, [TOUGH]: TOUGH_COST, [CLAIM]: CLAIM_COST};
 
-const WORKER_TEMPLATE = [MOVE, MOVE, CARRY, WORK];
+const WORKER_TEMPLATE = [MOVE, CARRY, WORK];
 const GUARD_TEMPLATE = [TOUGH, TOUGH, MOVE, MOVE, MOVE, ATTACK];
 const CLAIMER_TEMPLATE = [MOVE, MOVE, MOVE, WORK, CARRY, CLAIM];
 
 
-var spawnController = {
+let spawnController = {
 		
 	run: function(spawn) {
-		var creeps = spawn.room.find(FIND_MY_CREEPS);
-		var sources = spawn.room.find(FIND_SOURCES);
+		let creeps = spawn.room.find(FIND_MY_CREEPS);
+		let sources = spawn.room.find(FIND_SOURCES);
 
-		var MAX_WORKERS = sources.length * WORKERS_PER_SOURCE;
+		let MAX_WORKERS = sources.length * WORKERS_PER_SOURCE;
 	
-		var workers = _.filter(creeps, (creep) => creep.memory.role == 'worker');
-		var upgraders = _.filter(creeps, (creep) => creep.memory.role == 'upgrader');
-		var guards = _.filter(creeps, (creep) => creep.memory.role == 'guard');
+		let workers = _.filter(creeps, (creep) => creep.memory.role == 'worker');
+		let upgraders = _.filter(creeps, (creep) => creep.memory.role == 'upgrader');
+		let guards = _.filter(creeps, (creep) => creep.memory.role == 'guard');
 	
 		if (this.needsGuard(spawn.room, guards)) {
-			var newName = 'Guard' + Game.time;
-			var creepBody = this.calculateBody(spawn.room, GUARD_TEMPLATE);
+			let newName = 'Guard' + Game.time;
+			let creepBody = this.calculateBody(spawn.room, GUARD_TEMPLATE);
 
 			if (creepBody !== null) {
 				spawn.spawnCreep(creepBody, newName,
@@ -41,17 +43,17 @@ var spawnController = {
 			}
 		}
 		else if (upgraders.length < MAX_UPGRADERS) {
-			var newName = 'Upgrader' + Game.time;
-			var creepBody = this.calculateBody(spawn.room, WORKER_TEMPLATE);
-
+			let newName = 'Upgrader' + Game.time;
+			let creepBody = this.calculateBody(spawn.room, WORKER_TEMPLATE);
+			
 			if (creepBody !== null) {
 				spawn.spawnCreep(creepBody, newName,
 					{memory: {role: 'upgrader'}});
 			}
 		}
 		else if (workers.length < MAX_WORKERS) {
-			var newName = 'Worker' + Game.time;
-			var creepBody = this.calculateBody(spawn.room, WORKER_TEMPLATE);
+			let newName = 'Worker' + Game.time;
+			let creepBody = this.calculateBody(spawn.room, WORKER_TEMPLATE);
 
 			if (creepBody !== null) {
 				spawn.spawnCreep(creepBody, newName,
@@ -62,11 +64,11 @@ var spawnController = {
 
 	spawnClaimer: function(spawn) {
 		if (!spawn.spawning) {
-			var claimers = _.filter(Game.creeps, (creep) => creep.memory.role === 'claimer');
+			let claimers = _.filter(Game.creeps, (creep) => creep.memory.role === 'claimer');
 			
 			if (claimers.length < MAX_CLAIMERS) {
-				var newName = 'Claimer' + Game.time;
-				var creepBody = this.calculateBody(spawn.room, CLAIMER_TEMPLATE);
+				let newName = 'Claimer' + Game.time;
+				let creepBody = this.calculateBody(spawn.room, CLAIMER_TEMPLATE);
 
 				if (creepBody !== null) {
 					spawn.spawnCreep(creepBody, newName,
@@ -78,13 +80,12 @@ var spawnController = {
 
 	spawnSettler: function(spawn, target) {
 		if (!spawn.spawning) {
-			console.log("Spawning settler");
-			var creeps = target.find(FIND_MY_CREEPS);
-			var workers = _.filter(creeps, (creep) => creep.memory.role == 'worker');
+			let creeps = target.find(FIND_MY_CREEPS);
+			let workers = _.filter(creeps, (creep) => creep.memory.role == 'worker');
 
 			if (workers.length < MAX_SETTLERS) {
-				var newName = 'Settler' + Game.time;
-				var creepBody = this.calculateBody(spawn.room, WORKER_TEMPLATE);
+				let newName = 'Settler' + Game.time;
+				let creepBody = this.calculateBody(spawn.room, WORKER_TEMPLATE);
 
 				if (creepBody !== null) {
 					spawn.spawnCreep(creepBody, newName,
@@ -95,14 +96,14 @@ var spawnController = {
 	},
 
 	needsGuard: function(room, guards) {
-		var hostiles = room.find(FIND_HOSTILE_CREEPS);
-		var guardPartNum = 0;
-		var hostilePartNum = 0;
+		let hostiles = room.find(FIND_HOSTILE_CREEPS);
+		let guardPartNum = 0;
+		let hostilePartNum = 0;
 
-		for(hostile of hostiles) {
+		for(let hostile of hostiles) {
 			hostilePartNum += hostile.body.length;
 		}
-		for(guard of guards) {
+		for(let guard of guards) {
 			guardPartNum += guard.body.length;
 		}
 
@@ -111,13 +112,13 @@ var spawnController = {
 	},
 
 	calculateBody: function(room, template) {
-		var body = template.slice(0);
-		var totalEnergy = room.energyAvailable;
+		let body = template.slice(0);
+		let totalEnergy = room.energyAvailable;
 
-		while (totalEnergy > this.calculateEnergy(body)){
+		while (totalEnergy >= this.calculateEnergy(body)){
 
-			for (part of template){	
-				var testBody = body.slice(0);
+			for (let part of template){	
+				let testBody = body.slice(0);
 				testBody.push(part);
 
 				if(this.calculateEnergy(testBody) > totalEnergy ||
@@ -134,11 +135,12 @@ var spawnController = {
 	},
 
 	calculateEnergy: function(bodyParts) {
-		var totalEnergy = 0;
+		let totalEnergy = 0;
 
-		for (part of bodyParts) {
+		for (let part of bodyParts) {
 			totalEnergy += BODY_HASH[part];
 		}
+		
 		return totalEnergy;
 	}
 };

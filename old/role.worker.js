@@ -1,3 +1,5 @@
+"use strict";
+
 const WORKER_HARVESTING = 'harvesting';
 const WORKER_TRANSFERING = 'transfering';
 const WORKER_UPGRADING = 'upgrading';
@@ -5,7 +7,7 @@ const WORKER_BUILDING = 'building';
 const WORKER_RELOCATING = 'relocating';
 
 
-var roleWorker = {
+let roleWorker = {
 
 	run: function(creep) {
 		this.creep = creep;
@@ -42,7 +44,7 @@ var roleWorker = {
 	},
 
 	checkRoom: function() {
-		var assignedRoom = this.creep.memory.room;
+		let assignedRoom = this.creep.memory.room;
 
 		if (assignedRoom !== undefined && 
 			this.creep.room.name !== assignedRoom) {
@@ -56,14 +58,14 @@ var roleWorker = {
 	},
 
 	getEmptyStore: function() {
-		var target = this.getEmptySpawn();
+		let target = this.getEmptySpawn();
 		if (target === null) { target = this.getEmptyContainer(); }
 		
 		return target
 	},
 
 	getEmptySpawn: function() {
-		var target = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
+		let target = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
 			filter: (structure) => {
 				return (structure.structureType === STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) &&
 					structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
@@ -73,7 +75,7 @@ var roleWorker = {
 	},
 
 	getEmptyContainer: function() {
-		var target = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
+		let target = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
 			filter: (structure) => {
 				return structure.structureType === STRUCTURE_CONTAINER &&
 					structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
@@ -83,7 +85,7 @@ var roleWorker = {
 	},
 
 	getRepairTarget: function() {
-		var repairTarget = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
+		let repairTarget = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
 			filter: (t) => {
 				return t.structureType !== STRUCTURE_WALL && (t.hits < t.hitsMax);			
 			}
@@ -92,7 +94,7 @@ var roleWorker = {
 	},
 
 	getEmptyTower: function() {
-		var tower = this.creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
+		let tower = this.creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
 			filter: (t) => {
 				return t.structureType === STRUCTURE_TOWER &&
 					t.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
@@ -125,7 +127,7 @@ var roleWorker = {
 	},
 
 	harvest: function() {
-		var source = null;
+		let source = null;
 		if(this.getEmptySpawn() !== null) {
 			source = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
 				filter: (structure) => {
@@ -151,7 +153,7 @@ var roleWorker = {
 	},
 
 	transfer: function() {
-		var target = this.getEmptyStore();
+		let target = this.getEmptyStore();
 		if (target !== null) {
 			if(this.creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
 				this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
@@ -165,7 +167,7 @@ var roleWorker = {
 			}
 			return;
 		}
-		this.creep.memory.task = WORKER_HARVESTING;
+		this.creep.memory.task = WORKER_UPGRADING;
 	},
 
 	upgrade: function() {
@@ -175,7 +177,7 @@ var roleWorker = {
 	},
 
 	build: function() {
-		var target = this.getRepairTarget();
+		let target = this.getRepairTarget();
 
 		if (target) {
 			if(this.creep.repair(target) == ERR_NOT_IN_RANGE) {
@@ -191,15 +193,15 @@ var roleWorker = {
 				}
 			}
 			else {
-				this.creep.memory.task = WORKER_HARVESTING;
+				this.creep.memory.task = WORKER_UPGRADING;
 			}
 		}
 	},
 
 	relocate: function() {
-		var target = this.creep.memory.room;
+		let target = this.creep.memory.room;
 
-		var exits = this.creep.room.find(this.creep.room.findExitTo(target));
+		let exits = this.creep.room.find(this.creep.room.findExitTo(target));
 		this.creep.moveTo(exits[0], {visualizePathStyle: {stroke: '#ffffff'}});
 	}
 };

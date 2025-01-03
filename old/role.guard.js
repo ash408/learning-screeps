@@ -1,8 +1,10 @@
+"use strict";
 
-var roleGuard = {
+
+let roleGuard = {
 
 	run: function(creep) {
-		var target = creep.pos.findClosestByPath(FIND_HOSTILE_CREEPS);
+		let target = creep.pos.findClosestByPath(FIND_HOSTILE_CREEPS);
 		if (target !== null && creep.attack(target) == ERR_NOT_IN_RANGE) {
 			creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
 		}
