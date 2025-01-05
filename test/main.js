@@ -1,10 +1,6 @@
 "use strict";
 
-require('global.js');
-
-let roadConstructor = require('road.constructor');
-let colonyController = require('colony.controller');
-let expansionController = require('expansion.controller');
+let globalItems = require('global.js');
 let creepController = require('creep.controller');
 
 
@@ -23,6 +19,8 @@ module.exports.loop = function () {
         	}
     	}
     
+	globalItems.load();
+
 	colonyController.run();
 	creepController.run();
 	
