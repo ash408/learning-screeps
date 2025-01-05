@@ -13,7 +13,7 @@ module.exports.loop = function () {
 	
 	colonyController.run();
 	creepController.run();
-	
+
    	if(Memory.expansion === false && Game.cpu.bucket == 10000) {
        	Game.cpu.generatePixel();
     	}
