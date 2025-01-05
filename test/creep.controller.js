@@ -21,6 +21,7 @@ let creepController = {
 			}
 			else if (creep.memory.role === 'upgrader') {
 				roleUpgrader.run(creep);
+			}
 			else if (creep.memory.role === 'claimer') {
 				roleClaimer.run(creep);
 			}
