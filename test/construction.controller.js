@@ -12,7 +12,8 @@ let constructionController = {
 
 	run: function(spawn) {
 
-		let response = extensionConstructor.run(spawn);
+		let response = "";
+		//let response = extensionConstructor.run(spawn);
 
 		if (response !== OK) {
 			spawnStorageConstructor.run(spawn);
