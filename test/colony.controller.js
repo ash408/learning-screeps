@@ -4,8 +4,6 @@ let spawnController = require('spawn.controller');
 let defenseController = require('defense.controller');
 let constructionController = require('construction.controller');
 
-let roleTower = require('role.tower');
-
 
 let colonyController = {
 	
