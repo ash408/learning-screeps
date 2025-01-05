@@ -3,14 +3,11 @@
 let roadConstructor = require('road.constructor');
 let colonyController = require('colony.controller');
 let expansionController = require('expansion.controller');
-
-let roleWorker = require('role.worker');
-let roleUpgrader = require('role.upgrader');
-let roleGuard = require('role.guard');
-let roleClaimer = require('role.claimer');
+let creepController = require('creep.controller');
 
 
 module.exports.loop = function () {
+	
 	if (Memory.hasRoads === undefined) {
 		Memory.hasRoads = {};
 	}
@@ -25,23 +22,7 @@ module.exports.loop = function () {
     	}
     
 	colonyController.run();
-
-    	for(let name in Game.creeps) {
-        	let creep = Game.creeps[name];
-        	
-		if(creep.memory.role == 'worker') {
-            	roleWorker.run(creep);
-        	}
-		else if (creep.memory.role == 'guard') {
-			roleGuard.run(creep);
-		}
-		else if (creep.memory.role == 'upgrader') {
-			roleUpgrader.run(creep);
-		}
-		else if (creep.memory.role == 'claimer') {
-			roleClaimer.run(creep);
-		}
-    	}
+	creepController.run();
 	
    	if(Memory.expansion === false && Game.cpu.bucket == 10000) {
        	Game.cpu.generatePixel();
