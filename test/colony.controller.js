@@ -29,8 +29,8 @@ let colonyController = {
 			for (let tower of towers) {
 				roleTower.run(tower);
 			}
+
 			let response = extensionConstructor.run(spawn);
-			console.log("Extension construction for " + spawn.name);
 			if (response !== OK) {
 				spawnStorageConstructor.run(spawn);
 				spawnDefenseConstructor.run(spawn);
