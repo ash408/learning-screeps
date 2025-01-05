@@ -1,6 +1,6 @@
 "use strict";
 
-let globalItems = require('global.js');
+let globalItems = require('global');
 let creepController = require('creep.controller');
 
 
