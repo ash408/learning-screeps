@@ -1,6 +1,7 @@
 "use strict";
 
 let globalItems = require('global');
+let colonyController = require('colony.controller');
 let creepController = require('creep.controller');
 
 
