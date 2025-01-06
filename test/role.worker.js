@@ -68,7 +68,8 @@ let roleWorker = {
 		let target = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
 			filter: (structure) => {
 				return (structure.structureType === STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) &&
-					structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
+					structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0 &&
+					structure.room.name === this.creep.room.name;
 			}
 		});
 		return target;
@@ -78,7 +79,8 @@ let roleWorker = {
 		let target = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
 			filter: (structure) => {
 				return structure.structureType === STRUCTURE_CONTAINER &&
-					structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
+					structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0 &&
+					structure.room.name == this.creep.room.name;
 			}
 		});
 		return target;	
@@ -132,7 +134,8 @@ let roleWorker = {
 			source = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
 				filter: (structure) => {
 					return structure.structureType === STRUCTURE_CONTAINER &&
-						structure.store.getUsedCapacity(RESOURCE_ENERGY) > 0;
+						structure.store.getUsedCapacity(RESOURCE_ENERGY) > 0 &&
+						structure.room.name === this.creep.room.name;
 				}
 			});
 			if (source !== null) {
