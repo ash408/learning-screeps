@@ -1,7 +1,7 @@
 "use strict";
 
 const MAX_UPGRADERS = 1;
-const MAX_SETTLERS = 3;
+const MAX_SETTLERS = 2;
 const MAX_CLAIMERS = 1;
 
 const WORKERS_PER_SOURCE = 2;
@@ -91,7 +91,7 @@ let spawnController = {
 	spawnSettler: function(spawn, target) {
 		if (!spawn.spawning) {
 			let creeps = Game.creeps;
-			let workers = _.filter(creeps, (creep) => creep.memory.room === target.name || creep.room.name === target.name);
+			let workers = _.filter(creeps, (creep) => creep.memory.room === target.name);
 
 			if (workers.length < MAX_SETTLERS) {
 				let newName = 'Settler' + Game.time;
