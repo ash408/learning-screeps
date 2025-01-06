@@ -42,6 +42,7 @@ let globalItems = {
 		}
 
 		global.createRoads = function(roomName) {
+			console.log("Building roads in " + roomName);
 			let room = Game.rooms[roomName];
 
 			if (room !== undefined) {

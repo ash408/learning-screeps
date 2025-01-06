@@ -11,11 +11,17 @@ let expansionController = {
 			let targetRoom = Game.rooms[Memory.expansionTarget];
 			
 			if (targetRoom !== undefined && startRoom !== undefined) {
-				let spawns = targetRoom.find(FIND_MY_SPAWNS);
-				if (spawns.length > 0) {
-					console.log("Spawn found in expansion target!");
+				let towers = targetRoom.find(FIND_MY_STRUCTURES, {
+					filter:(t) => {
+						return t.structureType === STRUCTURE_TOWER);
+					}
+				});
+				if (towers.length > 0) {
+					console.log("Defense found in expansion target!");
 					console.log("Stopping expansion...");
-					Memory.expansion = false;	
+					Memory.expansion = false;
+
+					global.createRoads(targetRoom);
 				}
 				else if (this.checkClaim(targetRoom)) {
 					let spawn = startRoom.find(FIND_MY_SPAWNS)[0];
