@@ -4,6 +4,7 @@ let globalItems = require('global');
 let memoryController = require('memory.controller');
 let colonyController = require('colony.controller');
 let creepController = require('creep.controller');
+let expansionController = require('expansion.controller');
 
 
 module.exports.loop = function () {
