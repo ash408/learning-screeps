@@ -91,7 +91,7 @@ let spawnController = {
 	spawnSettler: function(spawn, target) {
 		if (!spawn.spawning) {
 			let creeps = Game.creeps;
-			let workers = _.filter(creeps, (creep) => creep.memory.room == target.name);
+			let workers = _.filter(creeps, (creep) => creep.memory.room === target.name || creep.room.name === target.name);
 
 			if (workers.length < MAX_SETTLERS) {
 				let newName = 'Settler' + Game.time;
