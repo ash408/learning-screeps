@@ -13,7 +13,7 @@ let expansionController = {
 			if (targetRoom !== undefined && startRoom !== undefined) {
 				let towers = targetRoom.find(FIND_MY_STRUCTURES, {
 					filter:(t) => {
-						return t.structureType === STRUCTURE_TOWER);
+						return t.structureType === STRUCTURE_TOWER;
 					}
 				});
 				if (towers.length > 0) {
