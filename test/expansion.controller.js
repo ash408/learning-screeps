@@ -38,7 +38,7 @@ let expansionController = {
 	},
 
 	checkClaim: function(room) {
-		isClaimed = false;
+		let isClaimed = false;
 		
 		if (room !== undefined) {
 			isClaimed = room.controller.my;
