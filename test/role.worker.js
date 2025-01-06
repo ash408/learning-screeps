@@ -6,8 +6,6 @@ const WORKER_UPGRADING = 'upgrading';
 const WORKER_BUILDING = 'building';
 const WORKER_RELOCATING = 'relocating';
 
-const PATH_FINDING_OPTS = {maxRooms = 1};
-
 
 let roleWorker = {
 
