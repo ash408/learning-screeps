@@ -144,7 +144,7 @@ let roleWorker = {
 		}
 		source = this.creep.pos.findClosestByPath(FIND_SOURCES, {
 			filter: (source) => {
-				return (source.energy > 0);
+				return (source.energy > 0 && source.room.name === this.creep.room.name);
 			}
 		});
 		if(source !== null && this.creep.harvest(source, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
