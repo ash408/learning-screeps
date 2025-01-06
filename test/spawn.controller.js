@@ -17,6 +17,7 @@ const BODY_HASH = {[MOVE]: MOVE_COST, [WORK]: WORK_COST, [CARRY]: CARRY_COST,
 				[ATTACK]: ATTACK_COST, [TOUGH]: TOUGH_COST, [CLAIM]: CLAIM_COST};
 
 const WORKER_TEMPLATE = [MOVE, CARRY, WORK];
+const SETTLER_TEMPLATE = [MOVE, MOVE, MOVE, CARRY, WORK];
 const GUARD_TEMPLATE = [TOUGH, TOUGH, MOVE, MOVE, MOVE, ATTACK];
 const CLAIMER_TEMPLATE = [MOVE, MOVE, MOVE, WORK, CARRY, CLAIM];
 
@@ -94,7 +95,7 @@ let spawnController = {
 
 			if (workers.length < MAX_SETTLERS) {
 				let newName = 'Settler' + Game.time;
-				let creepBody = this.calculateBody(spawn.room, WORKER_TEMPLATE);
+				let creepBody = this.calculateBody(spawn.room, SETTLER_TEMPLATE);
 
 				if (creepBody !== null) {
 					spawn.spawnCreep(creepBody, newName,
