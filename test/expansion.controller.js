@@ -21,7 +21,7 @@ let expansionController = {
 					console.log("Stopping expansion...");
 					Memory.expansion = false;
 
-					global.createRoads(targetRoom);
+					global.createRoads(targetRoom.name);
 				}
 				else if (this.checkClaim(targetRoom)) {
 					let spawn = startRoom.find(FIND_MY_SPAWNS)[0];
