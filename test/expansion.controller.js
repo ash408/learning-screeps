@@ -16,8 +16,10 @@ let expansionController = {
 						return t.structureType === STRUCTURE_TOWER;
 					}
 				});
-				if (towers.length > 0) {
-					console.log("Defense found in expansion target!");
+				let sites = targetRoom.find(FIND_MY_CONSTRUCTION_SITES);
+
+				if (towers.length > 0 && sites.length === 0) {
+					console.log("All construction done at expansion target!");
 					console.log("Stopping expansion...");
 					Memory.expansion = false;
 
