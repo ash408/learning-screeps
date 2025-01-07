@@ -15,10 +15,10 @@ module.exports.loop = function () {
 	colonyController.run();
 	creepController.run();
 
-   	if(Memory.expansion === false && Game.cpu.bucket == 10000) {
+   	if(Game.cpu.bucket == 10000) {
        	Game.cpu.generatePixel();
     	}
-	else if (Memory.expansion === true) {
+	if (Memory.expansion === true) {
 		expansionController.run();
 	}
 };
