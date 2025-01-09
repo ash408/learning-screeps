@@ -23,14 +23,10 @@ let extensionConstructor = {
 				let response = room.createConstructionSite(coordinate.x, coordinate.y, STRUCTURE_EXTENSION);
 				if (response === OK) {
 					let roadCoordinates = this.calculateCrosshair(coordinate.x, coordinate.y);
-					console.log("calculated road coordinates");
-					console.log("extension X:" + coordinate.x + " extension Y:" + coordinate.y);
 	
 					for (let roadCoordinate of roadCoordinates) {
-						console.log("road X: " + roadCoordinate.x + " road Y:" + roadCoordinate.y);
 						if (coordinate.x !== roadCoordinate.x ||
 							coordinate.y !== roadCoordinate.y){
-							console.log("building road");
 							room.createConstructionSite(roadCoordinate.x, roadCoordinate.y, STRUCTURE_ROAD);
 						}
 					}
