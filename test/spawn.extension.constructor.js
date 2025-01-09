@@ -16,10 +16,8 @@ let extensionConstructor = {
 		
 		let coordinates = this.calculateSquare(startX, startY, length);
 		for (let coordinate of coordinates){
-			console.log('[' + room.name + '] Validating batch for: ' + coordinate.x + ', ' + coordinate.y);
 			let validationCoordinates = this.calculateCrosshair(coordinate.x, coordinate.y);
 			let isValid = this.validateCoordinates(room, validationCoordinates);
-			console.log('[' + room.name + '] ' + coordinate.x + ', ' + coordinate.y + ' validation: ' + isValid);
 			
 			if (isValid) {
 				let response = room.createConstructionSite(coordinate.x, coordinate.y, STRUCTURE_EXTENSION);
@@ -58,7 +56,6 @@ let extensionConstructor = {
 		}
 
 		let isValid = sites.length === 0 && terrain != 'wall' && validStructure;
-		console.log('[' + room.name + '] ' + x + ', ' + y + ' internal validation: ' + isValid);
 		return isValid;
 	},
 
