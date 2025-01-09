@@ -49,6 +49,8 @@ let extensionConstructor = {
 		let sites = room.lookForAt(LOOK_CONSTRUCTION_SITES, x, y);
 		let structures = room.lookForAt(LOOK_STRUCTURES, x, y);
 		let terrain = room.lookForAt(LOOK_TERRAIN, x, y);
+
+		console.log('Terrain: ' + terrain);
 		
 		let validStructure = structures.length === 0;
 
