@@ -50,15 +50,15 @@ let extensionConstructor = {
 		let structures = room.lookForAt(LOOK_STRUCTURES, x, y);
 		let terrain = room.lookForAt(LOOK_TERRAIN, x, y);
 
-		console.log('Terrain: ' + terrain);
-		
 		let validStructure = structures.length === 0;
 
 		if (structures.length > 0 && structures[0].structureType === STRUCTURE_ROAD) {
 			validStructure = true;
 		}
 
-		return sites.length === 0 && terrain !== 'wall' && validStructure;
+		let isValid = sites.length === 0 && terrain != 'wall' && validStructure;
+		console.log(x + ', ' + y + ' valid check: ' + isValid);
+		return isValid;
 	},
 
 	validateCoordinates: function(room, coordinates) {
