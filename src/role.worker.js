@@ -68,7 +68,8 @@ let roleWorker = {
 		let target = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
 			filter: (structure) => {
 				return (structure.structureType === STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) &&
-					structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
+					structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0 &&
+					structure.room.name === this.creep.room.name;
 			}
 		});
 		return target;
@@ -78,7 +79,8 @@ let roleWorker = {
 		let target = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
 			filter: (structure) => {
 				return structure.structureType === STRUCTURE_CONTAINER &&
-					structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
+					structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0 &&
+					structure.room.name == this.creep.room.name;
 			}
 		});
 		return target;	
@@ -132,23 +134,24 @@ let roleWorker = {
 			source = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
 				filter: (structure) => {
 					return structure.structureType === STRUCTURE_CONTAINER &&
-						structure.store.getUsedCapacity(RESOURCE_ENERGY) > 0;
+						structure.store.getUsedCapacity(RESOURCE_ENERGY) > 0 &&
+						structure.room.name === this.creep.room.name;
 				}
 			});
 			if (source !== null) {
 				if(this.creep.withdraw(source, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-					this.creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
+					this.creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}, maxRooms: 1});
 				}
 				return;
 			}
 		}
 		source = this.creep.pos.findClosestByPath(FIND_SOURCES, {
 			filter: (source) => {
-				return (source.energy > 0);
+				return (source.energy > 0 && source.room.name === this.creep.room.name);
 			}
 		});
 		if(source !== null && this.creep.harvest(source, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-			this.creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
+			this.creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}, maxRooms: 1});
 		}
 		else if (source === null) {
 			this.creep.memory.task = WORKER_TRANSFERING;
@@ -159,14 +162,14 @@ let roleWorker = {
 		let target = this.getEmptyStore();
 		if (target !== null) {
 			if(this.creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-				this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
+				this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}, maxRooms: 1});
 			}
 			return;
 		}
 		target = this.getEmptyTower();
 		if (target !== null) {
 			if(this.creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-				this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
+				this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}, maxRooms: 1});
 			}
 			return;
 		}
@@ -175,7 +178,7 @@ let roleWorker = {
 
 	upgrade: function() {
 		if(this.creep.upgradeController(this.creep.room.controller) === ERR_NOT_IN_RANGE) {
-			this.creep.moveTo(this.creep.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
+			this.creep.moveTo(this.creep.room.controller, {visualizePathStyle: {stroke: '#ffffff'}, maxRooms: 1});
 		}
 	},
 
@@ -184,7 +187,7 @@ let roleWorker = {
 
 		if (target) {
 			if(this.creep.repair(target) == ERR_NOT_IN_RANGE) {
-				this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
+				this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}, maxRooms: 1});
 			}
 		}
 		else {
@@ -192,7 +195,7 @@ let roleWorker = {
 			
 			if(target) {
 				if(this.creep.build(target) === ERR_NOT_IN_RANGE) {
-					this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
+					this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}, maxRooms: 1});
 				}
 			}
 			else {
@@ -205,7 +208,7 @@ let roleWorker = {
 		let target = this.creep.memory.room;
 
 		let exits = this.creep.room.find(this.creep.room.findExitTo(target));
-		this.creep.moveTo(exits[0], {visualizePathStyle: {stroke: '#ffffff'}});
+		this.creep.moveTo(exits[0], {visualizePathStyle: {stroke: '#ffffff'}, maxRooms: 1});
 	}
 };
 
