@@ -58,6 +58,7 @@ let extensionConstructor = {
 		}
 
 		let isValid = sites.length === 0 && terrain != 'wall' && validStructure;
+		console.log(x + ', ' + y + ' internal validation: ' + isValid);
 		return isValid;
 	},
 
