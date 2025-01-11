@@ -15,7 +15,7 @@ let roleTower = {
 			tower.attack(target);
 		}
 		else if (injured !== null) {
-			tower.heal(inured);
+			tower.heal(injured);
 		}
 	}
 };
