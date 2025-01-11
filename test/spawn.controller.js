@@ -109,18 +109,22 @@ let spawnController = {
 
 	needsGuard: function(room, guards) {
 		let hostiles = room.find(FIND_HOSTILE_CREEPS);
-		let guardPartNum = 0;
-		let hostilePartNum = 0;
 
-		for(let hostile of hostiles) {
-			hostilePartNum += hostile.body.length;
-		}
-		for(let guard of guards) {
-			guardPartNum += guard.body.length;
-		}
+		if (hostiles.length > 1) {
+	
+			let guardPartNum = 0;
+			let hostilePartNum = 0;
 
-		return guardPartNum < hostilePartNum;
-		
+			for(let hostile of hostiles) {
+				hostilePartNum += hostile.body.length;
+			}
+			for(let guard of guards) {
+				guardPartNum += guard.body.length;
+			}
+
+			return guardPartNum < hostilePartNum;
+		}
+		return false;
 	},
 
 	calculateBody: function(room, template) {
