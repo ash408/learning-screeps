@@ -4,8 +4,6 @@
 let roleTower = {
 
 	run: function(tower) {
-		console.log("[" + tower.room.name + "] Handling tower " + tower.id);
-
 		let target = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
 		let injured = tower.pos.findClosestByRange(FIND_MY_CREEPS, {
 			filter:(c) => {
