@@ -109,8 +109,9 @@ let spawnController = {
 
 	needsGuard: function(room, guards) {
 		let hostiles = room.find(FIND_HOSTILE_CREEPS);
+		let rcl = room.controller.level;
 
-		if (hostiles.length > 1) {
+		if (hostiles.length > 1 || rcl < 3) {
 	
 			let guardPartNum = 0;
 			let hostilePartNum = 0;
