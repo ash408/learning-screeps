@@ -16,7 +16,7 @@ let spawnDefenseConstructor = {
 		else {
 			let rcl = spawn.room.controller.level;
 
-			if (rcl > 4 && !this.hasTower(x2, y2))) {
+			if (rcl > 4 && !this.hasTower(x2, y2)) {
 				spawn.room.createConstructionSite(x2, y2, STRUCTURE_TOWER);
 			}
 		}
