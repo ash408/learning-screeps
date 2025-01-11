@@ -10,7 +10,7 @@ let spawnDefenseConstructor = {
 		let x2 = spawn.pos.x + 1;
 		let y2 = spawn.pos.y - 1;
 
-		if (!this.hasTower(x, y)) {
+		if (!this.hasTower(spawn, x, y)) {
 			spawn.room.createConstructionSite(x, y, STRUCTURE_TOWER);
 		}
 		else {
@@ -22,7 +22,7 @@ let spawnDefenseConstructor = {
 		}
 	},
 
-	hasTower: function(x, y) {
+	hasTower: function(spawn, x, y) {
 		return spawn.room.lookForAt(LOOK_STRUCTURES, x, y).length !== 0;
 	}
 };
