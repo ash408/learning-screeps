@@ -5,6 +5,7 @@ const MAX_SETTLERS = 2;
 const MAX_CLAIMERS = 1;
 
 const WORKERS_PER_SOURCE = 2;
+const PARTS_PER_WORKER = 30;
 
 const MOVE_COST = 50;
 const WORK_COST = 100;
@@ -56,7 +57,7 @@ let spawnController = {
 		}
 		else if (workers.length < MAX_WORKERS) {
 			let newName = 'Worker' + Game.time;
-			let creepBody = this.calculateBody(spawn.room, WORKER_TEMPLATE);
+			let creepBody = this.calculateBody(spawn.room, WORKER_TEMPLATE, PARTS_PER_WORKER);
 
 			if (creepBody !== null) {
 				spawn.spawnCreep(creepBody, newName,
@@ -72,6 +73,15 @@ let spawnController = {
 				spawn.pos.y + 1,
 				{align: 'left', opacity: 0.8});
 		}
+	},
+
+	calculatePartNum: function(creeps) {
+		let partNum = 0;
+	
+		for(let creep of creeps) {
+			partNum += creep.body.length;
+		}
+		return partNum;
 	},
 
 	spawnClaimer: function(spawn) {
@@ -113,22 +123,15 @@ let spawnController = {
 
 		if (hostiles.length > 1 || rcl < 3) {
 	
-			let guardPartNum = 0;
-			let hostilePartNum = 0;
-
-			for(let hostile of hostiles) {
-				hostilePartNum += hostile.body.length;
-			}
-			for(let guard of guards) {
-				guardPartNum += guard.body.length;
-			}
+			let guardPartNum = this.calculatePartNum(guards);
+			let hostilePartNum = this.calculatePartNum(hostiles);
 
 			return guardPartNum < hostilePartNum;
 		}
 		return false;
 	},
 
-	calculateBody: function(room, template) {
+	calculateBody: function(room, template, max_parts=0) {
 		let body = template.slice(0);
 		let totalEnergy = room.energyAvailable;
 
@@ -138,7 +141,11 @@ let spawnController = {
 				let testBody = body.slice(0);
 				testBody.push(part);
 
-				if(this.calculateEnergy(testBody) > totalEnergy ||
+				if(max_parts > 0 && testBody.length > max_parts) {
+					return body;
+				}
+
+				else if(this.calculateEnergy(testBody) > totalEnergy ||
 					testBody.length > 50){
 
 					return body;
