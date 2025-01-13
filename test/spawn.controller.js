@@ -48,7 +48,7 @@ let spawnController = {
 		}
 		else if (upgraders.length < MAX_UPGRADERS) {
 			let newName = 'Upgrader' + Game.time;
-			let creepBody = this.calculateBody(spawn.room, WORKER_TEMPLATE);
+			let creepBody = this.calculateBody(spawn.room, WORKER_TEMPLATE, PARTS_PER_WORKER);
 			
 			if (creepBody !== null) {
 				spawn.spawnCreep(creepBody, newName,
