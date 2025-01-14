@@ -5,20 +5,23 @@ const MAX_SETTLERS = 2;
 const MAX_CLAIMERS = 1;
 
 const WORKERS_PER_SOURCE = 2;
+const PARTS_PER_WORKER = 30;
 
 const MOVE_COST = 50;
 const WORK_COST = 100;
 const CARRY_COST = 50;
 const ATTACK_COST = 80;
+const RANGED_COST = 150;
 const TOUGH_COST = 10;
 const CLAIM_COST = 600;
 
 const BODY_HASH = {[MOVE]: MOVE_COST, [WORK]: WORK_COST, [CARRY]: CARRY_COST,
-				[ATTACK]: ATTACK_COST, [TOUGH]: TOUGH_COST, [CLAIM]: CLAIM_COST};
+				[ATTACK]: ATTACK_COST, [TOUGH]: TOUGH_COST, [CLAIM]: CLAIM_COST,
+				[RANGED_ATTACK]: RANGED_COST};
 
 const WORKER_TEMPLATE = [MOVE, CARRY, WORK];
 const SETTLER_TEMPLATE = [MOVE, MOVE, MOVE, CARRY, WORK];
-const GUARD_TEMPLATE = [TOUGH, TOUGH, MOVE, MOVE, MOVE, ATTACK];
+const GUARD_TEMPLATE = [MOVE, RANGED_ATTACK];
 const CLAIMER_TEMPLATE = [MOVE, MOVE, MOVE, WORK, CARRY, CLAIM];
 
 
@@ -45,7 +48,7 @@ let spawnController = {
 		}
 		else if (upgraders.length < MAX_UPGRADERS) {
 			let newName = 'Upgrader' + Game.time;
-			let creepBody = this.calculateBody(spawn.room, WORKER_TEMPLATE);
+			let creepBody = this.calculateBody(spawn.room, WORKER_TEMPLATE, PARTS_PER_WORKER);
 			
 			if (creepBody !== null) {
 				spawn.spawnCreep(creepBody, newName,
@@ -54,7 +57,7 @@ let spawnController = {
 		}
 		else if (workers.length < MAX_WORKERS) {
 			let newName = 'Worker' + Game.time;
-			let creepBody = this.calculateBody(spawn.room, WORKER_TEMPLATE);
+			let creepBody = this.calculateBody(spawn.room, WORKER_TEMPLATE, PARTS_PER_WORKER);
 
 			if (creepBody !== null) {
 				spawn.spawnCreep(creepBody, newName,
@@ -70,6 +73,15 @@ let spawnController = {
 				spawn.pos.y + 1,
 				{align: 'left', opacity: 0.8});
 		}
+	},
+
+	calculatePartNum: function(creeps) {
+		let partNum = 0;
+	
+		for(let creep of creeps) {
+			partNum += creep.body.length;
+		}
+		return partNum;
 	},
 
 	spawnClaimer: function(spawn) {
@@ -107,21 +119,19 @@ let spawnController = {
 
 	needsGuard: function(room, guards) {
 		let hostiles = room.find(FIND_HOSTILE_CREEPS);
-		let guardPartNum = 0;
-		let hostilePartNum = 0;
+		let rcl = room.controller.level;
 
-		for(let hostile of hostiles) {
-			hostilePartNum += hostile.body.length;
-		}
-		for(let guard of guards) {
-			guardPartNum += guard.body.length;
-		}
+		if (hostiles.length > 1 || rcl < 3) {
+	
+			let guardPartNum = this.calculatePartNum(guards);
+			let hostilePartNum = this.calculatePartNum(hostiles);
 
-		return guardPartNum < hostilePartNum;
-		
+			return guardPartNum < hostilePartNum;
+		}
+		return false;
 	},
 
-	calculateBody: function(room, template) {
+	calculateBody: function(room, template, max_parts=0) {
 		let body = template.slice(0);
 		let totalEnergy = room.energyAvailable;
 
@@ -131,7 +141,11 @@ let spawnController = {
 				let testBody = body.slice(0);
 				testBody.push(part);
 
-				if(this.calculateEnergy(testBody) > totalEnergy ||
+				if(max_parts > 0 && testBody.length > max_parts) {
+					return body;
+				}
+
+				else if(this.calculateEnergy(testBody) > totalEnergy ||
 					testBody.length > 50){
 
 					return body;

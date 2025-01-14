@@ -1,7 +1,7 @@
 "use strict";
 
 const MAX_UPGRADERS = 1;
-const MAX_SETTLERS = 3;
+const MAX_SETTLERS = 2;
 const MAX_CLAIMERS = 1;
 
 const WORKERS_PER_SOURCE = 2;
@@ -17,6 +17,7 @@ const BODY_HASH = {[MOVE]: MOVE_COST, [WORK]: WORK_COST, [CARRY]: CARRY_COST,
 				[ATTACK]: ATTACK_COST, [TOUGH]: TOUGH_COST, [CLAIM]: CLAIM_COST};
 
 const WORKER_TEMPLATE = [MOVE, CARRY, WORK];
+const SETTLER_TEMPLATE = [MOVE, MOVE, MOVE, CARRY, WORK];
 const GUARD_TEMPLATE = [TOUGH, TOUGH, MOVE, MOVE, MOVE, ATTACK];
 const CLAIMER_TEMPLATE = [MOVE, MOVE, MOVE, WORK, CARRY, CLAIM];
 
@@ -60,6 +61,15 @@ let spawnController = {
 					{memory: {role: 'worker'}});
 			}
 		}
+
+		if (spawn.spawning) {
+			let spawningCreep = Game.creeps[spawn.spawning.name];
+			spawn.room.visual.text(
+				'+ ' + spawningCreep.memory.role,
+				spawn.pos.x + 1,
+				spawn.pos.y + 1,
+				{align: 'left', opacity: 0.8});
+		}
 	},
 
 	spawnClaimer: function(spawn) {
@@ -80,12 +90,12 @@ let spawnController = {
 
 	spawnSettler: function(spawn, target) {
 		if (!spawn.spawning) {
-			let creeps = target.find(FIND_MY_CREEPS);
-			let workers = _.filter(creeps, (creep) => creep.memory.role == 'worker');
+			let creeps = Game.creeps;
+			let workers = _.filter(creeps, (creep) => creep.memory.room === target.name);
 
 			if (workers.length < MAX_SETTLERS) {
 				let newName = 'Settler' + Game.time;
-				let creepBody = this.calculateBody(spawn.room, WORKER_TEMPLATE);
+				let creepBody = this.calculateBody(spawn.room, SETTLER_TEMPLATE);
 
 				if (creepBody !== null) {
 					spawn.spawnCreep(creepBody, newName,

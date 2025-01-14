@@ -16,22 +16,17 @@ let extensionConstructor = {
 		
 		let coordinates = this.calculateSquare(startX, startY, length);
 		for (let coordinate of coordinates){
-
 			let validationCoordinates = this.calculateCrosshair(coordinate.x, coordinate.y);
-			let isValid = this.validateCoordinates(room, validationCoordinates)
+			let isValid = this.validateCoordinates(room, validationCoordinates);
 			
 			if (isValid) {
 				let response = room.createConstructionSite(coordinate.x, coordinate.y, STRUCTURE_EXTENSION);
 				if (response === OK) {
 					let roadCoordinates = this.calculateCrosshair(coordinate.x, coordinate.y);
-					console.log("calculated road coordinates");
-					console.log("extension X:" + coordinate.x + " extension Y:" + coordinate.y);
 	
 					for (let roadCoordinate of roadCoordinates) {
-						console.log("road X: " + roadCoordinate.x + " road Y:" + roadCoordinate.y);
 						if (coordinate.x !== roadCoordinate.x ||
 							coordinate.y !== roadCoordinate.y){
-							console.log("building road");
 							room.createConstructionSite(roadCoordinate.x, roadCoordinate.y, STRUCTURE_ROAD);
 						}
 					}
@@ -49,14 +44,15 @@ let extensionConstructor = {
 		let sites = room.lookForAt(LOOK_CONSTRUCTION_SITES, x, y);
 		let structures = room.lookForAt(LOOK_STRUCTURES, x, y);
 		let terrain = room.lookForAt(LOOK_TERRAIN, x, y);
-		
+
 		let validStructure = structures.length === 0;
 
 		if (structures.length > 0 && structures[0].structureType === STRUCTURE_ROAD) {
 			validStructure = true;
 		}
 
-		return sites.length === 0 && terrain !== 'wall' && validStructure;
+		let isValid = sites.length === 0 && terrain != 'wall' && validStructure;
+		return isValid;
 	},
 
 	validateCoordinates: function(room, coordinates) {
