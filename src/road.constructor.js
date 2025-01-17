@@ -12,7 +12,6 @@ let roadConstructor = {
 		let roadCoordinates = this.calculateRoads(room, poiCoordinates);
 		
 		this.buildRoads(room, roadCoordinates);
-		Memory.hasRoads[room.name] = true;
 	},
 
 	findAllPOI: function(room) {

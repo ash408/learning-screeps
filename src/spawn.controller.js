@@ -5,7 +5,7 @@ const MAX_SETTLERS = 2;
 const MAX_CLAIMERS = 1;
 
 const WORKERS_PER_SOURCE = 2;
-const PARTS_PER_WORKER = 30;
+const PARTS_PER_WORKER = 25;
 
 const MOVE_COST = 50;
 const WORK_COST = 100;
