@@ -208,7 +208,9 @@ let roleWorker = {
 		let target = this.creep.memory.room;
 
 		let exits = this.creep.room.find(this.creep.room.findExitTo(target));
-		this.creep.moveTo(exits[0], {visualizePathStyle: {stroke: '#ffffff'}, maxRooms: 1});
+		let nearestExit = this.creep.pos.findClosestByPath(exits);
+
+		this.creep.moveTo(nearestExit, {visualizePathStyle: {stroke: '#ffffff'}, maxRooms: 1});
 	}
 };
 
