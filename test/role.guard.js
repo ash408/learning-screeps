@@ -4,6 +4,7 @@
 let roleGuard = {
 
 	run: function(creep) {
+		this.creep = creep;
 		let relocate = this.shouldRelocate();
 
 		let target = creep.pos.findClosestByPath(FIND_HOSTILE_CREEPS);
