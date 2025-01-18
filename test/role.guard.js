@@ -38,6 +38,7 @@ let roleGuard = {
 		else {
 			return false;
 		}
+	}
 };
 
 module.exports = roleGuard;
