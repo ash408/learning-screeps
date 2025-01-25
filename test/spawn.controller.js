@@ -122,7 +122,7 @@ let spawnController = {
 	spawnCleaner: function(spawn, target) {
 		if (!spawn.spawning) {
 			let creeps = Game.creeps;
-			let guards = _.filter(creeps, (creep) => creep.memory.room === target.name && creep.memory.role === 'guards');
+			let guards = _.filter(creeps, (creep) => creep.memory.room === target.name && creep.memory.role === 'guard');
 
 			if (guards.length < MAX_CLEANERS) {
 				let newName = 'Cleaner' + Game.time;
