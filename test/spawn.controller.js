@@ -125,7 +125,7 @@ let spawnController = {
 			let guards = _.filter(creeps, {filter: (creep) => {
 				return (creep.memory.room !== undefined && creep.memory.room === target.name && creep.memory.role === 'guard')}});
 
-			if (guards.length < MAX_CLEANRES) {
+			if (guards.length < MAX_CLEANERS) {
 				let newName = 'Cleaner' + Game.time;
 				let creepBody = this.calculateBody(spawn.room, CLEANER_TEMPLATE);
 
