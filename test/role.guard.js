@@ -20,7 +20,7 @@ let roleGuard = {
 			else if (enemy_structure === null && relocate) {
 				let newRoom = this.creep.memory.room;
 
-				let exits = this.creem.room.find(this.creep.room.findExitTo(newRoom));
+				let exits = this.creep.room.find(this.creep.room.findExitTo(newRoom));
 				let nearestExit = this.creep.pos.findClosestByPath(exits);
 
 				this.creep.moveTo(nearestExit, {visualizePathStyle: {stroke: '#ffffff'}, maxRooms: 1});
