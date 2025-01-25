@@ -42,7 +42,7 @@ let expansionController = {
 				}
 			}
 			else {
-				console.log("ERROR: starting/target room for expansion not found!");
+				console.log("ERROR: starting room for expansion not found!");
 				console.log("Stopping expansion...");
 				Memory.expansion = false;
 			}
