@@ -14,7 +14,7 @@ let roleGuard = {
 
 		if (target === null) {
 			let enemy_structure = creep.pos.findClosestByPath(FIND_HOSTILE_STRUCTURES);
-			if (enemy_structure !== null && creep.rangedAttack(target) == ERR_NOT_IN_RANGE) {
+			if (enemy_structure !== null && creep.rangedAttack(enemy_structure) == ERR_NOT_IN_RANGE) {
 				creep.moveTo(enemy_structure, {visualizePathStyle: {stroke: '#ffffff'}, maxRooms: 1});
 			}
 			else if (enemy_structure === null && relocate) {
