@@ -25,7 +25,7 @@ let roleGuard = {
 
 				this.creep.moveTo(nearestExit, {visualizePathStyle: {stroke: '#ffffff'}, maxRooms: 1});
 			}
-			else {
+			else if (enemy_structure === null && !relocate) {
 				this.creep.moveTo(this.creep.room.controller, {visualizePathStyle: {stroke: '#ffffff'}, maxRooms: 1});
 			}
 		}
