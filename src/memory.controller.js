@@ -24,7 +24,7 @@ let memoryController = {
 		}
 		if (Memory.expansion === undefined) {
 			Memory.expansion = false;
-		}	
+		}
 	}
 };
 
