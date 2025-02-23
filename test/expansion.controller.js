@@ -6,6 +6,8 @@ let spawnController = require('spawn.controller');
 let expansionController = {
 
 	run: function() {
+		let spawnedCreep = false;
+
 		if (Memory.expansion === true) {
 			let startRoom = Game.rooms[Memory.startExpansionRoom];
 			let targetRoom = Game.rooms[Memory.expansionTarget];
@@ -27,12 +29,16 @@ let expansionController = {
 				}
 				else if (this.checkClaim(targetRoom)) {
 					let spawn = startRoom.find(FIND_MY_SPAWNS)[0];
-					spawnController.spawnSettler(spawn, targetRoom);
-					spawnController.spawnCleaner(spawn, targetRoom);
+					spawnedCreep = spawnController.spawnCleaner(spawn, targetRoom);
+					if (!spawnedCreep){
+						spawnedCreep = spawnController.spawnSettler(spawn, targetRoom);
+					}
 				}
-				else {	
-					let spawn = startRoom.find(FIND_MY_SPAWNS)[0];
-					spawnController.spawnCleaner(spawn, targetRoom);
+				else {
+					if(!spawnedCreep) {	
+						let spawn = startRoom.find(FIND_MY_SPAWNS)[0];
+						spawnController.spawnCleaner(spawn, targetRoom);
+					}
 				}
 			}
 			if (startRoom !== undefined) {
