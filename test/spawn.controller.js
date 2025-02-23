@@ -114,9 +114,11 @@ let spawnController = {
 				if (creepBody !== null) {
 					spawn.spawnCreep(creepBody, newName,
 						{memory: {role: 'worker', room: target.name}});
+					return true;
 				}
 			}
 		}
+		return false;
 	},
 
 	spawnCleaner: function(spawn, target) {
@@ -131,9 +133,11 @@ let spawnController = {
 				if (creepBody !== null) {
 					spawn.spawnCreep(creepBody, newName,
 						{memory: {role: 'guard', room: target.name}});
+					return true;
 				}
 			}
 		}
+		return false;
 	},
 
 	needsGuard: function(room, guards) {
