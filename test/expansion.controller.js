@@ -42,15 +42,19 @@ let expansionController = {
 					}
 				}
 			}
-			if (startRoom !== undefined) {
+			if (startRoom !== undefined && targetRoom !== undefined) {
 				if (!this.checkClaim(targetRoom)) {
-
+					
 					let spawn = startRoom.find(FIND_MY_SPAWNS)[0];
-					spawnController.spawnClaimer(spawn);
+
+					spawnedCreep = spawnController.spawnCleaner(spawn, targetRoom);
+					if (!spawnedCreep){
+						spawnController.spawnClaimer(spawn);
+					}
 				}
 			}
 			else {
-				console.log("ERROR: starting room for expansion not found!");
+				console.log("ERROR: starting room/target room for expansion not found!");
 				console.log("Stopping expansion...");
 				Memory.expansion = false;
 			}
