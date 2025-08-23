@@ -27,7 +27,7 @@ let utils = {
               }
        	}
         	return coordinates;
-	}
+	},
 
 	//Add length support
 	calculateCrosshair: function(x, y) {
