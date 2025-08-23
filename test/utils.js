@@ -1,6 +1,6 @@
 "use strict";
 
-let util = {
+let utils = {
 
 	calculateSquare: function(startX, startY, length) {
 		let currentX = startX;
@@ -43,4 +43,4 @@ let util = {
      }
 };
 
-module.export = util;
+module.export = utils;
