@@ -28,6 +28,19 @@ let util = {
        	}
         	return coordinates;
 	}
+
+	//Add length support
+	calculateCrosshair: function(x, y) {
+          let coordinates = [];
+
+          coordinates.push({x: x, y: y});
+          coordinates.push({x: x-1, y: y});
+          coordinates.push({x: x+1, y: y});
+          coordinates.push({x: x, y: y+1});
+          coordinates.push({x: x, y: y-1});
+
+          return coordinates;
+     }
 }
 
 module.export = util;
