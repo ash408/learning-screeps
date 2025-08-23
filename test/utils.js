@@ -41,6 +41,6 @@ let util = {
 
           return coordinates;
      }
-}
+};
 
 module.export = util;
