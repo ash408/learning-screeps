@@ -56,6 +56,14 @@ let extensionConstructor = {
 
 		let isValid = sites.length === 0 && terrain != 'wall' && validStructure;
 		return isValid;
+	},
+
+	validateCoordinates: function(room, coordinates) {
+		for (let coordinate of coordinates) {
+			let validation = this.validateCoordinate(room, coordinate.x, coordinate.y);
+			if (!validation) { return false; }
+		}
+		return true;
 	}
 };
 
