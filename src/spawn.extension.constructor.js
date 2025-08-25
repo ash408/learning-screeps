@@ -1,5 +1,8 @@
 "use strict";
 
+let utils = require('utils');
+
+
 let extensionConstructor = {
 
 	run: function(spawn) {
@@ -14,15 +17,15 @@ let extensionConstructor = {
 	findValidLocation: function(room, startX, startY, length=5) {
 		if (startX < 0 || startY < 0) { return null; }
 		
-		let coordinates = this.calculateSquare(startX, startY, length);
+		let coordinates = utils.calculateSquare(startX, startY, length);
 		for (let coordinate of coordinates){
-			let validationCoordinates = this.calculateCrosshair(coordinate.x, coordinate.y);
+			let validationCoordinates = utils.calculateCrosshair(coordinate.x, coordinate.y);
 			let isValid = this.validateCoordinates(room, validationCoordinates);
 			
 			if (isValid) {
 				let response = room.createConstructionSite(coordinate.x, coordinate.y, STRUCTURE_EXTENSION);
 				if (response === OK) {
-					let roadCoordinates = this.calculateCrosshair(coordinate.x, coordinate.y);
+					let roadCoordinates = utils.calculateCrosshair(coordinate.x, coordinate.y);
 	
 					for (let roadCoordinate of roadCoordinates) {
 						if (coordinate.x !== roadCoordinate.x ||
@@ -61,46 +64,6 @@ let extensionConstructor = {
 			if (!validation) { return false; }
 		}
 		return true;
-	},
-
-	calculateSquare: function(startX, startY, length) {
-		let currentX = startX;
-		let currentY = startY;
-		
-		let maxX = startX + length - 1;
-		let maxY = startY + length - 1;
-
-		let coordinates = [];
-
-
-		for (; currentY <= maxY; currentY++) {
-		
-			if (currentY === startY || currentY === (startY + length) - 1) {
-
-				for (; currentX <= maxX; currentX++){
-					coordinates.push({x: currentX, y: currentY});
-				}
-				currentX = startX;
-			}
-			else {
-				coordinates.push({x: currentX, y: currentY});
-				coordinates.push({x: (currentX + length) - 1, y: currentY});
-			}
-		}
-		return coordinates;
-	},
-
-	//Add length support
-	calculateCrosshair: function(x, y) {
-		let coordinates = [];
-
-		coordinates.push({x: x, y: y});
-		coordinates.push({x: x-1, y: y});
-		coordinates.push({x: x+1, y: y});
-		coordinates.push({x: x, y: y+1});
-		coordinates.push({x: x, y: y-1});
-
-		return coordinates;
 	}
 };
 

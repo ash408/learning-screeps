@@ -24,7 +24,7 @@ const WORKER_TEMPLATE = [MOVE, CARRY, WORK];
 const SETTLER_TEMPLATE = [MOVE, MOVE, MOVE, CARRY, WORK];
 const CLEANER_TEMPLATE = [MOVE, MOVE, RANGED_ATTACK];
 const GUARD_TEMPLATE = [MOVE, RANGED_ATTACK];
-const CLAIMER_TEMPLATE = [MOVE, MOVE, MOVE, WORK, CARRY, CLAIM];
+const CLAIMER_TEMPLATE = [MOVE, MOVE, CLAIM];
 
 
 let spawnController = {
@@ -114,9 +114,11 @@ let spawnController = {
 				if (creepBody !== null) {
 					spawn.spawnCreep(creepBody, newName,
 						{memory: {role: 'worker', room: target.name}});
+					return true;
 				}
 			}
 		}
+		return false;
 	},
 
 	spawnCleaner: function(spawn, target) {
@@ -131,9 +133,11 @@ let spawnController = {
 				if (creepBody !== null) {
 					spawn.spawnCreep(creepBody, newName,
 						{memory: {role: 'guard', room: target.name}});
+					return true;
 				}
 			}
 		}
+		return false;
 	},
 
 	needsGuard: function(room, guards) {

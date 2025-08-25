@@ -46,9 +46,12 @@ let roadConstructor = {
 				return structure.structureType === STRUCTURE_ROAD;
 			}
 		});
-
+		
 		if (target) {
 			return room.findPath(pos, target.pos, PATH_FINDING_OPTS);
+		}
+		else {
+			console.log("ERROR - No roads in current room for paths to be created, need at least one road around spawn")
 		}
 	},
 

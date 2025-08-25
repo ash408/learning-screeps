@@ -44,8 +44,9 @@ let expansionController = {
 			}
 			if (startRoom !== undefined) {
 				if (!this.checkClaim(targetRoom)) {
-
+					
 					let spawn = startRoom.find(FIND_MY_SPAWNS)[0];
+
 					spawnController.spawnClaimer(spawn);
 				}
 			}

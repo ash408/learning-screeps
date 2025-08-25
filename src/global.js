@@ -31,6 +31,12 @@ let globalItems = {
 			Memory.expansionTarget = expansionTarget;
 		}
 
+		global.stopExpansion = function() {
+			Memory.expansion = false;
+			Memory.startExpansionRoom = undefined;
+			Memory.expansionTarget = undefined;
+		}
+
 		global.clearWorkers = function() {
 			for (let name in Game.creeps) {
 				let creep = Game.creeps[name];
