@@ -59,7 +59,7 @@ let spawnConstructor = {
 		let coordinates = utils.calculateSquare(startX, startY, length);
 		for (let coordinate of coordinates) {
 			let validationCoordinates = utils.calculateSquare(coordinate.x-1, coordinate.y-1, length=3);
-			validationCoordinates.push({x: coordinate.x, y: coordinate.y};
+			validationCoordinates.push({x: coordinate.x, y: coordinate.y});
 			let isValid = utils.validateCoordinates(room, validationCoordinates);
 
 			if (isValid) {
