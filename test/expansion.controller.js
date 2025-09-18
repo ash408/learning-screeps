@@ -1,6 +1,7 @@
 "use strict";
 
 let spawnController = require('spawn.controller');
+let spawnConstructor = require('spawn.constructor');
 
 
 let expansionController = {
@@ -28,6 +29,11 @@ let expansionController = {
 					global.createRoads(targetRoom.name);
 				}
 				else if (this.checkClaim(targetRoom)) {
+					if (targetRoom.find(FIND_MY_SPAWNS).length == 0 &&
+						targetRoom.find(FIND_MY_CONSTRUCTION_SITES).length == 0) {
+						spawnConstructor.buildSpawn(targetRoom);
+					}					
+
 					let spawn = startRoom.find(FIND_MY_SPAWNS)[0];
 					spawnedCreep = spawnController.spawnCleaner(spawn, targetRoom);
 					if (!spawnedCreep){
