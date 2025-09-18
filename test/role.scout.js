@@ -16,7 +16,7 @@ let roleScout = {
 		}
 
 		if (creep.room.name !== targetRoom) {
-			let exits = creep.room.find(creep.room.findExitTo(adjacentRoomNames[randomIndex]));
+			let exits = creep.room.find(creep.room.findExitTo(targetRoom));
 			let nearestExit = creep.pos.findClosestByPath(exits);
 
 			creep.moveTo(nearestExit, {visualizePathStyle: {stroke: "#ffffff"}, maxRooms: 1});
