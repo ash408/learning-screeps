@@ -70,7 +70,7 @@ let spawnController = {
 		}
 		else if (this.needsScout(spawn.room, scouts)) {
 			let newName = 'Scout' + Game.time;
-			spawn.spawnCreep([MOVE], newName, {memory: {role: 'scout');
+			spawn.spawnCreep([MOVE], newName, {memory: {role: 'scout'}});
 		}
 
 		if (spawn.spawning) {
