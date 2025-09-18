@@ -160,7 +160,7 @@ let spawnController = {
 		return false;
 	},
 
-	this.needsScout: function(room, scouts) {
+	needsScout: function(room, scouts) {
 		let rcl = room.controller.level;
 		
 		if (rcl > 3 && scouts.length < MAX_SCOUTS) {
