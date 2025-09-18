@@ -20,7 +20,7 @@ let extensionConstructor = {
 		let coordinates = utils.calculateSquare(startX, startY, length);
 		for (let coordinate of coordinates){
 			let validationCoordinates = utils.calculateCrosshair(coordinate.x, coordinate.y);
-			let isValid = util.validateCoordinates(room, validationCoordinates);
+			let isValid = utils.validateCoordinates(room, validationCoordinates);
 			
 			if (isValid) {
 				let response = room.createConstructionSite(coordinate.x, coordinate.y, STRUCTURE_EXTENSION);
