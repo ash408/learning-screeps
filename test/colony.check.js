@@ -58,12 +58,11 @@ let colonyCheck = {
 
 	getAdjacentRooms: function(room) {
 		let adjacentRoomHash = Game.map.describeExits(room.name);
-		//let adjacentRoomNames = Object.keys(adjacentRoomHash).map(function(v) { return adjacentRoomHash[v];});
-		let adjacentRoomNames = Object.keys(adjacentRoomHash);
+		let adjacentRoomNames = Object.keys(adjacentRoomHash).map(function(v) { return adjacentRoomHash[v];});
 		let adjacentRooms = [];
 		console.log("Adjacent names: " + adjacentRoomNames);		
 
-		for (let room in adjacentRoomNames) {
+		for (let room of adjacentRoomNames) {
 			let allRooms = Game.rooms;
 			console.log("Checking room: " + room);
 			if (room in allRooms) { adjacentRooms.push(allRooms[room]); }
