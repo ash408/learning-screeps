@@ -20,7 +20,7 @@ let spawnConstructor = {
 				spawn.room.createConstructionSite(coordinate.x, coordinate.y, STRUCTURE_ROAD);
 			}
 		}
-	}
+	},
 
 	findBuildLocation: function(room) {
 		let sources = room.find(FIND_SOURCES);
