@@ -25,6 +25,9 @@ let memoryController = {
 		if (Memory.expansion === undefined) {
 			Memory.expansion = false;
 		}
+		if (Memory.lastCheck === undefined) {
+			Memory.lastCheck = Game.time;
+		}
 	}
 };
 

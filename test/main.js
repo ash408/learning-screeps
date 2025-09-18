@@ -3,6 +3,7 @@
 let globalItems = require('global');
 let memoryController = require('memory.controller');
 let colonyController = require('colony.controller');
+let colonyCheck = require('colony.check');
 let creepController = require('creep.controller');
 let expansionController = require('expansion.controller');
 
@@ -20,5 +21,11 @@ module.exports.loop = function () {
     	}
 	if (Memory.expansion === true) {
 		expansionController.run();
+	}
+	let currentTick = Game.time;
+
+	if (currentTick === Game.time + 500) {
+		colonyCheck.run();
+		console.log("Colony check has run");	
 	}
 };
