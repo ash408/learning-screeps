@@ -47,6 +47,7 @@ let colonyCheck = {
 		let isClaimable = false;
 
 		let roomController = room.controller;
+		console.log("Room controller owner is: " + room.controller.owner);
 		if(roomController !== undefined && !roomController.my &&
 			roomController.reservation === undefined &&
 			roomController.owner === "") {
