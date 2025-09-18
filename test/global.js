@@ -1,6 +1,7 @@
 "use strict";
 
 let roadConstructor = require ('road.constructor');
+let spawnConstructor = require('spawn.constructor');
 
 
 let globalItems = {
@@ -53,6 +54,17 @@ let globalItems = {
 
 			if (room !== undefined) {
 				roadConstructor.run(room);
+			}
+		}
+
+		global.test = function(roomName) {
+			let room = Game.rooms[roomName];
+
+			if (room !== undefined) {
+				console.log(spawnConstructor.findBuildLocation(room));
+			}
+			else {
+				console.log("Room is undefined");
 			}
 		}
 	}
