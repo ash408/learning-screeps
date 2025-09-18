@@ -1,5 +1,7 @@
 "use strict";
 
+let utils = require('utils');
+
 
 let spawnConstructor = {
 	
@@ -51,12 +53,27 @@ let spawnConstructor = {
 		return new RoomPosition(x, y, room.name);
 	},
 
-	findValidLocation: function(room, pos){
+	findValidLocation: function(room, startX, startY, length=1) {
+		if (startX < 0 || startY < 0) { return null; }
+
+		let coordinates = utils.calculateSquare(startX, startY, length);
+		for (let coordinate of coordinates) {
+			let validationCoordinates = utils.calculateSquare(coordinate.x-1, coordinate.y-1, length=3);
+			validationCoordinates.push({x: coordinate.x, y: coordinate.y};
+			let isValid = utils.validateCoordinates(room, validationCoordinates);
+
+			if (isValid) {
+				return new RoomPosiiton(coordinate.x, coordinate.y, room.name);
+			}
+		}
+		startX--; startY--; length+=2;
+		return this.findValidLocation(room, startX, startY, length;
 	},
 
 	findBuildLocation: function(room) {
 		let midPoint = this.findMidpoint(room);
-		return midPoint;
+		let validPoint = this.findValidLocation(room, midPoint.x, midPoint.y)
+		return validPoint;
 	}
 };
 
