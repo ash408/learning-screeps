@@ -2,6 +2,7 @@
 
 let roadConstructor = require ('road.constructor');
 let spawnConstructor = require('spawn.constructor');
+let colonyCheck = require('colony.check');
 
 
 let globalItems = {
@@ -9,7 +10,7 @@ let globalItems = {
 	load: function() {
 
 		global.test = function() {
-			console.log("globals loaded");
+			;
 		}
 
 		global.clearSites = function() {
