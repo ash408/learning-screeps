@@ -32,6 +32,8 @@ let spawnController = {
 		
 	run: function(spawn) {
 		let creeps = spawn.room.find(FIND_MY_CREEPS);
+		let creepHash = Game.creeps;
+		let allCreeps = Object.keys(creepHash).map(function(v) {return creepHash[v];);
 		let sources = spawn.room.find(FIND_SOURCES);
 
 		let MAX_WORKERS = sources.length * WORKERS_PER_SOURCE;
@@ -39,7 +41,7 @@ let spawnController = {
 		let workers = _.filter(creeps, (creep) => creep.memory.role == 'worker');
 		let upgraders = _.filter(creeps, (creep) => creep.memory.role == 'upgrader');
 		let guards = _.filter(creeps, (creep) => creep.memory.role == 'guard');
-		let scouts = _.filter(creeps, (creep) => creep.memory.role == 'scout');
+		let scouts = _.filter(allCreeps, (creep) => creep.memory.role == 'scout');
 	
 		if (this.needsGuard(spawn.room, guards)) {
 			let newName = 'Guard' + Game.time;
