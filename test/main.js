@@ -22,7 +22,9 @@ module.exports.loop = function () {
 	if (Memory.expansion === true) {
 		expansionController.run();
 	}
+
 	let currentTick = Game.time;
+	console.log(currentTick);
 
 	if (currentTick === Memory.lastCheck + 100) {
 		colonyCheck.run();
