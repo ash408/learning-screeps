@@ -11,6 +11,7 @@ let roleScout = {
 			let adjacentRoomNames = Object.keys(adjacentRoomHash).map(function(v) {return adjacentRoomHash[v];});
 
 			let randomIndex = Math.floor(Math.random() * adjacentRoomNames.length);
+			console.log(randomIndex);
 			creep.memory.room = adjacentRoomNames[randomIndex];
 	
 		}
