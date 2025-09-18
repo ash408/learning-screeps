@@ -63,7 +63,7 @@ let spawnConstructor = {
 			let isValid = utils.validateCoordinates(room, validationCoordinates);
 
 			if (isValid) {
-				return new RoomPosiiton(coordinate.x, coordinate.y, room.name);
+				return new RoomPosition(coordinate.x, coordinate.y, room.name);
 			}
 		}
 		startX--; startY--; length+=2;
