@@ -10,7 +10,7 @@ let globalItems = {
 	load: function() {
 
 		global.test = function() {
-			;
+			colonyCheck.run();
 		}
 
 		global.clearSites = function() {
