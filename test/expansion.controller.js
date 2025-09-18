@@ -29,7 +29,6 @@ let expansionController = {
 				}
 				else if (this.checkClaim(targetRoom)) {
 					let spawn = startRoom.find(FIND_MY_SPAWNS)[0];
-					console.log("spawn value: " + spawn);
 					spawnedCreep = spawnController.spawnCleaner(spawn, targetRoom);
 					if (!spawnedCreep){
 						spawnedCreep = spawnController.spawnSettler(spawn, targetRoom);
