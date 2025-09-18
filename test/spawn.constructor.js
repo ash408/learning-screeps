@@ -24,6 +24,15 @@ let spawnConstructor = {
 		}
 	},
 
+	buildSpawn: function(room) {
+		let hasSites = room.find(FIND_MY_CONSTRUCTION_SITES).length > 0;
+
+		if (!hasSites) {
+			let pos = this.findBuildLocation(room);
+			room.createConstructionSite(pos.x, pos.y, STRUCTURE_SPAWN);
+		}
+	},
+
 	findMidpoint: function(room) {
 		let sources = room.find(FIND_SOURCES);
 		let controller = room.controller.pos;

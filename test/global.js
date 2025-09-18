@@ -57,11 +57,11 @@ let globalItems = {
 			}
 		}
 
-		global.test = function(roomName) {
+		global.buildSpawn = function(roomName) {
 			let room = Game.rooms[roomName];
 
 			if (room !== undefined) {
-				console.log(spawnConstructor.findBuildLocation(room));
+				spawnConstructor.buildSpawn(room);
 			}
 			else {
 				console.log("Room is undefined");
