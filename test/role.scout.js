@@ -9,7 +9,7 @@ let roleScout = {
 			let adjacentRoomNames = Object.keys(adjacentRoomHash).map(function(v) {return adjacentRoomHash[v];});
 
 			let randomIndex = Math.floor(Math.random() * adjacentRoomNames.length);
-			let exits = creep.room.find(creep.room.findExitTo(adjacentRoomNames[randomIndex]);
+			let exits = creep.room.find(creep.room.findExitTo(adjacentRoomNames[randomIndex]));
 			let nearestExit = creep.pos.findClosestByPath(exits);
 
 			creep.moveTo(nearestExit, {visualizePathStyle: {stroke: "#ffffff"}, maxRooms: 1});
