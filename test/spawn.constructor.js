@@ -56,6 +56,7 @@ let spawnConstructor = {
 
 	findBuildLocation: function(room) {
 		let midPoint = this.findMidpoint(room);
+		return midPoint;
 	}
 };
 
