@@ -4,6 +4,7 @@ const MAX_UPGRADERS = 1;
 const MAX_SETTLERS = 2;
 const MAX_CLEANERS = 2;
 const MAX_CLAIMERS = 1;
+const MAX_SCOUTS = 3;
 
 const WORKERS_PER_SOURCE = 2;
 const PARTS_PER_WORKER = 25;
@@ -38,6 +39,7 @@ let spawnController = {
 		let workers = _.filter(creeps, (creep) => creep.memory.role == 'worker');
 		let upgraders = _.filter(creeps, (creep) => creep.memory.role == 'upgrader');
 		let guards = _.filter(creeps, (creep) => creep.memory.role == 'guard');
+		let scouts = _.filter(creeps, (creep) => creep.memory.role == 'scout');
 	
 		if (this.needsGuard(spawn.room, guards)) {
 			let newName = 'Guard' + Game.time;
@@ -65,6 +67,10 @@ let spawnController = {
 				spawn.spawnCreep(creepBody, newName,
 					{memory: {role: 'worker'}});
 			}
+		}
+		else if (this.needsScout(spawn.room, scouts)) {
+			let newName = 'Scout' + Game.time;
+			spawn.spawnCreep([MOVE], newName, {memory: {role: 'scout', room: spawn.room.name}});
 		}
 
 		if (spawn.spawning) {
@@ -150,6 +156,15 @@ let spawnController = {
 			let hostilePartNum = this.calculatePartNum(hostiles);
 
 			return guardPartNum < hostilePartNum;
+		}
+		return false;
+	},
+
+	this.needsScout: function(room, scouts) {
+		let rcl = room.controller.level;
+		
+		if (rcl > 3 && scouts.length < MAX_SCOUTS) {
+			return true;
 		}
 		return false;
 	},
