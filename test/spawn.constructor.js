@@ -67,7 +67,7 @@ let spawnConstructor = {
 			}
 		}
 		startX--; startY--; length+=2;
-		return this.findValidLocation(room, startX, startY, length;
+		return this.findValidLocation(room, startX, startY, length);
 	},
 
 	findBuildLocation: function(room) {
