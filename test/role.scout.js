@@ -4,11 +4,18 @@
 let roleScout = {
 
 	run: function(creep) {
-		if (creep.room.name === creep.memory.room) {
+		let targetRoom = creep.memory.room;
+
+		if (targetRoom === undefined) {
 			let adjacentRoomHash = Game.map.describeExits(creep.room.name);
 			let adjacentRoomNames = Object.keys(adjacentRoomHash).map(function(v) {return adjacentRoomHash[v];});
 
 			let randomIndex = Math.floor(Math.random() * adjacentRoomNames.length);
+			creep.memory.room = adjacentRoomNames[randomIndex];
+	
+		}
+
+		if (creep.room.name !== targetRoom) {
 			let exits = creep.room.find(creep.room.findExitTo(adjacentRoomNames[randomIndex]));
 			let nearestExit = creep.pos.findClosestByPath(exits);
 
