@@ -24,7 +24,6 @@ module.exports.loop = function () {
 	}
 
 	let currentTick = Game.time;
-	console.log(currentTick);
 
 	if (currentTick >= Memory.lastCheck + 100) {
 		colonyCheck.run();
