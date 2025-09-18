@@ -39,7 +39,7 @@ let colonyCheck = {
 			}
 		}
 
-		console.log("Num of rooms claimed: " + numClaimed);
+		console.log("Num of rooms claimed: " + numClaimed.toString());
 		return numClaimed;
 	},
 
@@ -59,7 +59,6 @@ let colonyCheck = {
 	getAdjacentRooms: function(room) {
 		let adjacentRoomHash = Game.map.describeExits(room.name);
 		let adjacentRoomNames = Object.keys(adjacentRoomHash).map(function(v) { return adjacentRoomHash[v];});
-		console.log(adjacentRooms)
 		let adjacentRooms = [];		
 
 		for (let room in adjacentRoomNames) {
