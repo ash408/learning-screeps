@@ -39,7 +39,7 @@ let colonyCheck = {
 			}
 		}
 
-		console.log("Num of rooms claimed: " + str(numClaimed));
+		console.log("Num of rooms claimed: " + numClaimed);
 		return numClaimed;
 	},
 
