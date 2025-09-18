@@ -22,7 +22,7 @@ let spawnConstructor = {
 		}
 	},
 
-	findBuildLocation: function(room) {
+	findMidpoint: function(room) {
 		let sources = room.find(FIND_SOURCES);
 		let controller = room.controller.pos;
 
@@ -45,10 +45,17 @@ let spawnConstructor = {
 			if (pos.y > maxY) { maxY = pos.y; }
 		}
 
-		let x = Math.round((minX + maxX) / 2)
-		let y = Math.round((minY + maxY) / 2)
+		let x = Math.round((minX + maxX) / 2);
+		let y = Math.round((minY + maxY) / 2);
 
-		return new RoomPosition(x, y, room.name)
+		return new RoomPosition(x, y, room.name);
+	},
+
+	findValidLocation: function(room, pos){
+	},
+
+	findBuildLocation: function(room) {
+		let midPoint = this.findMidpoint(room);
 	}
 };
 
