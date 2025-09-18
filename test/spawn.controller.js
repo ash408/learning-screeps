@@ -33,7 +33,7 @@ let spawnController = {
 	run: function(spawn) {
 		let creeps = spawn.room.find(FIND_MY_CREEPS);
 		let creepHash = Game.creeps;
-		let allCreeps = Object.keys(creepHash).map(function(v) {return creepHash[v];);
+		let allCreeps = Object.keys(creepHash).map(function(v) {return creepHash[v];});
 		let sources = spawn.room.find(FIND_SOURCES);
 
 		let MAX_WORKERS = sources.length * WORKERS_PER_SOURCE;
