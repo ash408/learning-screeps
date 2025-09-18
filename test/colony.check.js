@@ -13,7 +13,7 @@ let colonyCheck = {
 
 				let roomController = room.controller;
 
-				if(roomController !== undefined && roomController.my && roomController.level >= 3 && numClaimed < 5) {
+				if(roomController !== undefined && roomController.my && roomController.level >= 4 && numClaimed < 5) {
 					let adjacentRooms = this.getAdjacentRooms(room);
 
 					for (let adjacentRoom of adjacentRooms) {
