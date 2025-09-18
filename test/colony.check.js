@@ -54,7 +54,7 @@ let colonyCheck = {
 			
 		}
 		return isClaimable;
-	}
+	},
 
 	getAdjacentRooms: function(room) {
 	}
