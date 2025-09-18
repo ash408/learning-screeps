@@ -64,10 +64,10 @@ let colonyCheck = {
 
 		for (let room in adjacentRoomNames) {
 			let allRooms = Game.rooms;
-			console.log("Checking room: " + room);
+			console.log("Checking room: " + room.name);
 			if (room in allRooms) { adjacentRooms.push(allRooms[room]); }
 		}
-		console.log(adjacentRooms)
+		console.log("Visible rooms: " + adjacentRooms)
 		return adjacentRooms;
 	}
 };
