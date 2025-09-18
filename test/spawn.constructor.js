@@ -27,7 +27,7 @@ let spawnConstructor = {
 		let controller = room.controller.pos;
 
 		let allPOI = [];
-		for (let source of sources){
+		for (let source of sources) {
 			allPOI.push(source.pos);
 		}
 		allPOI.push(controller);
@@ -48,7 +48,7 @@ let spawnConstructor = {
 		let x = Math.round((minX + maxX) / 2)
 		let y = Math.round((minY + maxY) / 2)
 
-		return new RoomPosition(x, y room.name)
+		return new RoomPosition(x, y, room.name)
 	}
 };
 
