@@ -14,7 +14,7 @@ let colonyCheck = {
 		if (Memory.expansion === false) {
 			this.expansionCheck(allRooms, allRooms.length);
 		}
-		this.rebuildCheck(allRooms, claimed);
+		this.rebuildCheck(claimed);
 	},
 
 	expansionCheck: function(allRooms, numClaimed) {
@@ -36,8 +36,8 @@ let colonyCheck = {
 		}
 	},
 
-	rebuildCheck: function(allRooms, numClaimed) {
-		for (let room of allRooms) {
+	rebuildCheck: function(claimed) {
+		for (let room of claimed) {
 			let numSpawns = room.find(FIND_MY_SPAWNS).length;
 			let numConstruction = room.find(FIND_MY_CONSTRUCTION_SITES).length;
 			let rcl = room.controller.level;
