@@ -20,7 +20,7 @@ let colonyCheck = {
 
 						if (this.validateClaimable(adjacentRoom)) {
 							console.log("Claiming room " + adjacentRoom.name + " from " + room.name);
-							//global.startExpansion(room.name, adjacentRoom.name);
+							global.startExpansion(room.name, adjacentRoom.name);
 						}		
 					}
 				}
