@@ -10,17 +10,18 @@ let colonyCheck = {
 		let roomHash = Game.rooms
 		let allRooms = Object.keys(roomHash).map(function(v) { return roomHash[v];});
 		let claimed = this.getClaimed(allRooms);
-		
+
+		this.rebuildCheck(claimed);
 		if (Memory.expansion === false) {
 			this.expansionCheck(claimed);
 		}
-		this.rebuildCheck(claimed);
 	},
 
 	expansionCheck: function(claimed) {
 		for(let room of claimed) {
 
 			let roomController = room.controller;
+			let numConstruction = room.find(FIND_MY_CONSTRUCTION_SITES).length
 
 			if(roomController.level >= 4 && claimed.length < 5) {
 				let adjacentRooms = this.getAdjacentRooms(room);
