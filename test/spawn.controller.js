@@ -110,13 +110,13 @@ let spawnController = {
 		}
 	},
 
-	spawnSettler: function(spawn, target) {
+	spawnExpander: function(spawn, target) {
 		if (!spawn.spawning) {
 			let creeps = Game.creeps;
 			let workers = _.filter(creeps, (creep) => creep.memory.room === target.name && creep.memory.role === 'worker');
 
 			if (workers.length < MAX_SETTLERS) {
-				let newName = 'Settler' + Game.time;
+				let newName = 'Expander' + Game.time;
 				let creepBody = this.calculateBody(spawn.room, SETTLER_TEMPLATE);
 
 				if (creepBody !== null) {

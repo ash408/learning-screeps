@@ -37,7 +37,7 @@ let expansionController = {
 					let spawn = startRoom.find(FIND_MY_SPAWNS)[0];
 					spawnedCreep = spawnController.spawnCleaner(spawn, targetRoom);
 					if (!spawnedCreep){
-						spawnedCreep = spawnController.spawnSettler(spawn, targetRoom);
+						spawnedCreep = spawnController.spawnExpander(spawn, targetRoom);
 					}
 				}
 				else {
