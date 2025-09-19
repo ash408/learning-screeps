@@ -23,7 +23,7 @@ let colonyCheck = {
 			let roomController = room.controller;
 			let numConstruction = room.find(FIND_MY_CONSTRUCTION_SITES).length
 
-			if(roomController.level >= 4 && claimed.length < 5) {
+			if(roomController.level >= 4 && claimed.length < 5 && numConstruction === 0) {
 				let adjacentRooms = this.getAdjacentRooms(room);
 
 				for (let adjacentRoom of adjacentRooms) {
