@@ -40,11 +40,12 @@ let colonyCheck = {
 		for (let room of allRooms) {
 			let numSpawns = room.find(FIND_MY_SPAWNS).length;
 			let numConstruction = room.find(FIND_MY_CONSTRUCTION_SITES).length;
+			let rcl = room.controller.level;
 
 			if (numSpawns === 0 && numConstruction === 0) {
 				spawnConstructor.buildSpawn(room);
 			}
-			else if (numSpawns !== 0) {
+			else if (numSpawns !== 0 && rcl > 3) {
 				roadConstructor.run(room);
 			}
 		}
