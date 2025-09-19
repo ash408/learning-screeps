@@ -53,7 +53,6 @@ let expansionController = {
 					
 					let spawn = startRoom.find(FIND_MY_SPAWNS)[0];
 					
-					spawnController.spawnCleaner(spawn);
 					spawnController.spawnClaimer(spawn);
 				}
 			}
