@@ -45,7 +45,7 @@ let colonyCheck = {
 			if (numSpawns === 0 && numConstruction === 0) {
 				spawnConstructor.buildSpawn(room);
 			}
-			else if (numSpawns !== 0 && rcl > 3) {
+			else if (numSpawns !== 0 && rcl > 3 && numConstruction === 0) {
 				roadConstructor.run(room);
 			}
 		}
