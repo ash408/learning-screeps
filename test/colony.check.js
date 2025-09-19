@@ -12,17 +12,17 @@ let colonyCheck = {
 		let claimed = this.getClaimed(allRooms);
 		
 		if (Memory.expansion === false) {
-			this.expansionCheck(allRooms, allRooms.length);
+			this.expansionCheck(claimed);
 		}
 		this.rebuildCheck(claimed);
 	},
 
-	expansionCheck: function(allRooms, numClaimed) {
-		for(let room of allRooms) {
+	expansionCheck: function(claimed) {
+		for(let room of claimed) {
 
 			let roomController = room.controller;
 
-			if(roomController !== undefined && roomController.my && roomController.level >= 4 && numClaimed < 5) {
+			if(roomController.level >= 4 && claimed.length < 5) {
 				let adjacentRooms = this.getAdjacentRooms(room);
 
 				for (let adjacentRoom of adjacentRooms) {
