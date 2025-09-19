@@ -1,46 +1,66 @@
 "use strict";
 
+let roadConstructor = require('road.constructor');
+let spawnConstructor = require('spawn.constructor');
+
 
 let colonyCheck = {
 
 	run: function() {
+		let roomHash = Game.rooms
+		let allRooms = Object.keys(roomHash).map(function(v) { return roomHash[v];});
+		let claimed = this.getClaimed(allRooms);
+		
 		if (Memory.expansion === false) {
-			let roomHash = Game.rooms
-			let allRooms = Object.keys(roomHash).map(function(v) { return roomHash[v];});
-			let numClaimed = this.getNumClaimed(allRooms);
+			this.expansionCheck(allRooms, allRooms.length);
+		}
+		this.rebuildCheck(allRooms, claimed);
+	},
 
-			for(let room of allRooms) {
+	expansionCheck: function(allRooms, numClaimed) {
+		for(let room of allRooms) {
 
-				let roomController = room.controller;
+			let roomController = room.controller;
 
-				if(roomController !== undefined && roomController.my && roomController.level >= 4 && numClaimed < 5) {
-					let adjacentRooms = this.getAdjacentRooms(room);
+			if(roomController !== undefined && roomController.my && roomController.level >= 4 && numClaimed < 5) {
+				let adjacentRooms = this.getAdjacentRooms(room);
 
-					for (let adjacentRoom of adjacentRooms) {
+				for (let adjacentRoom of adjacentRooms) {
 
-						if (this.validateClaimable(adjacentRoom)) {
-							console.log("Claiming room " + adjacentRoom.name + " from " + room.name);
-							global.startExpansion(room.name, adjacentRoom.name);
-						}		
-					}
+					if (this.validateClaimable(adjacentRoom)) {
+						console.log("Claiming room " + adjacentRoom.name + " from " + room.name);
+						global.startExpansion(room.name, adjacentRoom.name);
+					}		
 				}
 			}
 		}
 	},
 
-	getNumClaimed: function(allRooms) {
-		let numClaimed = 0;
+	rebuildCheck: function(allRooms, numClaimed) {
+		for (let room of allRooms) {
+			let numSpawns = room.find(FIND_MY_SPAWNS).length;
+			let numConstruction = room.find(FIND_MY_CONSTRUCTION_SITES).length;
+
+			if (numSpawns === 0 && numConstruction === 0) {
+				spawnConstructor.buildSpawn(room);
+			}
+			roadConstructor.run(room);
+		}
+	},
+
+	getClaimed: function(allRooms) {
+		let claimed = [];
 		
 		for (let room of allRooms) {
 			let roomController = room.controller;
 
 			if (roomController!== undefined && roomController.my) {
-				numClaimed++;
+				claimed.push(room);
 			}
 		}
 
-		console.log("Num of rooms claimed: " + numClaimed.toString());
-		return numClaimed;
+		console.log("Num of rooms claimed: " + claimed.length.toString());
+		return claimed;
 	},
 
 	validateClaimable: function(room) {
