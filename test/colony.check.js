@@ -2,6 +2,8 @@
 
 let roadConstructor = require('road.constructor');
 let spawnConstructor = require('spawn.constructor');
+let spawnStorageConstructor = require('spawn.storage.constructor');
+let spawnDefenseConstructo = require('spawn.defense.constructor');
 
 
 let colonyCheck = {
@@ -39,7 +41,8 @@ let colonyCheck = {
 
 	rebuildCheck: function(claimed) {
 		for (let room of claimed) {
-			let numSpawns = room.find(FIND_MY_SPAWNS).length;
+			let spawns = room.find(FIND_MY_SPAWNS);
+			let numSpawns = spawns.length;
 			let numConstruction = room.find(FIND_MY_CONSTRUCTION_SITES).length;
 			let rcl = room.controller.level;
 
@@ -47,6 +50,9 @@ let colonyCheck = {
 				spawnConstructor.buildSpawn(room);
 			}
 			else if (numSpawns !== 0 && rcl > 3 && numConstruction === 0) {
+				spawnStorageConstructor.run(spawns[0]);
+				spawnDefenseConstructor.run(spawns[0]);
+
 				roadConstructor.run(room);
 			}
 		}
