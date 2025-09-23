@@ -10,20 +10,13 @@ let spawnDefenseConstructor = {
 		let x2 = spawn.pos.x + 1;
 		let y2 = spawn.pos.y - 1;
 
-		if (!this.hasTower(spawn, x, y)) {
-			spawn.room.createConstructionSite(x, y, STRUCTURE_TOWER);
-		}
-		else {
-			let rcl = spawn.room.controller.level;
+		spawn.room.createConstructionSite(x, y, STRUCTURE_TOWER);
+		
+		let rcl = spawn.room.controller.level;
 
-			if (rcl > 4 && !this.hasTower(spawn, x2, y2)) {
-				spawn.room.createConstructionSite(x2, y2, STRUCTURE_TOWER);
-			}
+		if (rcl > 4) {
+			spawn.room.createConstructionSite(x2, y2, STRUCTURE_TOWER);
 		}
-	},
-
-	hasTower: function(spawn, x, y) {
-		return spawn.room.lookForAt(LOOK_STRUCTURES, x, y).length !== 0;
 	}
 };
 
