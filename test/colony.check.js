@@ -3,7 +3,7 @@
 let roadConstructor = require('road.constructor');
 let spawnConstructor = require('spawn.constructor');
 let spawnStorageConstructor = require('spawn.storage.constructor');
-let spawnDefenseConstructo = require('spawn.defense.constructor');
+let spawnDefenseConstructor = require('spawn.defense.constructor');
 
 
 let colonyCheck = {
