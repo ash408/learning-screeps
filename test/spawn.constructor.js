@@ -34,30 +34,33 @@ let spawnConstructor = {
 	},
 
 	findMidpoint: function(room) {
-		let sources = room.find(FIND_SOURCES);
-		let controller = room.controller.pos;
+		//let sources = room.find(FIND_SOURCES);
+		//let controller = room.controller.pos;
 
-		let allPOI = [];
-		for (let source of sources) {
-			allPOI.push(source.pos);
-		}
-		allPOI.push(controller);
+		//let allPOI = [];
+		//for (let source of sources) {
+		//	allPOI.push(source.pos);
+		//}
+		//allPOI.push(controller);
 
-		let minX = 51;
-		let maxX = -1;
-		let minY = 51;
-		let maxY = -1;
+		//let minX = 51;
+		//let maxX = -1;
+		//let minY = 51;
+		//let maxY = -1;
 
-		for (let pos of allPOI) {
-			if (pos.x < minX) { minX = pos.x; }
-			if (pos.x > maxX) { maxX = pos.x; }
+		//for (let pos of allPOI) {
+		//	if (pos.x < minX) { minX = pos.x; }
+		//	if (pos.x > maxX) { maxX = pos.x; }
 
-			if (pos.y < minY) { minY = pos.y; }
-			if (pos.y > maxY) { maxY = pos.y; }
-		}
+		//	if (pos.y < minY) { minY = pos.y; }
+		//	if (pos.y > maxY) { maxY = pos.y; }
+		//}
 
-		let x = Math.round((minX + maxX) / 2);
-		let y = Math.round((minY + maxY) / 2);
+		//let x = Math.round((minX + maxX) / 2);
+		//let y = Math.round((minY + maxY) / 2);
+
+		let x = 24;
+		let y = 24;
 
 		return new RoomPosition(x, y, room.name);
 	},
