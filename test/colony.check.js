@@ -46,13 +46,15 @@ let colonyCheck = {
 			let numConstruction = room.find(FIND_MY_CONSTRUCTION_SITES).length;
 			let rcl = room.controller.level;
 
+			if (numSpawns !== 0) {
+				spawnStorageConstructor.run(spawns[0]);
+			}
+
 			if (numSpawns === 0 && numConstruction === 0) {
 				spawnConstructor.buildSpawn(room);
 			}
 			else if (numSpawns !== 0 && rcl > 3 && numConstruction === 0) {
-				spawnStorageConstructor.run(spawns[0]);
 				spawnDefenseConstructor.run(spawns[0]);
-
 				roadConstructor.run(room);
 			}
 		}
