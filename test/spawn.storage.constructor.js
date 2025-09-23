@@ -25,10 +25,7 @@ let spawnStorageConstructor = {
 	},
 
 	buildContainer: function(spawn, x, y) {
-		let hasStorage = spawn.room.lookForAt(LOOK_STRUCTURES, x, y).length !== 0;
-		if (!hasStorage) {
-			spawn.room.createConstructionSite(x, y, STRUCTURE_CONTAINER);
-		}
+		spawn.room.createConstructionSite(x, y, STRUCTURE_CONTAINER);
 	}
 };
 
