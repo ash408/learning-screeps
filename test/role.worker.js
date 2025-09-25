@@ -157,8 +157,8 @@ let roleWorker = {
 		if(this.getEmptySpawn() !== null) {
 			source = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
 				filter: (structure) => {
-					return structure.structureType === STRUCTURE_CONTAINER ||
-						structure.structureType === STRUCTURE_STORAGE &&
+					return (structure.structureType === STRUCTURE_CONTAINER ||
+						structure.structureType === STRUCTURE_STORAGE) &&
 						structure.store.getUsedCapacity(RESOURCE_ENERGY) > 0 &&
 						structure.room.name === this.creep.room.name;
 				}
