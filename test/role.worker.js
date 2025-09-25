@@ -39,16 +39,20 @@ let roleWorker = {
 				this.creep.memory.task = WORKER_BUILDING;
 			}
 			else {
-				if (this.getEmptyStorage() !== null) {
-					let randomNum = Math.floor(Math.random() * 2);
-					console.log("Random num: " + randomNum.toString())
-					if (randomNum === 1) { this.creep.memory.task = WORKER_TRANSFER_STORAGE; }
-					else { this.creep.memory.task = WORKER_UPGRADING; }
-				}
-				else {
-					this.creep.memory.task = WORKER_UPGRADING;
-				}
+				this.assignDefault();
 			}
+		}
+	},
+
+	assignDefault: function() {
+		if (this.getEmptyStorage() !== null) {
+			let randomNum = Math.floor(Math.random() * 2);
+			console.log("Random num: " + randomNum.toString())
+			if (randomNum === 1) { this.creep.memory.task = WORKER_TRANSFER_STORAGE; }
+			else { this.creep.memory.task = WORKER_UPGRADING; }
+		}
+		else {
+			this.creep.memory.task = WORKER_UPGRADING;
 		}
 	},
 
@@ -200,7 +204,7 @@ let roleWorker = {
 			}
 			return;
 		}
-		this.creep.memory.task = WORKER_UPGRADING;
+		this.assignDefault();
 	},
 
 	transferStorage: function() {
@@ -211,7 +215,7 @@ let roleWorker = {
 			}
 			return;
 		}
-		this.creep.memory.task = WORKER_UPGRADING;
+		this.assignDefault();
 	},
 
 	upgrade: function() {
@@ -237,7 +241,7 @@ let roleWorker = {
 				}
 			}
 			else {
-				this.creep.memory.task = WORKER_UPGRADING;
+				this.assignDefault();
 			}
 		}
 	},
