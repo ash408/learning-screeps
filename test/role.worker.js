@@ -96,6 +96,7 @@ let roleWorker = {
 	},
 
 	getEmptyStorage: function() {
+		console.log("Finding empty storage");
 		let target = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
 			filter: (structure) => {
 				return structure.structureType === STRUCTURE_STORAGE &&
