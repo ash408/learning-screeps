@@ -23,7 +23,6 @@ let spawnStorageConstructor = {
 			y = spawn.pos.y + 1;
 
 			this.buildContainer(spawn, x, y);
-			return;
 		}
 		
 		let rcl = spawn.room.controller.level;
