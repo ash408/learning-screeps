@@ -47,7 +47,7 @@ let roleWorker = {
 	assignDefault: function() {
 		if (this.getEmptyStorage() !== null) {
 			let randomNum = Math.floor(Math.random() * 2);
-			console.log("Random num: " + randomNum.toString())
+			
 			if (randomNum === 1) { this.creep.memory.task = WORKER_TRANSFER_STORAGE; }
 			else { this.creep.memory.task = WORKER_UPGRADING; }
 		}
