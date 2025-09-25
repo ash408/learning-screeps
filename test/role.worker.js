@@ -141,10 +141,12 @@ let roleWorker = {
 			case WORKER_BUILDING:
 				this.build();
 				break;
+
 			case WORKER_RELOCATING:
 				this.relocate();
 				break;
-			case WORKER_TRANSFER_STORAGE;
+
+			case WORKER_TRANSFER_STORAGE:
 				this.transferStorage();
 				break;
 		}
