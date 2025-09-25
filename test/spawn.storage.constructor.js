@@ -55,7 +55,7 @@ let spawnStorageConstructor = {
 				if (response === OK) {
 					let roadCoordinates = utils.calculateCrosshair(coordinate.x, coordinate.y);
 
-					for (let roadCoordinates of roadCoordinates) {
+					for (let roadCoordinate of roadCoordinates) {
 						if (coordinate.x !== roadCoordinate.y ||
 							coordinate.y !== roadCoordinate.y) {
 							room.createConstructionSite(roadCoordinate.x, roadCoordinate.y, STRUCTURE_ROAD);
