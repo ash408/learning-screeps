@@ -58,7 +58,7 @@ let roleWorker = {
 		}
 		if (this.getRepairableRampart() !== null) { 
 			index++;
-			tasks[index] = WORKER_REPARI_RAMPART;
+			tasks[index] = WORKER_REPAIR_RAMPART;
 		}
 
 		let randomNum = Math.floor(Math.random() * Object.keys(tasks).length);
