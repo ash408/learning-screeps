@@ -172,7 +172,8 @@ let roleWorker = {
 			case WORKER_TRANSFER_STORAGE:
 				this.transferStorage();
 				break;
-			case WORKER_REPAIR_RAMPART;
+
+			case WORKER_REPAIR_RAMPART:
 				this.repairRampart();
 				break;
 		}
