@@ -11,17 +11,18 @@ let roleTower = {
 			}
 		});
 
-		if (target !== undefined) {
+		if (target !== null) {
 			tower.attack(target);
 		}
-		else if (injured !== undefined) {
+		else if (injured !== null) {
 			tower.heal(injured);
 		}
 		
 		console.log(target);
 		console.log(injured);
+		console.log(tower);
 		console.log(tower.store.getUsedCapacity().toString())	
-		if (target === undefined && injured === undefined &&
+		if (target === null && injured === null &&
 			tower.store.getUsedCapacity() >= 750) {
 			let repairTarget = tower.pos.findClosestByRange(FIND_MY_STRUCTURES, {
 				filter: (t) => {
