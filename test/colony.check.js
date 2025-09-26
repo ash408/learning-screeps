@@ -47,7 +47,7 @@ let colonyCheck = {
 			let rcl = room.controller.level;
 
 			if (numSpawns !== 0) {
-				spawnConstructor.run();
+				spawnConstructor.run(spawns[0]);
 				spawnStorageConstructor.run(spawns[0]);
 			}
 
