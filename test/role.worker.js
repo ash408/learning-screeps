@@ -43,6 +43,9 @@ let roleWorker = {
 				this.assignDefault();
 			}
 		}
+		else {
+			this.assignDefault();
+		}
 	},
 
 	assignDefault: function() {
