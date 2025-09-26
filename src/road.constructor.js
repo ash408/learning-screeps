@@ -51,7 +51,7 @@ let roadConstructor = {
 			return room.findPath(pos, target.pos, PATH_FINDING_OPTS);
 		}
 		else {
-			console.log("ERROR - No roads in current room for paths to be created, need at least one road around spawn")
+			console.log("WARNING - No roads in " + room.name +  " for paths to be created, need at least one road around spawn")
 		}
 	},
 

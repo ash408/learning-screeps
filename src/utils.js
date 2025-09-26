@@ -40,7 +40,30 @@ let utils = {
           coordinates.push({x: x, y: y-1});
 
           return coordinates;
-     }
+     },
+
+	validateCoordinate: function(room, x, y) {
+		let sites = room.lookForAt(LOOK_CONSTRUCTION_SITES, x, y);
+          let structures = room.lookForAt(LOOK_STRUCTURES, x, y);
+          let terrain = room.lookForAt(LOOK_TERRAIN, x, y);
+ 
+          let validStructure = structures.length === 0;
+
+          if (structures.length > 0 && structures[0].structureType === STRUCTURE_ROAD) {
+               validStructure = true;
+          }
+ 
+          let isValid = sites.length === 0 && terrain != 'wall' && validStructure;
+          return isValid;
+     },
+ 
+     validateCoordinates: function(room, coordinates) {
+          for (let coordinate of coordinates) {
+               let validation = this.validateCoordinate(room, coordinate.x, coordinate.y);
+               if (!validation) { return false; }
+          }
+          return true;
+     }	
 };
 
 module.exports = utils;

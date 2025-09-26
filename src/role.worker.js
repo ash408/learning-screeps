@@ -5,6 +5,7 @@ const WORKER_TRANSFERING = 'transfering';
 const WORKER_UPGRADING = 'upgrading';
 const WORKER_BUILDING = 'building';
 const WORKER_RELOCATING = 'relocating';
+const WORKER_TRANSFER_STORAGE = 'transferStorage';
 
 
 let roleWorker = {
@@ -25,7 +26,7 @@ let roleWorker = {
 			this.creep.memory.task = WORKER_HARVESTING;
 		}
 		else if (this.creep.store.getFreeCapacity() === 0) {
-			if (this.getEmptyStore() !== null) {
+			if (this.getEmpty() !== null) {
 				this.creep.memory.task = WORKER_TRANSFERING;
 			}
 			else if (this.getEmptyTower() !== null) {
@@ -38,8 +39,20 @@ let roleWorker = {
 				this.creep.memory.task = WORKER_BUILDING;
 			}
 			else {
-				this.creep.memory.task = WORKER_UPGRADING;
+				this.assignDefault();
 			}
+		}
+	},
+
+	assignDefault: function() {
+		if (this.getEmptyStorage() !== null) {
+			let randomNum = Math.floor(Math.random() * 2);
+			
+			if (randomNum === 1) { this.creep.memory.task = WORKER_TRANSFER_STORAGE; }
+			else { this.creep.memory.task = WORKER_UPGRADING; }
+		}
+		else {
+			this.creep.memory.task = WORKER_UPGRADING;
 		}
 	},
 
@@ -57,7 +70,7 @@ let roleWorker = {
 		}
 	},
 
-	getEmptyStore: function() {
+	getEmpty: function() {
 		let target = this.getEmptySpawn();
 		if (target === null) { target = this.getEmptyContainer(); }
 		
@@ -84,6 +97,17 @@ let roleWorker = {
 			}
 		});
 		return target;	
+	},
+
+	getEmptyStorage: function() {
+		let target = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
+			filter: (structure) => {
+				return structure.structureType === STRUCTURE_STORAGE &&
+					structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0 &&
+					structure.room.name === this.creep.room.name;
+			}
+		});
+		return target;
 	},
 
 	getRepairTarget: function() {
@@ -122,8 +146,13 @@ let roleWorker = {
 			case WORKER_BUILDING:
 				this.build();
 				break;
+
 			case WORKER_RELOCATING:
 				this.relocate();
+				break;
+
+			case WORKER_TRANSFER_STORAGE:
+				this.transferStorage();
 				break;
 		}
 	},
@@ -133,7 +162,8 @@ let roleWorker = {
 		if(this.getEmptySpawn() !== null) {
 			source = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
 				filter: (structure) => {
-					return structure.structureType === STRUCTURE_CONTAINER &&
+					return (structure.structureType === STRUCTURE_CONTAINER ||
+						structure.structureType === STRUCTURE_STORAGE) &&
 						structure.store.getUsedCapacity(RESOURCE_ENERGY) > 0 &&
 						structure.room.name === this.creep.room.name;
 				}
@@ -159,7 +189,7 @@ let roleWorker = {
 	},
 
 	transfer: function() {
-		let target = this.getEmptyStore();
+		let target = this.getEmpty();
 		if (target !== null) {
 			if(this.creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
 				this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}, maxRooms: 1});
@@ -173,7 +203,18 @@ let roleWorker = {
 			}
 			return;
 		}
-		this.creep.memory.task = WORKER_UPGRADING;
+		this.assignDefault();
+	},
+
+	transferStorage: function() {
+		let target = this.getEmptyStorage();
+		if (target !== null) {
+			if(this.creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+				this.creep.moveTo(target, {visualizePathStye: {stroke: '#ffffff'}, maxRooms: 1});
+			}
+			return;
+		}
+		this.assignDefault();
 	},
 
 	upgrade: function() {
@@ -199,7 +240,7 @@ let roleWorker = {
 				}
 			}
 			else {
-				this.creep.memory.task = WORKER_UPGRADING;
+				this.assignDefault();
 			}
 		}
 	},
