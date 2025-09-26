@@ -18,7 +18,8 @@ let roleTower = {
 			tower.heal(injured);
 		}
 
-		if (target === null && injured === null) {
+		if (target === null && injured === null &&
+			tower.store.getUsedCapacity >= 750) {
 			let repairTarget = tower.pos.findClosestByRange(FIND_MY_STRUCTURES, {
 				filter: (t) => {
 					return t.structureType === STRUCTURE_RAMPART &&
