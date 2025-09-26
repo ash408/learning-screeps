@@ -18,8 +18,6 @@ let roleTower = {
 			tower.heal(injured);
 		}
 		
-		console.log(target);
-		console.log(injured);
 		console.log(tower);
 		console.log(tower.store.getUsedCapacity().toString())	
 		if (target === null && injured === null &&
