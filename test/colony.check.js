@@ -64,7 +64,7 @@ let colonyCheck = {
 
 	clear: function(claimed) {
 		for (let room of claimed) {
-			let targets = room.find(FIND_MY_STRUCTURES, {
+			let targets = room.find(FIND_STRUCTURES, {
 				filter:(t) => {
 					return t.structureType !== STRUCTURE_RAMPART && t.structureType !== STRUCTURE_ROAD;
 				}
