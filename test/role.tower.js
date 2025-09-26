@@ -18,6 +18,9 @@ let roleTower = {
 			tower.heal(injured);
 		}
 		
+		console.log(target);
+		console.log(injured);
+		console.log(tower.store.getUsedCapacity().toString())	
 		if (target === undefined && injured === undefined &&
 			tower.store.getUsedCapacity() >= 750) {
 			let repairTarget = tower.pos.findClosestByRange(FIND_MY_STRUCTURES, {
