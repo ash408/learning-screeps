@@ -53,7 +53,7 @@ let roleWorker = {
 			index++;
 			tasks[index] = WORKER_TRANSFER_STORAGE;
 		}
-		if (this.getRepariableRampart() !== null) { 
+		if (this.getRepairableRampart() !== null) { 
 			index++;
 			tasks[index] = WORKER_REPARI_RAMPART;
 		}
