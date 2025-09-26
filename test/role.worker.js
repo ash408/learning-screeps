@@ -58,7 +58,7 @@ let roleWorker = {
 			tasks[index] = WORKER_REPARI_RAMPART;
 		}
 
-		let randomNum = Math.floor(Math.random() * tasks.keys().length);
+		let randomNum = Math.floor(Math.random() * Object.keys(tasks).length);
 		this.creep.memory.task = tasks[randomNum];
 	},
 
