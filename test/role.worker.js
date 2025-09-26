@@ -223,7 +223,7 @@ let roleWorker = {
 	},
 
 	transfer: function() {
-		let target = this.getEmpty();
+		let target = this.getEmptySpawn();
 		if (target !== null) {
 			if(this.creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
 				this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}, maxRooms: 1});
@@ -234,6 +234,13 @@ let roleWorker = {
 		if (target !== null) {
 			if(this.creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
 				this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}, maxRooms: 1});
+			}
+			return;
+		}
+		target = this.getEmpty();
+		if (target !== null) {
+			if(this.creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+				this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'), maxRooms: 1});
 			}
 			return;
 		}
