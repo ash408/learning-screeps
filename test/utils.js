@@ -45,6 +45,7 @@ let utils = {
 				}
 				currentX++;
 			}
+			currentX = startX;
 			currentY++;
 		}
 		return coordinates;
