@@ -26,7 +26,8 @@ let spawnDefenseConstructor = {
 			filter:(t) => {
 				return t.structureType !== STRUCTURE_RAMPART &&
 					 t.structureType !== STRUCTURE_ROAD &&
-					 t.structureType !== STRUCTURE_WALL
+					 t.structureType !== STRUCTURE_WALL &&
+					 t.structureType !== STRUCTURE_CONTROLLER
 			}
 		});
 
