@@ -24,7 +24,7 @@ let roleTower = {
 					return t.structureType === STRUCTURE_RAMPART &&
 						t.hits <= 1000;
 				}
-			}
+			});
 			tower.repair(repairTarget);
 		}
 	}
