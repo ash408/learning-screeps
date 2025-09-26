@@ -38,7 +38,7 @@ let utils = {
 		while (currentY <= endY) {
 
 			while (currentX <= endX) {
-				if (currentY === startY || currentY === endY) ||
+				if ((currentY === startY || currentY === endY) ||
 					(currentX === startX || currentX === endX)){
 					
 					coordinates.push({x: currentX, y: currentY});
