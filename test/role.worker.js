@@ -50,7 +50,8 @@ let roleWorker = {
 
 	assignDefault: function() {
 		let index = 0;
-		let tasks = { index: WORKER_UPGRADING };
+		let tasks = {};
+		tasks[index] = WORKER_UPGRADING;
 
 		if (this.getEmptyStorage() !== null) {
 			index++;
