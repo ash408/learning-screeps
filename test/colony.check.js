@@ -14,6 +14,7 @@ let colonyCheck = {
 		let claimed = this.getClaimed(allRooms);
 
 		this.rebuildCheck(claimed);
+		this.clear(claimed);
 		if (Memory.expansion === false) {
 			this.expansionCheck(claimed);
 		}
@@ -57,6 +58,29 @@ let colonyCheck = {
 			else if (numSpawns !== 0 && rcl >= 3 && numConstruction === 0) {
 				spawnDefenseConstructor.run(spawns[0]);
 				roadConstructor.run(room);
+			}
+		}
+	},
+
+	clear: function(claimed) }
+		for (let room of claimed) {
+			let targets = room.find(FIND_MY_STRUCTURES, {
+				filter:(t) => {
+					return t.structureType !== STRUCTURE_RAMPART && t.structureType !== STRUCTURE_ROAD;
+				}
+			});
+
+			for (let target of targets) {
+				let pos = target.pos;
+				let structures = room.lookForAt(LOOK_STRUCTURES, pos.x, pos.y);
+				let types = {}
+
+				for (let structure of structures) { types[structure.structureType] = structure; }
+
+				if (structures.length > 0 && STRUCTURE_ROAD in types) {
+					let road = types[STRUCTURE_ROAD];
+					road.destroy();
+				}
 			}
 		}
 	},
