@@ -43,7 +43,7 @@ let roleWorker = {
 				this.assignDefault();
 			}
 		}
-		else {
+		else if (this.creep.memory.task === undefined) {
 			this.assignDefault();
 		}
 	},
