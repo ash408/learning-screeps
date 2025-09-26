@@ -63,8 +63,8 @@ let roleWorker = {
 
 		let randomNum = Math.floor(Math.random() * Object.keys(tasks).length);
 
-		console.log(tasks);
 		console.log(index.toString());
+		console.log(tasks[randomNum]);
 		this.creep.memory.task = tasks[randomNum];
 	},
 
