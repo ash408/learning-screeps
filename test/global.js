@@ -9,7 +9,7 @@ let globalItems = {
 	
 	load: function() {
 
-		global.test = function() {
+		global.check = function() {
 			colonyCheck.run();
 		}
 
