@@ -135,9 +135,17 @@ let roleWorker = {
 		let repairTarget = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
 			filter: (t) => {
 				return t.structureType === STRUCTURE_RAMPART &&
-					(t.hits < t.hitsMax);
+					(t.hits === 1);
 			}
 		});
+		if (repairTarget === undefined) {
+			let repairTarget = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
+				filter: (t) => {
+					return t.structureType === STRUCTURE_RAMPART &&
+						t.hits < t.hitsMax;
+				}
+			});
+		}
 		return repairTarget;
 	},
 
