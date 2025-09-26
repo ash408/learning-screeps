@@ -128,7 +128,7 @@ let roleWorker = {
 	},
 
 	getRepairableRampart: function() {
-		let target = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
+		let repairTarget = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
 			filter: (t) => {
 				return t.structureType === STRUCTURE_RAMPART &&
 					(t.hits < t.hitsMax);
