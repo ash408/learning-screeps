@@ -59,6 +59,10 @@ let colonyCheck = {
 				spawnDefenseConstructor.run(spawns[0]);
 				roadConstructor.run(room);
 			}
+
+			if (numSpawns !== 0 && rcl >= 4 && numConstruction === 0) {
+				spawnDefenseConstructor.buildRamparts(spawns[0].room);
+			}
 		}
 	},
 

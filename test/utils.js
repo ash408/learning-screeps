@@ -29,6 +29,27 @@ let utils = {
         	return coordinates;
 	},
 
+	calculateRectangle: function(startX, startY, endX, endY) {
+		let currentX = startX;
+		let currentY = startY;
+
+		coordinates = [];
+
+		while (currentY <= endY) {
+
+			while (currentX <= endX) {
+				if (currentY === startY || currentY === endY) ||
+					(currentX === startX || currentX === endX)){
+					
+					coordinates.push({x: currentX, y: currentY});
+				}
+				currentX++;
+			}
+			currentY++;
+		}
+		return coordinates;
+	},
+
 	//Add length support
 	calculateCrosshair: function(x, y) {
           let coordinates = [];
