@@ -62,7 +62,7 @@ let colonyCheck = {
 		}
 	},
 
-	clear: function(claimed) }
+	clear: function(claimed) {
 		for (let room of claimed) {
 			let targets = room.find(FIND_MY_STRUCTURES, {
 				filter:(t) => {
