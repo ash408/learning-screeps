@@ -6,6 +6,7 @@ const WORKER_UPGRADING = 'upgrading';
 const WORKER_BUILDING = 'building';
 const WORKER_RELOCATING = 'relocating';
 const WORKER_TRANSFER_STORAGE = 'transferStorage';
+const WORKER_REPAIR_RAMPART = 'repairRampart';
 
 
 let roleWorker = {
@@ -45,15 +46,20 @@ let roleWorker = {
 	},
 
 	assignDefault: function() {
+		let index = 0;
+		let tasks = { index: WORKER_UPGRADING };
+
 		if (this.getEmptyStorage() !== null) {
-			let randomNum = Math.floor(Math.random() * 2);
-			
-			if (randomNum === 1) { this.creep.memory.task = WORKER_TRANSFER_STORAGE; }
-			else { this.creep.memory.task = WORKER_UPGRADING; }
+			index++;
+			tasks[index] = WORKER_TRANSFER_STORAGE;
 		}
-		else {
-			this.creep.memory.task = WORKER_UPGRADING;
+		if (this.getRepariableRampart() !== null) { 
+			index++;
+			tasks[index] = WORKER_REPARI_RAMPART;
 		}
+
+		let randomNum = Math.floor(Math.random() * tasks.keys().length);
+		this.creep.memory.task = tasks[randomNum];
 	},
 
 	checkRoom: function() {
@@ -113,7 +119,19 @@ let roleWorker = {
 	getRepairTarget: function() {
 		let repairTarget = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
 			filter: (t) => {
-				return t.structureType !== STRUCTURE_WALL && (t.hits < t.hitsMax);			
+				return t.structureType !== STRUCTURE_WALL &&
+					t.structureType !== STRUCTURE_RAMPART &&
+					 (t.hits < t.hitsMax);			
+			}
+		});
+		return repairTarget;
+	},
+
+	getRepairableRampart: function() {
+		let target = this.creep.findClosestByPath(FIND_STRUCTURES, {
+			filter: (t) => {
+				return t.structureType === STRUCTURE_RAMPART &&
+					(t.hits < t.hitsMax);
 			}
 		});
 		return repairTarget;
@@ -153,6 +171,9 @@ let roleWorker = {
 
 			case WORKER_TRANSFER_STORAGE:
 				this.transferStorage();
+				break;
+			case WORKER_REPAIR_RAMPART;
+				this.repairRampart();
 				break;
 		}
 	},
@@ -243,6 +264,17 @@ let roleWorker = {
 				this.assignDefault();
 			}
 		}
+	},
+
+	repairRampart: function() {
+		let target = this.getRepairableRampart();
+
+		if (target) {
+			if (this.creep.repair(target) === ERR_NOT_IN_RANGE) {
+				this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}, maxRooms: 1});
+			}
+		}
+		else { this.assignDefault(); }
 	},
 
 	relocate: function() {
