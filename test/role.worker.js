@@ -240,7 +240,7 @@ let roleWorker = {
 		target = this.getEmpty();
 		if (target !== null) {
 			if(this.creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-				this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'), maxRooms: 1});
+				this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}, maxRooms: 1});
 			}
 			return;
 		}
