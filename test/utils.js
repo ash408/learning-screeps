@@ -33,7 +33,7 @@ let utils = {
 		let currentX = startX;
 		let currentY = startY;
 
-		coordinates = [];
+		let coordinates = [];
 
 		while (currentY <= endY) {
 
