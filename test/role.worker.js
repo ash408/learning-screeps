@@ -193,7 +193,7 @@ let roleWorker = {
 
 	harvest: function() {
 		let source = null;
-		if(this.getEmptySpawn() !== null) {
+		if(this.getEmptySpawn() !== null this.getEmptyTower() !== null) {
 			source = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
 				filter: (structure) => {
 					return (structure.structureType === STRUCTURE_CONTAINER ||
