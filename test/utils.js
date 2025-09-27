@@ -71,7 +71,8 @@ let utils = {
  
           let validStructure = structures.length === 0;
 
-          if (structures.length > 0 && structures[0].structureType === STRUCTURE_ROAD) {
+          if (structures.length > 0 && (structures[0].structureType === STRUCTURE_ROAD 
+			|| structures[0].structureType === STRUCTURE_RAMPART)) {
                validStructure = true;
           }
  
