@@ -18,16 +18,16 @@ let roleTower = {
 			tower.heal(injured);
 		}
 		
-		if (target === null && injured === null &&
-			tower.store.getUsedCapacity(RESOURCE_ENERGY) >= 750) {
-			let repairTarget = tower.pos.findClosestByRange(FIND_MY_STRUCTURES, {
-				filter: (t) => {
-					return t.structureType === STRUCTURE_RAMPART &&
-						t.hits <= 1000;
-				}
-			});
-			tower.repair(repairTarget);
-		}
+		//if (target === null && injured === null &&
+		//	tower.store.getUsedCapacity(RESOURCE_ENERGY) >= 750) {
+		//	let repairTarget = tower.pos.findClosestByRange(FIND_MY_STRUCTURES, {
+		//		filter: (t) => {
+		//			return t.structureType === STRUCTURE_RAMPART &&
+		//				t.hits <= 1000;
+		//		}
+		//	});
+		//	tower.repair(repairTarget);
+		//}
 	}
 };
 
