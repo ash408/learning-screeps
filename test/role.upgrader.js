@@ -40,7 +40,7 @@ let roleUpgrader = {
 			}
 		});
 		if (source !== null && this.creep.harvest(source, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-			this.creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
+			this.creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}, maxRooms: 1});
 		}
 		else if (source === null){
 			this.creep.memory.task = UPGRADER_UPGRADING;
@@ -49,7 +49,7 @@ let roleUpgrader = {
 
 	upgrade: function() {
 		if(this.creep.upgradeController(this.creep.room.controller) === ERR_NOT_IN_RANGE) {
-			this.creep.moveTo(this.creep.room.controller, {visualizePathStyle: {stroke: '#ffffff'}});
+			this.creep.moveTo(this.creep.room.controller, {visualizePathStyle: {stroke: '#ffffff'}, maxRooms: 1});
 		}
 	}
 };
