@@ -1,6 +1,8 @@
 "use strict";
 
 let roadConstructor = require ('road.constructor');
+let spawnConstructor = require('spawn.constructor');
+let colonyCheck = require('colony.check');
 
 
 let globalItems = {
@@ -8,7 +10,7 @@ let globalItems = {
 	load: function() {
 
 		global.test = function() {
-			console.log("globals loaded");
+			colonyCheck.run();
 		}
 
 		global.clearSites = function() {
@@ -53,6 +55,17 @@ let globalItems = {
 
 			if (room !== undefined) {
 				roadConstructor.run(room);
+			}
+		}
+
+		global.buildSpawn = function(roomName) {
+			let room = Game.rooms[roomName];
+
+			if (room !== undefined) {
+				spawnConstructor.buildSpawn(room);
+			}
+			else {
+				console.log("Room is undefined");
 			}
 		}
 	}

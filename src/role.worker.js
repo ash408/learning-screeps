@@ -6,6 +6,7 @@ const WORKER_UPGRADING = 'upgrading';
 const WORKER_BUILDING = 'building';
 const WORKER_RELOCATING = 'relocating';
 const WORKER_TRANSFER_STORAGE = 'transferStorage';
+const WORKER_REPAIR_RAMPART = 'repairRampart';
 
 
 let roleWorker = {
@@ -42,18 +43,27 @@ let roleWorker = {
 				this.assignDefault();
 			}
 		}
+		else if (this.creep.memory.task === undefined) {
+			this.assignDefault();
+		}
 	},
 
 	assignDefault: function() {
+		let index = 0;
+		let tasks = {};
+		tasks[index] = WORKER_UPGRADING;
+
 		if (this.getEmptyStorage() !== null) {
-			let randomNum = Math.floor(Math.random() * 2);
-			
-			if (randomNum === 1) { this.creep.memory.task = WORKER_TRANSFER_STORAGE; }
-			else { this.creep.memory.task = WORKER_UPGRADING; }
+			index++;
+			tasks[index] = WORKER_TRANSFER_STORAGE;
 		}
-		else {
-			this.creep.memory.task = WORKER_UPGRADING;
+		if (this.getRepairableRampart() !== null) { 
+			index++;
+			tasks[index] = WORKER_REPAIR_RAMPART;
 		}
+
+		let randomNum = Math.floor(Math.random() * Object.keys(tasks).length);
+		this.creep.memory.task = tasks[randomNum];
 	},
 
 	checkRoom: function() {
@@ -113,9 +123,29 @@ let roleWorker = {
 	getRepairTarget: function() {
 		let repairTarget = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
 			filter: (t) => {
-				return t.structureType !== STRUCTURE_WALL && (t.hits < t.hitsMax);			
+				return t.structureType !== STRUCTURE_WALL &&
+					t.structureType !== STRUCTURE_RAMPART &&
+					 (t.hits < t.hitsMax);			
 			}
 		});
+		return repairTarget;
+	},
+
+	getRepairableRampart: function() {
+		let repairTarget = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
+			filter: (t) => {
+				return t.structureType === STRUCTURE_RAMPART &&
+					(t.hits === 1);
+			}
+		});
+		if (repairTarget === undefined) {
+			let repairTarget = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
+				filter: (t) => {
+					return t.structureType === STRUCTURE_RAMPART &&
+						t.hits < t.hitsMax;
+				}
+			});
+		}
 		return repairTarget;
 	},
 
@@ -154,12 +184,16 @@ let roleWorker = {
 			case WORKER_TRANSFER_STORAGE:
 				this.transferStorage();
 				break;
+
+			case WORKER_REPAIR_RAMPART:
+				this.repairRampart();
+				break;
 		}
 	},
 
 	harvest: function() {
 		let source = null;
-		if(this.getEmptySpawn() !== null) {
+		if(this.getEmptySpawn() !== null || this.getEmptyTower() !== null) {
 			source = this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
 				filter: (structure) => {
 					return (structure.structureType === STRUCTURE_CONTAINER ||
@@ -189,7 +223,7 @@ let roleWorker = {
 	},
 
 	transfer: function() {
-		let target = this.getEmpty();
+		let target = this.getEmptySpawn();
 		if (target !== null) {
 			if(this.creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
 				this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}, maxRooms: 1});
@@ -197,6 +231,13 @@ let roleWorker = {
 			return;
 		}
 		target = this.getEmptyTower();
+		if (target !== null) {
+			if(this.creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
+				this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}, maxRooms: 1});
+			}
+			return;
+		}
+		target = this.getEmpty();
 		if (target !== null) {
 			if(this.creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
 				this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}, maxRooms: 1});
@@ -243,6 +284,17 @@ let roleWorker = {
 				this.assignDefault();
 			}
 		}
+	},
+
+	repairRampart: function() {
+		let target = this.getRepairableRampart();
+
+		if (target) {
+			if (this.creep.repair(target) === ERR_NOT_IN_RANGE) {
+				this.creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}, maxRooms: 1});
+			}
+		}
+		else { this.assignDefault(); }
 	},
 
 	relocate: function() {

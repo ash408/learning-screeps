@@ -14,7 +14,6 @@ let colonyCheck = {
 		let claimed = this.getClaimed(allRooms);
 
 		this.rebuildCheck(claimed);
-		this.clear(claimed);
 		if (Memory.expansion === false) {
 			this.expansionCheck(claimed);
 		}
@@ -26,7 +25,7 @@ let colonyCheck = {
 			let roomController = room.controller;
 			let numConstruction = room.find(FIND_MY_CONSTRUCTION_SITES).length
 
-			if(roomController.level >= 6 && claimed.length < 5 && numConstruction === 0) {
+			if(roomController.level >= 4 && claimed.length < 5 && numConstruction === 0) {
 				let adjacentRooms = this.getAdjacentRooms(room);
 
 				for (let adjacentRoom of adjacentRooms) {
@@ -48,7 +47,6 @@ let colonyCheck = {
 			let rcl = room.controller.level;
 
 			if (numSpawns !== 0) {
-				spawnConstructor.run(spawns[0]);
 				spawnStorageConstructor.run(spawns[0]);
 			}
 
@@ -58,33 +56,6 @@ let colonyCheck = {
 			else if (numSpawns !== 0 && rcl >= 3 && numConstruction === 0) {
 				spawnDefenseConstructor.run(spawns[0]);
 				roadConstructor.run(room);
-			}
-
-			if (numSpawns !== 0 && rcl >= 4 && numConstruction === 0) {
-				spawnDefenseConstructor.buildRamparts(spawns[0].room);
-			}
-		}
-	},
-
-	clear: function(claimed) {
-		for (let room of claimed) {
-			let targets = room.find(FIND_STRUCTURES, {
-				filter:(t) => {
-					return t.structureType !== STRUCTURE_RAMPART && t.structureType !== STRUCTURE_ROAD;
-				}
-			});
-
-			for (let target of targets) {
-				let pos = target.pos;
-				let structures = room.lookForAt(LOOK_STRUCTURES, pos.x, pos.y);
-				let types = {}
-
-				for (let structure of structures) { types[structure.structureType] = structure; }
-
-				if (structures.length > 0 && STRUCTURE_ROAD in types) {
-					let road = types[STRUCTURE_ROAD];
-					road.destroy();
-				}
 			}
 		}
 	},

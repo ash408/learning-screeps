@@ -13,6 +13,13 @@ let expansionController = {
 			let startRoom = Game.rooms[Memory.startExpansionRoom];
 			let targetRoom = Game.rooms[Memory.expansionTarget];
 			
+			if (startRoom === undefined || !startRoom.controller.my) {
+				console.log("ERROR: starting room for expansion not found!");
+				console.log("Stopping expansion...");
+				Memory.expansion = false;
+				return;
+			}
+	
 			if (targetRoom !== undefined && startRoom !== undefined) {
 				let towers = targetRoom.find(FIND_MY_STRUCTURES, {
 					filter:(t) => {

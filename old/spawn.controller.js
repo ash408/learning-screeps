@@ -4,6 +4,7 @@ const MAX_UPGRADERS = 1;
 const MAX_SETTLERS = 2;
 const MAX_CLEANERS = 2;
 const MAX_CLAIMERS = 1;
+const MAX_SCOUTS = 3;
 
 const WORKERS_PER_SOURCE = 2;
 const PARTS_PER_WORKER = 25;
@@ -31,6 +32,8 @@ let spawnController = {
 		
 	run: function(spawn) {
 		let creeps = spawn.room.find(FIND_MY_CREEPS);
+		let creepHash = Game.creeps;
+		let allCreeps = Object.keys(creepHash).map(function(v) {return creepHash[v];});
 		let sources = spawn.room.find(FIND_SOURCES);
 
 		let MAX_WORKERS = sources.length * WORKERS_PER_SOURCE;
@@ -38,6 +41,7 @@ let spawnController = {
 		let workers = _.filter(creeps, (creep) => creep.memory.role == 'worker');
 		let upgraders = _.filter(creeps, (creep) => creep.memory.role == 'upgrader');
 		let guards = _.filter(creeps, (creep) => creep.memory.role == 'guard');
+		let scouts = _.filter(allCreeps, (creep) => creep.memory.role == 'scout');
 	
 		if (this.needsGuard(spawn.room, guards)) {
 			let newName = 'Guard' + Game.time;
@@ -65,6 +69,10 @@ let spawnController = {
 				spawn.spawnCreep(creepBody, newName,
 					{memory: {role: 'worker'}});
 			}
+		}
+		else if (this.needsScout(spawn.room, scouts)) {
+			let newName = 'Scout' + Game.time;
+			spawn.spawnCreep([MOVE], newName, {memory: {role: 'scout'}});
 		}
 
 		if (spawn.spawning) {
@@ -102,13 +110,13 @@ let spawnController = {
 		}
 	},
 
-	spawnSettler: function(spawn, target) {
+	spawnExpander: function(spawn, target) {
 		if (!spawn.spawning) {
 			let creeps = Game.creeps;
 			let workers = _.filter(creeps, (creep) => creep.memory.room === target.name && creep.memory.role === 'worker');
 
 			if (workers.length < MAX_SETTLERS) {
-				let newName = 'Settler' + Game.time;
+				let newName = 'Expander' + Game.time;
 				let creepBody = this.calculateBody(spawn.room, SETTLER_TEMPLATE);
 
 				if (creepBody !== null) {
@@ -150,6 +158,15 @@ let spawnController = {
 			let hostilePartNum = this.calculatePartNum(hostiles);
 
 			return guardPartNum < hostilePartNum;
+		}
+		return false;
+	},
+
+	needsScout: function(room, scouts) {
+		let rcl = room.controller.level;
+		
+		if (rcl >= 4 && scouts.length < MAX_SCOUTS) {
+			return true;
 		}
 		return false;
 	},
