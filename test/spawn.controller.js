@@ -165,7 +165,7 @@ let spawnController = {
 	needsScout: function(room, scouts) {
 		let rcl = room.controller.level;
 		
-		if (rcl >= 4 && scouts.length < MAX_SCOUTS) {
+		if (rcl >= 6 && scouts.length < MAX_SCOUTS) {
 			return true;
 		}
 		return false;
