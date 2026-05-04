@@ -65,6 +65,11 @@ let utils = {
      },
 
 	validateCoordinate: function(room, x, y) {
+		if ((x === 0 || y === 0) ||
+			(x >= 49 || y >= 49)){
+			return false;
+		}
+
 		let sites = room.lookForAt(LOOK_CONSTRUCTION_SITES, x, y);
           let structures = room.lookForAt(LOOK_STRUCTURES, x, y);
           let terrain = room.lookForAt(LOOK_TERRAIN, x, y);
