@@ -1,5 +1,4 @@
 "use strict";
-//test
 
 let utils = {
 
